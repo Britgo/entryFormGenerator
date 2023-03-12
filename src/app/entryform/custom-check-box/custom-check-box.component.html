@@ -1,0 +1,11 @@
+<span class="sp-shim vs-max"></span>
+<input name="EXT-C-MEMBER" type="hidden" value="N">
+<span *ngIf="checked"><input name="EXT-C-MEMBER" type="checkbox" value="Y" checked> {{name}}</span>
+<span *ngIf="!checked"><input name="EXT-C-MEMBER" type="checkbox" value="Y"> {{name}}</span>
+<img class="icon-help" src="assets/question_mark.png" alt="info"
+     matTooltip="{{title}}"
+     matTooltipShowDelay="1000"
+     matTooltipPositionAtOrigin="true"
+     (click)="showInfo.emit(title)">
+
+<br>

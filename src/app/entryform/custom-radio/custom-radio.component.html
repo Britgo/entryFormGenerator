@@ -1,0 +1,10 @@
+<span class="sp-shim vs-med"></span>
+<span *ngFor="let option of options">
+  <input name="EXT-R-MEAL" type="radio" value="{{option.toLowerCase()}}"> {{option}} &nbsp;
+</span>
+<img class="icon-help" src="assets/question_mark.png" alt="info"
+     matTooltip="{{title}}"
+     matTooltipShowDelay="1000"
+     matTooltipPositionAtOrigin="true"
+     (click)="showInfo.emit(title)">
+<br>

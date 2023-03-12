@@ -1,0 +1,523 @@
+<!-- MAIN FORM                                                                                                                                                  -->
+<form class="frm-entry" id="id_entryform" method="post"
+      autocomplete="on" onsubmit= "">
+
+  <div id="id_tiptxt" hidden>
+    {{shownToolTip}}
+  </div>
+
+  <div id="id_tooltip"
+       class="dv-tooltip"
+       matTooltip="Either hover or click on an info icon (i) for help."
+       matTooltipShowDelay="1000"
+       matTooltipPositionAtOrigin="true"
+       (click)="setShownTooltip(defaultTooltip)">
+  </div>
+
+  <!-- ----------------------------------------------------------------- EGD SEARCH BLOCK -->
+  <fieldset class="bk-fields">
+    <div class="dv-fields bk-fields">
+      <span class="sp-left "><!-- ---------------------------------------------- Given Initial -->
+        <span class="sp-left">Given Initial</span>
+        <br>
+        <span class="sp-left">
+          <input id="id_gsearch" class="in-short" type="text" placeholder="given">
+        </span>
+
+        <span class="sp-left">
+          <img id="id_sgiven" class="icon-help" src="assets/question_mark.png"
+               alt="info"
+               matTooltip="Type the initial character(s) of your first name.
+Please type underscore (_) if you have no first name.
+The EGD search starts once you begin typing your family initial."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true"
+               (click)="setShownTooltip('Type the initial character(s) of your first name.&#13;'+
+               'Please type underscore (_) if you have no first name.&#13;'+
+               'The EGD search starts once you begin typing your family initial.')">
+        </span>
+      </span>
+
+      <span class="sp-left "><!-- ---------------------------------------------- Family  Initial -->
+        <span class="sp-left">&nbsp;&nbsp;&nbsp;Family Initial</span><br>
+        <span class="sp-left">
+          &nbsp;&nbsp;&nbsp;<input id="id_fsearch" class="in-short" type="text" placeholder="family">
+        </span>
+        <span class="sp-left">
+          <img id="id_sfamily" class="icon-help" src="assets/question_mark.png" alt="info"
+               matTooltip="Type the initial character(s) of your surname to begin the EGD search."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true"
+               (click)="setShownTooltip('Type the initial character(s) of your surname to begin the EGD search.')">
+        </span>
+      </span>
+
+      <span class="sp-right "><!-- ---------------------------------------------------- EGD pin -->
+        <span class="sp-left">EGD pin</span>
+        <br>
+        <span class="sp-left">
+          <input id="id_egdpin"  class="in_egdpin" type="text" maxlength = "8"
+                 name="EGDPIN" value = ""
+                 placeholder="8 digit pin"
+                 matTooltip="Your EGD pin is automatically set if your name is found."
+                 matTooltipShowDelay="1000"
+                 matTooltipPositionAtOrigin="true">
+        </span>
+        <span class="sp-left">
+          <img id="id_segdpin" class="icon-help" src="assets/question_mark.png"
+               alt="info"
+               matTooltip="Type your 8 digit EGD pin.
+The pin is automatically set if you searched using your initials."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true"
+               (click)="setShownTooltip('Type your 8 digit EGD pin.&#13;'+
+               'The pin is automatically set if you searched using your initials.')">
+        </span>
+      </span>
+      <br>
+
+      <span class="sp-shim vs-max"> </span><!-- --------------------------------- Country Code -->
+      <span class="sp-left">
+        <span class="sp-left">Country Code</span><br>
+        <div>
+          <span class="sp-left">
+            <input id="id_lsearch" class="in-short"  type="text" maxlength="2" placeholder="ISO code">
+          </span>
+          <span class="sp-left">
+            <img id="id_slcode" src="assets/question_mark.png" class="icon-help"
+                 matTooltip="You can change the 2 character country code if needed.
+This will start a new search."
+                 matTooltipShowDelay="1000"
+                 matTooltipPositionAtOrigin="true"
+                 (click)="setShownTooltip('You can change the 2 character country code if needed.&#13;'+
+                 'This will start a new search.')"
+                 alt="info">
+          </span>
+        </div>
+      </span>
+      <br>
+
+      <span id="id_nplayer" class= "sp-nplayer">0</span><!-- -------------------- Player List -->
+      <span class="sp-pcount"> PLAYER COUNT</span>
+      <select id="id_players" class="cl_playerlist vs-del" title="list of EGD players">
+        <option value="0">NO PLAYERS</option>
+      </select>
+    </div>
+  </fieldset>
+
+  <!-- ------------------------------------------------------------- PLAYER DETAILS BLOCK -->
+  <fieldset class="bk-fields">
+    <div class="dv-fields bk-fields"> <!-- ------------------------------------ Family name -->
+      <span class="sp-left">Family Name</span>
+      <br>
+      <span class="sp-left">
+        <input id="id_fname" class="in-full" name="FAMILY" type="text"  value=""
+               maxlength="42"
+               matTooltip="A family name may not be empty."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+      <span class="sp-left">
+        <img id="id_finfo" src="assets/question_mark.png" class= "icon-help" alt="info"
+             matTooltip="You can edit the fields in this section if your EGD details are incorrect.
+A family name may contain hyphen (-), apostrophe('), space ( ), or underscore(_).
+Family name must not be empty."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('You can edit the fields in this section if your EGD details are incorrect.&#13;'+
+             'A family name may contain hyphen (-), apostrophe(\'), space ( ), or underscore(_).&#13;'+
+             'Family name must not be empty.')">
+      </span>
+    </div>
+    <br>
+
+    <div class="dv-fields bk-fields"> <!-- ------------------------------------- Given name -->
+      <span class="sp-left">Given Name</span>
+      <span class="sp-left">
+        <input id="id_gname" class="in-full" name="GIVEN"
+               type="text" value="" maxlength="42"
+               matTooltip="Your given name must not be blank - use underscore (_) if needed."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+      <span class="sp-left">
+        <img id="id_ginfo" src="assets/question_mark.png"
+             class= "icon-help" alt="info"
+             matTooltip="Type your given name including any middle names if needed.
+Use underscore (_) if you have no given name."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('Type your given name including any middle names if needed.&#13;'+
+             'Use underscore (_) if you have no given name.')">
+      </span>
+    </div>
+
+    <span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
+    <div class="dv-fields bk-fields">
+
+      <span class="sp-left">Country Code</span>
+      <span class="sp-land">Country Name</span>
+      <br>
+      <span class="sp-left">
+        <input id="id_lcode" class="in-short" name="CODE-CY" type="text"
+               maxlength=2 value=""
+               matTooltip="A 2 letter country code"
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+      <span class="sp-left">
+        <img id="id_ccicon" src="assets/question_mark.png" class="icon-help" alt="info"
+             matTooltip="We need your two-letter country code.
+ You can select from the Country Name list instead."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('We need your two-letter country code.&#13;'+
+             'You can select from the Country Name list instead.')">
+      </span>
+      <span class="sp-right">
+        <select id="id_lname" class="in-selcy" name="COUNTRY"
+                matTooltip="The country code will take precedence."
+                matTooltipShowDelay="1000"
+                matTooltipPositionAtOrigin="true">
+          <option value="..." selected="selected">COUNTRY NAMES</option>
+          <option value="AD">Andorra</option>
+          <option value="AR">Argentina</option>
+          <option value="AM">Armenia</option>
+          <option value="AU">Australia</option>
+          <option value="AT">Austria</option>
+          <option value="AZ">Azerbaijan</option>
+          <option value="BY">Belarus</option>
+          <option value="BE">Belgium</option>
+          <option value="BA">Bosnia</option>
+          <option value="BR">Brasile</option>
+          <option value="BN">Brunei</option>
+          <option value="BG">Bulgaria</option>
+          <option value="CA">Canada</option>
+          <option value="CN">China</option>
+          <option value="CL">Cile</option>
+          <option value="CO">Colombia</option>
+          <option value="CR">Costa Rica</option>
+          <option value="HR">Croatia</option>
+          <option value="CU">Cuba</option>
+          <option value="CY">Cyprus</option>
+          <option value="CZ">Czechia</option>
+          <option value="DK">Denmark</option>
+          <option value="EC">Ecuador</option>
+          <option value="EE">Estonia</option>
+          <option value="FI">Finland</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+          <option value="GR">Greece</option>
+          <option value="GT">Guatemala</option>
+          <option value="HK">Hong Kong</option>
+          <option value="HU">Hungary</option>
+          <option value="IS">Iceland</option>
+          <option value="IN">India</option>
+          <option value="ID">Indonesia</option>
+          <option value="IR">Iran</option>
+          <option value="IE">Ireland</option>
+          <option value="IL">Israel</option>
+          <option value="IT">Italy</option>
+          <option value="JP">Japan</option>
+          <option value="KZ">Kazakhstan</option>
+          <option value="KP">Korea Popular Republic</option>
+          <option value="KR">Korea Republic</option>
+          <option value="LA">Laos</option>
+          <option value="LV">Latvia</option>
+          <option value="LT">Lithuania</option>
+          <option value="LU">Luxemburg</option>
+          <option value="MO">Macau</option>
+          <option value="MK">Macedonia</option>
+          <option value="MG">Madagascar</option>
+          <option value="MY">Malaysia</option>
+          <option value="MX">Mexico</option>
+          <option value="MD">Moldova</option>
+          <option value="MN">Mongolia</option>
+          <option value="MA">Morocco</option>
+          <option value="NP">Nepal</option>
+          <option value="NL">Netherlands</option>
+          <option value="NZ">New Zealand</option>
+          <option value="NO">Norway</option>
+          <option value="PA">Panama</option>
+          <option value="PE">Peru</option>
+          <option value="PH">Philippines</option>
+          <option value="PL">Poland</option>
+          <option value="PT">Portugal</option>
+          <option value="RS">Republic of Serbia</option>
+          <option value="RO">Romania</option>
+          <option value="RU">Russia</option>
+          <option value="SM">San Marino</option>
+          <option value="SG">Singapore</option>
+          <option value="SK">Slovakia</option>
+          <option value="SI">Slovenia</option>
+          <option value="ZA">South Africa</option>
+          <option value="ES">Spain</option>
+          <option value="SE">Sweden</option>
+          <option value="CH">Switzerland</option>
+          <option value="TW">Taiwan</option>
+          <option value="TH">Thailand</option>
+          <option value="TR">Turkey</option>
+          <option value="UA">Ukraine</option>
+          <option value="UK">United Kingdom</option>
+          <option value="US">United States</option>
+          <option value="XX">Unknown Country</option>
+          <option value="UY">Uruguay</option>
+          <option value="VE">Venezuela</option>
+          <option value="VN">Vietnam</option>
+          <option value="YU">Yugoslavia</option>
+          <option value="??">No Such Code</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
+      <span class="sp-left">Club Code</span>
+      <span class="sp-club">Club Name</span>
+      <br>
+      <span class="sp-left">
+        <input  id="id_ccode" class="in-short" name="CODE-CB" type="text"
+                maxlength="4" value=""
+                matTooltip="club code letters or digits only (max 4 characters)"
+                matTooltipShowDelay="1000"
+                matTooltipPositionAtOrigin="true">
+      </span>
+      <img id="id_clicon" src="assets/question_mark.png"
+           class="icon-help" alt="info"
+           matTooltip="Type your club code here (1-4) characters.
+Or leave it blank and type your club name."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('Type your club code here (1-4) characters.&#13;'+
+           'Or leave it blank and type your club name.')">
+
+      <span class="sp-right">
+        <img id="id_cnicon" src="assets/question_mark.png"
+             class="icon-help" alt="info"
+             matTooltip="Please type your club name. It can contain hyphens or spaces, but no digits.
+We need only one of your code or name.
+Correct your club name if you have moved clubs.
+Tell the TD if you regularly play in several clubs."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('Please type your club name. '+
+             'It can contain hyphens or spaces, but no digits.&#13;'+
+             'We need only one of your code or name.&#13;'+
+             'Correct your club name if you have moved clubs.&#13;'+
+             'Tell the TD if you regularly play in several clubs.')">
+      </span>
+
+      <span class="sp-right">
+        <input id="id_cname" class="in-cname" name="CLUB" type="text"
+               matTooltip="The full club name can have hyphens
+or spaces, but no digits."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+    </div>
+
+    <div class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
+      <span class="sp-left">Grade</span>
+      <span class="sp-strength">Strength</span>
+      <br>
+
+      <span class="sp-left">
+        <input id="id_grade" class="in-short" name="GRADE"
+               type="text" maxlength="6" value=""
+               matTooltip="One or two digits followed by k,d, or p"
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+      <img id="id_gricon" src="assets/question_mark.png" class="icon-help" alt="info"
+           matTooltip="Please type your grade if this is your first rated tournament. We need 1 or 2 digits followed by k, d or p.
+Otherwise it is your grade as known from your last tournament.
+Please adjust if your Strength has changed."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('Please type your grade if this is your first rated tournament. '+
+           'We need 1 or 2 digits followed by k,d or p.&#13;'+
+           'Otherwise it is your grade as known from your last tournament.&#13;'+
+           'Please adjust if your Strength has changed.')">
+
+      <span class="sp-right">
+        <img id="id_sgicon" src="assets/question_mark.png"
+             class="icon-help" alt="info"
+             matTooltip="Leave this blank if this is your first rated tournament.
+If you have a rating, your entry Grade should be close to your rounded Strength.
+Please let us know reasons if you wish to enter at a different grade."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('Leave this blank if this is your first rated tournament.&#13;'+
+             'If you have a rating, your entry Grade should be close to your rounded Strength.&#13;'+
+             'Please let us know reasons if you wish to enter at a different grade.')">
+      </span>
+
+      <span class="sp-rate">
+        <input id="id_rated" class= "in-strength" name="EGDRATE" type="text"
+               matTooltip="Your strength is obtained from EGD. Please see the info to the right."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+    </div>
+
+
+    <span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
+    <div class="dv-fields bk-fields">
+      <span class="sp-shim vs-mic"></span>
+      <input  name="PLAYALL" type="hidden" value="N">
+      <input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked> Playing all rounds?
+      <img id="id_plicon" class="icon-help" src="assets/question_mark.png" alt="info"
+           matTooltip="If you are not playing in every round, please tell us.
+You can use the comment box below for details."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('If you are not playing in every round, please tell us.&#13;'+
+           'You can use the comment box below for details.')">
+
+      <span class="sp-shim vs-big"></span>
+      <br>
+      <input  name="FIRST" type="hidden" value="N">
+      <input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"> First rated tournament?
+      <img id="id_tficon" class="icon-help" src="assets/question_mark.png" alt="info"
+           matTooltip="If you were not found on EGD, please confirm that this is your very first tournament in Europe.
+If you have played in a rated tournament before, please try to find yourself on EGD.
+Then, if you have made changes, tell us that the new details above are a correction to your EGD record."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('If you were not found on EGD, please confirm that this is your very first '+
+           'tournament in Europe.&#13;'+
+           'If you have played in a rated tournament before, please try to find yourself on EGD.&#13;'+
+           'Then, if you have made changes, tell us that the new details above are a correction to your EGD record.')">
+      <span class="sp-shim vs-big"></span>
+      <br>
+      <input  name="PUBLIC" type="hidden" value="N">
+      <input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked> Public entry?
+      <img id="id_puicon" class="icon-help" src="assets/question_mark.png" alt="info"
+           matTooltip="If you wish to remain anonymous, please uncheck this box.
+In that case we show only your grade on the entry list."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('If you wish to remain anonymous, please uncheck this box.&#13;'+
+           'In that case we show only your grade on the entry list.')">
+    </div>
+
+    <!-- --------------------------------------------------------------------- CUSTOM BLOCK -->
+    <span class="sp-shim vs-sec"></span>
+    <div class="dv-fields">
+      <!--
+      Add here input fields that do not require validation e.g. checkbox, radio buttons, dropdown list.
+      See the Tourman documentation.
+       -->
+
+      <!-- EXAMPLE radio -->
+      <app-custom-radio *ngFor="let radio of radioList"
+                        [title]="radio.title"
+                        [options]="radio.options"
+                        [chosen]="radio.chosen"
+                        (showInfo)="setShownTooltip($event)">
+      </app-custom-radio>
+
+
+      <!-- EXAMPLE checkbox -->
+      <app-custom-check-box *ngFor="let checkBox of checkBoxList"
+                            [title]="checkBox.title"
+                            [name]="checkBox.name"
+                            [checked]="checkBox.checked"
+                            (showInfo)="setShownTooltip($event)">
+      </app-custom-check-box>
+
+      <!-- EXAMPLE dropdown -->
+      <app-custom-drop-down *ngFor="let dropDown of dropDownList"
+      [name]="dropDown.name"
+      [tooltip]="dropDown.tooltip"
+      [title]="dropDown.title"
+      [options]="dropDown.options"
+      [chosen]="dropDown.chosen">
+
+      </app-custom-drop-down>
+
+    </div>
+  </fieldset>
+
+  <!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
+  <fieldset class="bk-fields">
+    <div class="dv-fields">
+      <span class="sp-left">
+        <input id="id_email" class="in-email" type="text"  value=""
+               placeholder="current email address"
+               matTooltip="Please provide your current email address"
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+      </span>
+
+      <span class="sp-left vs-med">
+        <img id="id_emicon" class="icon-help" src="assets/question_mark.png" alt="info"
+             matTooltip="An email will be sent to you with all your form details."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('An email will be sent to you with all your form details.')">
+      </span>
+
+      <span class="sp-right vs-med"><!--  -->
+        <img id="id_evicon" class="icon-help" src="assets/question_mark.png" alt="info"
+             matTooltip="Please ensure that your address is valid.
+Check the box to confirm your address.
+An email is sent to you with all your entry details.
+Your email address is not stored anywhere by this form."
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true"
+             (click)="setShownTooltip('Please ensure that your address is valid.&#13;'+
+             'Check the box to confirm your address.&#13;'+
+             'An email is sent to you with all your entry details.&#13;'+
+             'Your email address is not stored anywhere by this form.')">
+      </span>
+
+      <div id="id_emailquery" class="dv-emailchk">
+        <input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"
+               matTooltip="Please confirm that your address is valid
+and that you will monitor it."
+               matTooltipShowDelay="1000"
+               matTooltipPositionAtOrigin="true">
+        Valid email?
+      </div>
+
+      <span class="sp-right">
+        <input id = "id_pmail" name="PRI-EMAILPLAYER" type="hidden" value="nomail">
+      </span>
+
+      <br>
+      <textarea id="id_pnote" class="in-pnote" name="NOTE" rows="3" cols="30" maxlength="105"
+                autocomplete="off"
+                placeholder="Add here brief additional information.
+For any complex issues, please email the Tournament Director."
+                matTooltip="Minimal punctuation is accepted in this comment field."
+                matTooltipShowDelay="1000"
+                matTooltipPositionAtOrigin="true">
+
+      </textarea>
+      <br>
+
+      <span class="sp-shim vs-max"></span>
+      <input id="id_submit" class="in-control sp-left tf_larger" type="submit" value="Submit"
+             matTooltip="The form data is sanitised and you will &#13; be asked to confirm changes made"
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true">
+
+      <input id="id_restart" class="in-control sp-right tf_larger" type="button" value="Reset"
+             matTooltip="Restarts the page from scratch"
+             matTooltipShowDelay="1000"
+             matTooltipPositionAtOrigin="true">
+      <img id="id_suicon" class="icon-help" src="assets/question_mark.png" alt="info"
+           matTooltip="If you need to make a correction after you Submit the form:
+Please just email the Tournament Director.
+Try to avoid Submitting the form again - thanks."
+           matTooltipShowDelay="1000"
+           matTooltipPositionAtOrigin="true"
+           (click)="setShownTooltip('If you need to make a correction after you Submit the form:&#13;'+
+'Please just email the Tournament Director.&#13;'+
+'Try to avoid Submitting the form again - thanks.')">
+
+      <div id="id_errlog" class="bk-error" hidden><br>ERROR<br></div> <!-- Visible during test -->
+
+    </div>
+  </fieldset>
+</form>

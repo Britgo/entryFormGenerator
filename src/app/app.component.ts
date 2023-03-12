@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'tournament-entry-form-generator';
   radioList: Radio[] = [new Radio('Choose your free meal', ['Lunch', 'Dinner', 'No Meal'], 2)];
   checkBoxList: CheckBox[] = [new CheckBox('There is a discount for members of any Go association', 'Association member?', true)];
-  dropDownList: DropDown[] = [new DropDown('Travel', 'Please tell us how you are traveling so that we can arrange a shuttle to the venue.', ['hyperdrive', 'elevator', 'sail'], 2)];
+  dropDownList: DropDown[] = [new DropDown('Travel', 'Modes of transport', 'Please tell us how you are traveling so that we can arrange a shuttle to the venue.', ['hyperdrive', 'elevator', 'sail'], 2)];
 
   updateRadio(newRadioList: Radio[]) {
     this.radioList = newRadioList;
