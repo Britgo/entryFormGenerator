@@ -11,7 +11,8 @@
        matTooltip="Either hover or click on an info icon (i) for help."
        matTooltipShowDelay="1000"
        matTooltipPositionAtOrigin="true"
-       (click)="setShownTooltip(defaultTooltip)">
+       (click)="setShownTooltip(defaultTooltip)"
+       [innerHTML]="shownToolTip">
   </div>
 
   <!-- ----------------------------------------------------------------- EGD SEARCH BLOCK -->

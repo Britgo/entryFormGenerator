@@ -12,7 +12,7 @@ export class EntryFormComponent {
   @Input() checkBoxList: CheckBox[] = [];
   @Input() dropDownList: DropDown[] = [];
 
-  defaultTooltip = "Either hover or click<br><br> on an info icon <span class=\"icon-i\"> i </span><br><br>for help.";
+  defaultTooltip = 'Either hover or click<br><br>on an info icon <img class="icon-help" src="assets/question_mark.png"><br><br>for help.';
   shownToolTip = this.defaultTooltip;
 
   setShownTooltip(newTooltip: string) {

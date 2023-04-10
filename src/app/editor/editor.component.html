@@ -1,3 +1,25 @@
-<button>
-  <a [href]="entryFormUrl" download="entry-form.html">Download entry form</a>
-</button>
+<span class="spacedContainer">
+  <h2>Tournament name <input type="text" [(ngModel)]="tournamentName"></h2>
+</span>
+
+
+<div class="spacedContainer">
+<app-radio-editor class="w33"
+                  [radioList]="radioList"
+                  (updateRadio)="updateRadio.emit($event)">
+</app-radio-editor>
+<app-check-box-editor  class="w33"
+                       [checkBoxList]="checkBoxList"
+                       (updateCheckBox)="updateCheckBox.emit($event)">
+</app-check-box-editor>
+<app-drop-down-editor  class="w33"
+                       [dropDownList]="dropDownList"
+                       (updateDropDown)="updateDropDown.emit($event)">
+</app-drop-down-editor>
+</div>
+
+<span class="spacedContainer">
+  <button class="niceButton boldText">
+    <a  [href]="entryFormUrl" download="entry-form.html">Download entry form</a>
+  </button>
+</span>

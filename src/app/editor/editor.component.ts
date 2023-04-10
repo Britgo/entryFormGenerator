@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CheckBox, DropDown, Radio} from "../models";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css']
+  styleUrls: ['./editor.component.css', '../app.component.css']
 })
-export class EditorComponent {
+export class EditorComponent implements OnInit{
   tournamentName: string = 'go-club-year';
   @Input() radioList: Radio[] = [];
   @Input() checkBoxList: CheckBox[] = [];
@@ -25,7 +25,7 @@ export class EditorComponent {
   ngOnInit() {
     const blob = new Blob([this.generateHTMLCode()], {type: 'application/octet-stream'});
 
-    this.entryFormUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window["URL"].createObjectURL(blob));
+    this.entryFormUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
   }
 
   generateHTMLCode() {

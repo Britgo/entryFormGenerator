@@ -1,0 +1,21 @@
+<!-- Custom dropdown -->
+<h2>Drop Down fields <fa-icon class="clickable" [icon]="faAdd" (click)="addDropDown()" [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon></h2>
+<div *ngFor="let dropDown of dropDownList; let i= index" style="width: 100%">
+  <hr>
+  <h4 class="expandedContainer">
+    <span>Name</span>
+    <fa-icon class="clickable" [icon]="faRemove" (click)="removeDropDown(i)" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+  </h4>
+  <input type="text" [(ngModel)]="dropDown.name">
+  <h4>Options<fa-icon class="clickable" [icon]="faAdd" (click)="addOption(dropDown)" [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon></h4>
+  <span *ngFor="let option of dropDown.options; let j = index">
+    <input #dropDownOption type="text" [value]="option" (change)="modifyOption(dropDown, j, dropDownOption.value)">
+    <input type="radio" [checked]="j===dropDown.chosen" (click)="selectDefault(dropDown, j)">
+    <fa-icon class="clickable" [icon]="faRemove" (click)="removeOption(dropDown, j)" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+    <br>
+  </span>
+  <h4>Description</h4>
+  <input type="text" [(ngModel)]="dropDown.title">
+  <h4>Tooltip</h4>
+  <input type="text" [(ngModel)]="dropDown.tooltip">
+</div>

@@ -1,19 +1,17 @@
-<table style="width: 100%">
-  <tr style="width: 100%">
-    <td class="page-half">
-      <app-entryform [radioList]="radioList"
-                     [checkBoxList]="checkBoxList"
-                     [dropDownList]="dropDownList">
-      </app-entryform>
-    </td>
-    <td class="page-half">
-      <app-editor [radioList]="radioList"
-                  [checkBoxList]="checkBoxList"
-                  [dropdownList]="dropDownList"
-                  (updateRadio)="updateRadio($event)"
-                  (updateCheckBox)="updateCheckBox($event)"
-                  (updateDropDown)="updateDropDown($event)">
-      </app-editor>
-    </td>
-  </tr>
-</table>
+<div class="spacedContainer">
+  <div class="page-half">
+    <app-entryform [radioList]="radioList"
+                   [checkBoxList]="checkBoxList"
+                   [dropDownList]="dropDownList">
+    </app-entryform>
+  </div>
+  <div class="page-half">
+    <app-editor [radioList]="radioList"
+                [checkBoxList]="checkBoxList"
+                [dropDownList]="dropDownList"
+                (updateRadio)="updateRadio($event)"
+                (updateCheckBox)="updateCheckBox($event)"
+                (updateDropDown)="updateDropDown($event)">
+    </app-editor>
+  </div>
+</div>

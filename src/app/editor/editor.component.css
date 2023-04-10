@@ -1,0 +1,54 @@
+.w33{
+  width:30%
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.boldText {
+  font-weight: bolder;
+}
+
+.centered {
+  align-content: center;
+  align-self: center;
+}
+
+.clickable {
+
+}
+
+.clickable:hover{
+  cursor: pointer;
+}
+
+button.niceButton {
+  display: block;
+  /*position: absolute;*/
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5.5vh;
+  transition: .3s ease;
+
+  font-family: 'Secular One', sans-serif;
+  font-size: 2vh;
+  text-align: center;
+  vertical-align: center;
+  line-height: 2.1em;
+  /*background-color: #ffd391;*/
+  background-color: #868c8f;
+}
+
+button.niceButton:hover {
+  box-shadow: 0 0 6px rgb(0,0,0,.5);
+}
+
+.expandedContainer {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 85%;
+}

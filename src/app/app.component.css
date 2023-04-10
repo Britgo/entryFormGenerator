@@ -2,3 +2,10 @@
   width: 40%;
   align-content: center;
 }
+
+.spacedContainer {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  width: 100%;
+}

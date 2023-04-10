@@ -1,0 +1,17 @@
+<!-- Custom radio -->
+<h2>Radio fields <fa-icon class="clickable" [icon]="faAdd" (click)="addRadio()" [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon></h2>
+<div *ngFor="let radio of radioList; let i= index" style="width: 100%">
+  <hr>
+  <h4 class="expandedContainer" style="width: 100%">
+    <span>Options <fa-icon class="clickable" [icon]="faAdd" (click)="addOption(radio)" [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon></span>
+    <fa-icon class="clickable" [icon]="faRemove" (click)="removeRadio(i)" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+  </h4>
+  <span *ngFor="let option of radio.options; let j = index">
+    <input #radioOption type="text" [value]="option" (change)="modifyOption(radio, j, radioOption.value)">
+    <input type="radio" [checked]="j===radio.chosen" (click)="selectDefault(radio, j)">
+    <fa-icon class="clickable" [icon]="faRemove" (click)="removeOption(radio, j)" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+    <br>
+  </span>
+  <h4>Description</h4>
+  <input type="text" [(ngModel)]="radio.title">
+</div>
