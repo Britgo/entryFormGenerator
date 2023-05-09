@@ -589,7 +589,7 @@ In that case we show only your grade on the entry list."
 
     // Add DropDown customizable items.
     html_str = html_str + `
-      // <!-- EXAMPLE dropdown -->
+      <!-- EXAMPLE dropdown -->
 `;
     for (let dropDownItem of this.dropDownList) {
       html_str = html_str + dropDownItem.toHTML();
