@@ -1,17 +1,25 @@
 const ALLOWED_CHARACTERS= "abcdefghijklmnopqrstuvwxyz0123456789"
 
-function preProcessString(input: string) {
+function sanitizeString(input: string, spaceReplacement: string = '_') {
   let output = '';
   for (let char of input.toLowerCase()) {
     if (ALLOWED_CHARACTERS.indexOf(char) !== -1) {
       output = output + char;
     } else {
       if (char === ' ') {
-        output = output + '_'
+        output = output + spaceReplacement;
       }
     }
   }
   return output
+}
+
+function stringToID(input: string):string {
+  return 'id_' + sanitizeString(input);
+}
+
+function stringToName(input: string) :string {
+  return 'EXT-D-' + sanitizeString(input,'-').toUpperCase();
 }
 
 export class Radio {
@@ -19,7 +27,11 @@ export class Radio {
   }
 
   getID() {
-    return 'id_' + preProcessString(this.title);
+    return stringToID(this.title);
+  }
+
+  getName() {
+    return stringToName(this.title);
   }
 
   preProcessOption(option: number) {
@@ -27,18 +39,18 @@ export class Radio {
   }
 
   getOptionID(option: number) {
-    return 'id_' + preProcessString(this.options[this.preProcessOption(option)]);
+    return 'id_' + sanitizeString(this.options[this.preProcessOption(option)]);
   }
 
   getOptionValue(option: number) {
-    return preProcessString(this.options[this.preProcessOption(option)]);
+    return sanitizeString(this.options[this.preProcessOption(option)]);
   }
 
   toHTML() {
     let html_str = '<span class="sp-shim vs-med"></span>\n';
     let i = 0;
     for (let option of this.options) {
-      html_str = html_str + '<input id="'+this.getOptionID(i)+'" name="EXT-R-MEAL" type="radio" value="';
+      html_str = html_str + '<input id="'+this.getOptionID(i)+'" name="'+this.getName()+'" type="radio" value="';
       html_str = html_str + this.getOptionValue(i)+'"> '+option;
       if (i !== this.options.length-1) {
         html_str = html_str +' &nbsp;';
@@ -47,8 +59,9 @@ export class Radio {
       i += 1;
     }
 
-    html_str = html_str + '<img id="'+this.getID()+'" class="icon-help" src="info.png" alt="info"';
-    html_str = html_str + 'onclick="show_info(\''+this.getID()+'\')"';
+    const processed_id = this.getID();
+    html_str = html_str + '<img id="'+processed_id+'" class="icon-help" src="info.png" alt="info"';
+    html_str = html_str + 'onclick="show_info(\''+processed_id+'\')"';
     html_str = html_str + 'title="'+this.title+'">\n<br>\n';
     return html_str;
   }
@@ -63,7 +76,11 @@ export class CheckBox {
   }
 
   getID() {
-    return 'id_' + preProcessString(this.name);
+    return stringToID(this.name);
+  }
+
+  getName() {
+    return stringToName(this.name);
   }
 
   getQIconID() {
@@ -72,8 +89,8 @@ export class CheckBox {
 
   toHTML() {
     let html_str = '<span class="sp-shim vs-max"></span>\n';
-    html_str = html_str + '<input name="EXT-C-MEMBER" type="hidden" value="N">\n';
-    html_str = html_str + '<input   id="'+this.getID()+'" name="EXT-C-MEMBER" type="checkbox" value="Y"> ';
+    html_str = html_str + '<input name="'+this.getName()+'" type="hidden" value="N">\n';
+    html_str = html_str + '<input   id="'+this.getID()+'" name="'+this.getName()+'" type="checkbox" value="Y"> ';
     html_str = html_str + this.name + ' \n';
     html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="info.png" alt="info"';
     html_str = html_str + ' onclick="show_info(\'' + this.getQIconID() + '\')"\n';
@@ -92,7 +109,11 @@ export class DropDown {
   }
 
   getID() {
-    return 'id_' + preProcessString(this.name);
+    return stringToID(this.name);
+  }
+
+  getName() {
+    return stringToName(this.name);
   }
 
   getQIconID() {
@@ -101,9 +122,9 @@ export class DropDown {
 
   toHTML() {
     let html_str = '<span class="sp-shim vs-max"></span>\n';
-    html_str = html_str + '<select id="'+this.getID()+'" name="EXT-D-TRAVEL" title="'+this.tooltip+'">\n';
+    html_str = html_str + '<select id="'+this.getID()+'" name="'+this.getName()+'" title="'+this.tooltip+'">\n';
     for (let option of this.options) {
-      html_str = html_str + '<option value="'+preProcessString(option)+'">'+option+'</option>\n';
+      html_str = html_str + '<option value="'+sanitizeString(option)+'">'+option+'</option>\n';
     }
     html_str = html_str + '</select>\n&nbsp;&nbsp;' + this.name+'\n';
     html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="info.png" alt="info"';
