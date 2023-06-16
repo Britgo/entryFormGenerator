@@ -1,5 +1,30 @@
 <span class="spacedContainer">
-  <h2>Tournament name <input type="text" [(ngModel)]="tournamentName"></h2>
+  <igx-input-group  class="w33">
+    <input igxInput name="tournamentName" type="text" [(ngModel)]="tournamentName"/>
+    <label igxLabel for="tournamentName"><b>Tournament name</b></label>
+  </igx-input-group>
+  <igx-input-group  class="w33">
+    <input igxInput name="tournamentDirector" type="text" [(ngModel)]="tournamentDirector"/>
+    <label igxLabel for="tournamentDirector"><b>Tournament director</b></label>
+  </igx-input-group>
+  <igx-input-group  class="w33">
+    <input igxInput name="email" type="text" [(ngModel)]="email"/>
+    <label igxLabel for="email"><b>email</b></label>
+  </igx-input-group>
+</span>
+
+<span class="spacedContainer">
+  <igx-input-group  class="w33">
+    <input igxInput name="tournamentYear" type="number" [(ngModel)]="tournamentYear"/>
+    <label igxLabel for="tournamentYear"><b>Tournament year</b></label>
+  </igx-input-group>
+  <span  class="w33">
+
+  </span>
+  <igx-input-group  class="w33">
+    <input igxInput name="backupEmail" type="text" [(ngModel)]="backupEmail"/>
+    <label igxLabel for="backupEmail"><b>backup email</b></label>
+  </igx-input-group>
 </span>
 
 
@@ -19,7 +44,7 @@
 </div>
 
 <span class="spacedContainer">
-  <button class="niceButton boldText" (click)="downloadEntryForm()">
-    Download entry form
+  <button class="niceButton boldText" (click)="downloadEntryFormFiles()">
+    Download entry form files
   </button>
 </span>

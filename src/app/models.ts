@@ -1,6 +1,15 @@
 const ALLOWED_CHARACTERS= "abcdefghijklmnopqrstuvwxyz0123456789"
 
-function sanitizeString(input: string, spaceReplacement: string = '_') {
+export function capitalizeString(input: string) {
+  if (input.length === 0) {
+    return input;
+  }
+  let output = input.toLocaleLowerCase()
+
+  return output.charAt(0).toUpperCase() + output.slice(1);
+}
+
+export function sanitizeString(input: string, spaceReplacement: string = '_') {
   let output = '';
   for (let char of input.toLowerCase()) {
     if (ALLOWED_CHARACTERS.indexOf(char) !== -1) {
@@ -60,7 +69,7 @@ export class Radio {
     }
 
     const processed_id = this.getID();
-    html_str = html_str + '<img id="'+processed_id+'" class="icon-help" src="info.png" alt="info"';
+    html_str = html_str + '<img id="'+processed_id+'" class="icon-help" src="../entrysys/info.png" alt="info"';
     html_str = html_str + 'onclick="show_info(\''+processed_id+'\')"';
     html_str = html_str + 'title="'+this.title+'">\n<br>\n';
     return html_str;
@@ -92,7 +101,7 @@ export class CheckBox {
     html_str = html_str + '<input name="'+this.getName()+'" type="hidden" value="N">\n';
     html_str = html_str + '<input   id="'+this.getID()+'" name="'+this.getName()+'" type="checkbox" value="Y"> ';
     html_str = html_str + this.name + ' \n';
-    html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="info.png" alt="info"';
+    html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="../entrysys/info.png" alt="info"';
     html_str = html_str + ' onclick="show_info(\'' + this.getQIconID() + '\')"\n';
     html_str = html_str + 'title="' + this.title + '">\n\n<br>\n';
     return html_str;
@@ -127,7 +136,7 @@ export class DropDown {
       html_str = html_str + '<option value="'+sanitizeString(option)+'">'+option+'</option>\n';
     }
     html_str = html_str + '</select>\n&nbsp;&nbsp;' + this.name+'\n';
-    html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="info.png" alt="info"';
+    html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="../entrysys/info.png" alt="info"';
     html_str = html_str + 'onclick="show_info(\'' + this.getQIconID() + '\')"\n';
     html_str = html_str + 'title="' + this.title + '">\n';
     return html_str;

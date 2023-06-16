@@ -14,6 +14,7 @@ import { RadioEditorComponent } from './editor/radio-editor/radio-editor.compone
 import { CheckBoxEditorComponent } from './editor/check-box-editor/check-box-editor.component';
 import { DropDownEditorComponent } from './editor/drop-down-editor/drop-down-editor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IgxInputGroupModule } from 'igniteui-angular';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     MatTooltipModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    IgxInputGroupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

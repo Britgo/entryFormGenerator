@@ -2,6 +2,10 @@
   width:30%
 }
 
+.w50{
+   width:30%
+}
+
 a{
   color: black;
   text-decoration: none;
@@ -39,7 +43,8 @@ button.niceButton {
   vertical-align: center;
   line-height: 2.1em;
   /*background-color: #ffd391;*/
-  background-color: #868c8f;
+  /*background-color: #868c8f;*/
+  background-color: #2e66f2;
 }
 
 button.niceButton:hover {

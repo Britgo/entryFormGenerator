@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CheckBox, DropDown, Radio} from "../models";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {sanitizeString, capitalizeString} from "../models";
 
 @Component({
   selector: 'app-editor',
@@ -8,7 +9,11 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
   styleUrls: ['./editor.component.css', '../app.component.css']
 })
 export class EditorComponent{
-  tournamentName: string = 'go-club-year';
+  tournamentName: string = 'club name';
+  tournamentYear: string = '2023';
+  tournamentDirector: string = 'Name Surname';
+  email: string = "username@email.com"
+  backupEmail: string = "username@email.com"
   @Input() radioList: Radio[] = [];
   @Input() checkBoxList: CheckBox[] = [];
   @Input() dropDownList: DropDown[] = [];
@@ -20,6 +25,11 @@ export class EditorComponent{
   constructor(private sanitizer: DomSanitizer) {
   }
 
+  downloadEntryFormFiles() {
+    this.downloadEntryForm()
+    this.downloadTourConfig()
+  }
+
   downloadEntryForm() {
     const blob = new Blob([this.generateHTMLCode()], {type: 'application/octet-stream'});
     let anchor: HTMLAnchorElement = document.createElement('a');
@@ -28,352 +38,219 @@ export class EditorComponent{
     anchor.click();
   }
 
+  downloadTourConfig() {
+    const blob = new Blob([this.generateTourConfigText()], {type: 'application/octet-stream'});
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.download = "tour-config";
+    anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+    anchor.click();
+  }
+
+  generateTourConfigText() {
+    let backupEmail = 'UNKNOWN';
+    if (this.backupEmail.length !== 0) {
+      backupEmail = this.sanitizeEmail(this.backupEmail);
+    }
+   return `CFG-TOURBASE    ` + this.getTourBase() +`
+CFG-TOURNAME    ` + sanitizeString(this.tournamentName, ' ') + `
+CFG-DIRECTOR    ` + sanitizeString(this.tournamentDirector, ' ') + `
+CFG-EMAIL-TD    ` + this.sanitizeEmail(this.email) + `
+CFG-EMAIL-DM    `+ backupEmail;
+  }
+
   generateHTMLCode() {
     let html_str = `<!DOCTYPE html>
 <!-- ---------------------------------------------------------------------------------- -->
-<!-- ENTRY FORM FOR tour                                                        G Kaniuk Jan 2019-->
+<!-- ENTRY FORM FOR tour                            G Kaniuk Jan 2019                   -->
 <!-- ---------------------------------------------------------------------------------- -->
-<!--  -->
-<!-- THE MAIN FORM consists of the following blocks: -->
-<!--  -->
-<!--    EGD SEARCH BLOCK -->
-<!--    PLAYER DETAILS BLOCK -->
-<!--    CUSTOM BLOCK -->
-<!--    SUBMIT BLOCK -->
-<!--    SYSTEM BLOCK -->
-<!--  -->
-<!-- The following html element names are reserved for future use: -->
-<!--    ID, REG, NAME,NAME-GF,NAME-FG,  GROUP, ROUNDS -->
+<!--                                                                                    -->
+<!-- THE MAIN FORM consists of the following blocks:                                    -->
+<!--                                                                                    -->
+<!--    EGD SEARCH BLOCK                                                                -->
+<!--    PLAYER DETAILS BLOCK                                                            -->
+<!--    CUSTOM BLOCK                                                                    -->
+<!--    SUBMIT BLOCK                                                                    -->
+<!--    SYSTEM BLOCK                                                                    -->
+<!--                                                                                    -->
+<!-- The following html element names are reserved for future use:                      -->
+<!--    ID, REG, NAME,NAME-GF,NAME-FG,  GROUP, ROUNDS                                   -->
 <!-- ---------------------------------------------------------------------------------- -->
 
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" type="text/css" href="style-reset.css">
-  <link rel="stylesheet" type="text/css" href="entryform-style.css">
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../entrysys/style-reset.css">
+<link rel="stylesheet" type="text/css" href="../entrysys/entryform-style.css">
 
-  <title>`;
+<title>`;
 
     // Add tournament title.
-    html_str = html_str + this.tournamentName;
+    html_str = html_str + this.getWebTitle();
     html_str = html_str + `</title>
-
 </head>
 <body>
 <!-- ---------------------------------------------------------------------------------- -->
-<!-- MAIN FORM                                                                                                                                                  -->
+<!-- MAIN FORM                                                                          -->
 <form class="frm-entry" id="id_entryform"
-      action="entryform-handler.php" method="post"
-      autocomplete="on" onsubmit= "return submit_entry()"
+action="../entrysys/entryform-handler.php" method="post"
+    autocomplete="on" onsubmit= "return submit_entry()"
 >
 
-  <div id="id_tiptxt" hidden>
-    Either hover or click<br><br> on an info icon <span class="icon-i"> i </span><br><br>for help.
-  </div>
+<div id="id_tiptxt" hidden>
+Either hover or click<br><br> on an info icon <span class="icon-i"> i </span><br><br>for help.
+</div>
 
-  <div id="id_tooltip" class="dv-tooltip" onclick="show_default_tip()"
-       title=
-         "Either hover or click on an info icon (i) for help.">
-  </div>
+<div id="id_tooltip" class="dv-tooltip" onclick="show_default_tip()"
+title=
+"Either hover or click on an info icon (i) for help.">
+</div>
 
-  <!-- ----------------------------------------------------------------- EGD SEARCH BLOCK -->
-  <fieldset class="bk-fields">
-    <div class="dv-fields bk-fields">
+<!-- ----------------------------------------------------------------- EGD SEARCH BLOCK -->
+<fieldset class="bk-fields">
+<div class="dv-fields bk-fields">
 <span class="sp-left "><!-- ---------------------------------------------- Given Initial -->
 <span class="sp-left">Given Initial</span><br>
 <span class="sp-left">
 <input id="id_gsearch" class="in-short" type="text"
-       placeholder="given"
-       onkeyup="handle_keyup_qdata('id_gsearch', event)"
+    placeholder="given"
+    onkeyup="handle_keyup_qdata('id_gsearch', event)"
 >
 </span>
 
 <span class="sp-left">
-<img id="id_sgiven" class="icon-help" src="info.png" alt="info" onclick="show_info('id_sgiven')"
-     title="Type the initial character(s) of your first name.
+<img id="id_sgiven" class="icon-help" src="../entrysys/info.png" alt="info" onclick="show_info('id_sgiven')"
+title="Type the initial character(s) of your first name.
 Please type underscore (_) if you have no first name.
 The EGD search starts once you begin typing your family initial."
 >
 </span>
  </span>
 
-      <span class="sp-left "><!-- ---------------------------------------------- Family  Initial -->
+<span class="sp-left "><!-- ---------------------------------------------- Family  Initial -->
 <span class="sp-left">&nbsp;&nbsp;&nbsp;Family Initial</span><br>
 <span class="sp-left">
 &nbsp;&nbsp;&nbsp;<input id="id_fsearch" class="in-short" type="text"
-                         placeholder="family"
-                         onkeyup="handle_keyup_qdata('id_fsearch', event)"
+    placeholder="family"
+    onkeyup="handle_keyup_qdata('id_fsearch', event)"
 >
 </span>
 <span class="sp-left">
-<img id="id_sfamily" class="icon-help" src="info.png" alt="info" onclick="show_info('id_sfamily')"
-     title="Type the initial character(s) of your surname to begin the EGD search.">
+<img id="id_sfamily" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_sfamily')"
+title="Type the initial character(s) of your surname to begin the EGD search.">
 </span>
 </span>
 
-      <span class="sp-right "><!-- ---------------------------------------------------- EGD pin -->
+<span class="sp-right "><!-- ---------------------------------------------------- EGD pin -->
 <span class="sp-left">EGD pin</span><br>
 <span class="sp-left">
 <input id="id_egdpin"  class="in_egdpin" type="text" maxlength = "8"
-       name="EGDPIN" value = ""
-       onkeyup = "handle_keyup_qpin(event)" placeholder="8 digit pin"
-       title="Your EGD pin is automatically set if your name is found."
+    name="EGDPIN" value = ""
+    onkeyup = "handle_keyup_qpin(event)" placeholder="8 digit pin"
+    title="Your EGD pin is automatically set if your name is found."
 >
 </span>
 <span class="sp-left">
-<img id="id_segdpin" class="icon-help" src="info.png" alt="info" onclick="show_info('id_segdpin')"
-     title="Type your 8 digit EGD pin.&#13;
+<img id="id_segdpin" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_segdpin')"
+title="Type your 8 digit EGD pin.&#13;
 The pin is automatically set if you searched using your initials."
 >
 </span>
 </span>
-      <br>
+<br>
 
-      <span class="sp-shim vs-max"> </span><!-- --------------------------------- Country Code -->
-      <span class="sp-left">
+<span class="sp-shim vs-max"> </span><!-- --------------------------------- Country Code -->
+<span class="sp-left">
 <span class="sp-left">Country Code</span><br>
 <div>
 <span class="sp-left">
 <input id="id_lsearch" class="in-short"  type="text" maxlength="2"
-       onkeyup="handle_keyup_qdata('id_lsearch', event)"
-       placeholder="ISO code"
+    onkeyup="handle_keyup_qdata('id_lsearch', event)"
+    placeholder="ISO code"
 >
 </span>
 <span class="sp-left">
-<img id="id_slcode" src="info.png" class="icon-help" onclick="show_info('id_slcode')"
-     alt="info" title="You can change the 2 character country code if needed.
+<img id="id_slcode" id="id_cc" src="../entrysys/info.png" class="icon-help" onclick="show_info('id_slcode')"
+alt="info" title="You can change the 2 character country code if needed.
 This will start a new search."
 >
-</span>
 </div>
-      </span>
-      <br>
+</span>
+</span>
+<br>
 
-      <span id="id_nplayer" class= "sp-nplayer">0</span><!-- -------------------- Player List -->
-      <span class="sp-pcount"> PLAYER COUNT</span>
-      <select id="id_players" class="cl_playerlist vs-del" title="list of EGD players"
-              onchange="handle_playerlist_change()"
-      >
-        <option value="0">NO PLAYERS</option>
-      </select>
-    </div>
-  </fieldset>
+<span id="id_nplayer" class= "sp-nplayer">0</span><!-- -------------------- Player List -->
+<span class="sp-pcount"> PLAYER COUNT</span>
+ <select id="id_players" class="cl_playerlist vs-del" title="list of EGD players"
+            onchange="handle_playerlist_change()"
+>
+<option value="0">NO PLAYERS</option>
+</select>
+</div>
+</fieldset>
 
-  <!-- ------------------------------------------------------------- PLAYER DETAILS BLOCK -->
-  <fieldset class="bk-fields">
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------ Family name -->
-      <span class="sp-left">Family Name</span>
-      <br>
-      <span class="sp-left">
+<!-- ------------------------------------------------------------- PLAYER DETAILS BLOCK -->
+<fieldset class="bk-fields">
+<div class="dv-fields bk-fields"> <!-- ------------------------------------ Family name -->
+<span class="sp-left">Family Name</span>
+<br>
+<span class="sp-left">
 <input id="id_fname" class="in-full" name="FAMILY" type="text"  value=""
-       maxlength="42"
-       title="A family name may not be empty."
+        maxlength="42"
+        title="A family name may not be empty."
 >
 </span>
-      <span class="sp-left">
-<img id="id_finfo" src="info.png" class= "icon-help" alt="info" onclick="show_info('id_finfo')"
-     title=
-       "You can edit the fields in this section if your EGD details are incorrect.
+<span class="sp-left">
+<img id="id_finfo" src="../entrysys/info.png" class= "icon-help" alt="info" onclick="show_info('id_finfo')"
+title=
+"You can edit the fields in this section if your EGD details are incorrect.
 A family name may contain hyphen (-), apostrophe('), space ( ), or underscore(_).
 Family name must not be empty.
 " >
 </span>
-    </div>
-    <br>
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------- Given name -->
-      <span class="sp-left">Given Name</span>
-      <span class="sp-left">
-<input id="id_gname" class="in-full" name="GIVEN" type="text"  value=""
-       maxlength="42"
-       title="Your given name must not be blank - use underscore (_) if needed."
->
-</span><!DOCTYPE html>
-<!-- ---------------------------------------------------------------------------------- -->
-<!-- ENTRY FORM FOR tour                                                        G Kaniuk Jan 2019-->
-<!-- ---------------------------------------------------------------------------------- -->
-<!--  -->
-<!-- THE MAIN FORM consists of the following blocks: -->
-<!--  -->
-<!--    EGD SEARCH BLOCK -->
-<!--    PLAYER DETAILS BLOCK -->
-<!--    CUSTOM BLOCK -->
-<!--    SUBMIT BLOCK -->
-<!--    SYSTEM BLOCK -->
-<!--  -->
-<!-- The following html element names are reserved for future use: -->
-<!--    ID, REG, NAME,NAME-GF,NAME-FG,  GROUP, ROUNDS -->
-<!-- ---------------------------------------------------------------------------------- -->
-
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" type="text/css" href="style-reset.css">
-  <link rel="stylesheet" type="text/css" href="entryform-style.css">
-
-  <title>TOUR-year</title>
-</head>
-<body>
-<!-- ---------------------------------------------------------------------------------- -->
-<!-- MAIN FORM                                                                                                                                                  -->
-<form class="frm-entry" id="id_entryform"
-      action="entryform-handler.php" method="post"
-      autocomplete="on" onsubmit= "return submit_entry()"
->
-
-  <div id="id_tiptxt" hidden>
-    Either hover or click<br><br> on an info icon <span class="icon-i"> i </span><br><br>for help.
-  </div>
-
-  <div id="id_tooltip" class="dv-tooltip" onclick="show_default_tip()"
-       title=
-         "Either hover or click on an info icon (i) for help.">
-  </div>
-
-  <!-- ----------------------------------------------------------------- EGD SEARCH BLOCK -->
-  <fieldset class="bk-fields">
-    <div class="dv-fields bk-fields">
-<span class="sp-left "><!-- ---------------------------------------------- Given Initial -->
-<span class="sp-left">Given Initial</span><br>
-<span class="sp-left">
-<input id="id_gsearch" class="in-short" type="text"
-       placeholder="given"
-       onkeyup="handle_keyup_qdata('id_gsearch', event)"
->
-</span>
-
-<span class="sp-left">
-<img id="id_sgiven" class="icon-help" src="info.png" alt="info" onclick="show_info('id_sgiven')"
-     title="Type the initial character(s) of your first name.
-Please type underscore (_) if you have no first name.
-The EGD search starts once you begin typing your family initial."
->
-</span>
- </span>
-
-      <span class="sp-left "><!-- ---------------------------------------------- Family  Initial -->
-<span class="sp-left">&nbsp;&nbsp;&nbsp;Family Initial</span><br>
-<span class="sp-left">
-&nbsp;&nbsp;&nbsp;<input id="id_fsearch" class="in-short" type="text"
-                         placeholder="family"
-                         onkeyup="handle_keyup_qdata('id_fsearch', event)"
->
-</span>
-<span class="sp-left">
-<img id="id_sfamily" class="icon-help" src="info.png" alt="info" onclick="show_info('id_sfamily')"
-     title="Type the initial character(s) of your surname to begin the EGD search.">
-</span>
-</span>
-
-      <span class="sp-right "><!-- ---------------------------------------------------- EGD pin -->
-<span class="sp-left">EGD pin</span><br>
-<span class="sp-left">
-<input id="id_egdpin"  class="in_egdpin" type="text" maxlength = "8"
-       name="EGDPIN" value = ""
-       onkeyup = "handle_keyup_qpin(event)" placeholder="8 digit pin"
-       title="Your EGD pin is automatically set if your name is found."
->
-</span>
-<span class="sp-left">
-<img id="id_segdpin" class="icon-help" src="info.png" alt="info" onclick="show_info('id_segdpin')"
-     title="Type your 8 digit EGD pin.&#13;
-The pin is automatically set if you searched using your initials."
->
-</span>
-</span>
-      <br>
-
-      <span class="sp-shim vs-max"> </span><!-- --------------------------------- Country Code -->
-      <span class="sp-left">
-<span class="sp-left">Country Code</span><br>
-<div>
-<span class="sp-left">
-<input id="id_lsearch" class="in-short"  type="text" maxlength="2"
-       onkeyup="handle_keyup_qdata('id_lsearch', event)"
-       placeholder="ISO code"
->
-</span>
-<span class="sp-left">
-<img id="id_slcode" src="info.png" class="icon-help" onclick="show_info('id_slcode')"
-     alt="info" title="You can change the 2 character country code if needed.
-This will start a new search."
->
-</span>
 </div>
-      </span>
-      <br>
-
-      <span id="id_nplayer" class= "sp-nplayer">0</span><!-- -------------------- Player List -->
-      <span class="sp-pcount"> PLAYER COUNT</span>
-      <select id="id_players" class="cl_playerlist vs-del" title="list of EGD players"
-              onchange="handle_playerlist_change()"
-      >
-        <option value="0">NO PLAYERS</option>
-      </select>
-    </div>
-  </fieldset>
-
-  <!-- ------------------------------------------------------------- PLAYER DETAILS BLOCK -->
-  <fieldset class="bk-fields">
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------ Family name -->
-      <span class="sp-left">Family Name</span>
-      <br>
-      <span class="sp-left">
-<input id="id_fname" class="in-full" name="FAMILY" type="text"  value=""
-       maxlength="42"
-       title="A family name may not be empty."
->
-</span>
-      <span class="sp-left">
-<img id="id_finfo" src="info.png" class= "icon-help" alt="info" onclick="show_info('id_finfo')"
-     title=
-       "You can edit the fields in this section if your EGD details are incorrect.
-A family name may contain hyphen (-), apostrophe('), space ( ), or underscore(_).
-Family name must not be empty.
-" >
-</span>
-    </div>
-    <br>
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------- Given name -->
-      <span class="sp-left">Given Name</span>
-      <span class="sp-left">
+<br>
+<div class="dv-fields bk-fields"> <!-- ------------------------------------- Given name -->
+<span class="sp-left">Given Name</span>
+<span class="sp-left">
 <input id="id_gname" class="in-full" name="GIVEN" type="text"  value=""
-       maxlength="42"
-       title="Your given name must not be blank - use underscore (_) if needed."
+    maxlength="42"
+    title="Your given name must not be blank - use underscore (_) if needed."
 >
 </span>
-      <span class="sp-left">
-<img id="id_ginfo" src="info.png" class= "icon-help" alt="info" onclick="show_info('id_ginfo')"
-     title=
-       "Type your given name including any middle names if needed.
+<span class="sp-left">
+<img id="id_ginfo" src="../entrysys/info.png" class= "icon-help" alt="info" onclick="show_info('id_ginfo')"
+title=
+"Type your given name including any middle names if needed.
 Use underscore (_) if you have no given name.
 ">
 </span>
 
-    </div>
+</div>
+</div>
 
-    <span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
-    <div class="dv-fields bk-fields">
+<span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
+<div class="dv-fields bk-fields">
 
-      <span class="sp-left">Country Code</span>
-      <span class="sp-land">Country Name</span>
-      <br>
-      <span class="sp-left">
+<span class="sp-left">Country Code</span>
+<span class="sp-land">Country Name</span>
+<br>
+<span class="sp-left">
 <input id="id_lcode" class="in-short" name="CODE-CY" type="text"
-       maxlength=2 value=""
-       title = "A 2 letter country code"
+    maxlength=2 value=""
+    title = "A 2 letter country code"
 >
 </span>
-      <span class="sp-left">
-<img id="id_ccicon" src="info.png" class="icon-help" alt="info" onclick="show_info('id_ccicon')"
-     title="We need your two-letter country code.
+<span class="sp-left">
+<img id="id_ccicon" src="../entrysys/info.png" class="icon-help" alt="info" onclick="show_info('id_ccicon')"
+title="We need your two-letter country code.
  You can select from the Country Name list instead.">
 </span>
-      <span class="sp-right">
+<span class="sp-right">
 <select id="id_lname" class="in-selcy" name="COUNTRY"
-        onchange="set_lcode()"
-        title="The country code will take precedence."
+onchange="set_lcode()"
+title="The country code will take precedence."
 >
-<option value="..." selected="selected">COUNTRY NAMES</option>
+<option value="..." selected="true">COUNTRY NAMES</option>
 <option value="AD">Andorra</option>
 <option value="AR">Argentina</option>
 <option value="AM">Armenia</option>
@@ -462,115 +339,116 @@ Use underscore (_) if you have no given name.
 <option value="??">No Such Code</option>
 </select>
 </span>
-    </div>
+</div>
 
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
-      <span class="sp-left">Club Code</span>
-      <span class="sp-club">Club Name</span>
-      <br>
-      <span class="sp-left">
+<div class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
+<span class="sp-left">Club Code</span>
+<span class="sp-club">Club Name</span>
+<br>
+<span class="sp-left">
 <input  id="id_ccode" class="in-short" name="CODE-CB" type="text"
         maxlength="4" value=""
         title="club code letters or digits only (max 4 characters)">
 </span>
-      <img id="id_clicon" src="info.png" class="icon-help" alt="info" onclick="show_info('id_clicon')"
-           title=
-             "Type your club code here (1-4) characters.
+<img id="id_clicon" src="../entrysys/info.png" class="icon-help" alt="info" onclick="show_info('id_clicon')"
+title=
+"Type your club code here (1-4) characters.
 Or leave it blank and type your club name."
-      >
+>
 
-      <span class="sp-right">
-<img id="id_cnicon" src="info.png" class="icon-help" alt="info" onclick="show_info('id_cnicon')"
-     title=
-       "Please type your club name. It can contain hyphens or spaces, but no digits.
+<span class="sp-right">
+<img id="id_cnicon" src="../entrysys/info.png" class="icon-help" alt="info" onclick="show_info('id_cnicon')"
+title=
+"Please type your club name. It can contain hyphens or spaces, but no digits.
 We need only one of your code or name.
 Correct your club name if you have moved clubs.
 Tell the TD if you regularly play in several clubs.
 ">
 </span>
 
-      <span class="sp-right">
+<span class="sp-right">
 <input id="id_cname" class="in-cname" name="CLUB" type="text"
        title="The full club name can have hyphens &#13; or spaces, but no digits."
 >
 </span>
-    </div>
+</div>
 
-    <div class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
-      <span class="sp-left">Grade</span>
-      <span class="sp-strength">Strength</span>
-      <br>
+<div class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
+<span class="sp-left">Grade</span>
+<span class="sp-strength">Strength</span>
+<br>
 
-      <span class="sp-left">
+<span class="sp-left">
 <input id="id_grade" class="in-short" name="GRADE" type="text"
        maxlength="6" value=""
        title="One or two digits followed by k,d, or p"
 >
 </span>
-      <img id="id_gricon" src="info.png" class="icon-help" alt="info" onclick="show_info('id_gricon')"
-           title=
-             "Please type your grade if this is your first rated tournament. We need 1 or 2 digits followed by k,d or p.
+<img id="id_gricon" src="../entrysys/info.png" class="icon-help" alt="info" onclick="show_info('id_gricon')"
+title=
+"Please type your grade if this is your first rated tournament. We need 1 or 2 digits followed by k,d or p.
 Otherwise it is your grade as known from your last tournament.
 Please adjust if your Strength has changed."
-      >
+>
 
-      <span class="sp-right">
-<img id="id_sgicon" src="info.png" class="icon-help" alt="info" onclick="show_info('id_sgicon')"
-     title=
-       "Leave this blank if this is your first rated tournament.
+<span class="sp-right">
+<img id="id_sgicon" src="../entrysys/info.png" class="icon-help" alt="info" onclick="show_info('id_sgicon')"
+title=
+"Leave this blank if this is your first rated tournament.
 If you have a rating, your entry Grade should be close to your rounded Strength.
 Please let us know reasons if you wish to enter at a different grade."
 >
 </span>
 
-      <span class="sp-rate">
+<span class="sp-rate">
 <input id="id_rated" class= "in-strength" name="EGDRATE" type="text"
-       title="Your strength is obtained from EGD. Please see the info to the right.">
+title="Your strength is obtained from EGD. Please see the info to the right.">
 </span>
-    </div>
+</div>
 
 
-    <span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
-    <div class="dv-fields bk-fields">
-      <span class="sp-shim vs-mic"></span>
-      <input  name="PLAYALL" type="hidden" value="N">
-      <input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked> Playing all rounds?
-      <img id="id_plicon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_plicon')"
-           title=
-             "If you are not playing in every round, please tell us.
+<span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
+<div class="dv-fields bk-fields">
+ <span class="sp-shim vs-mic"></span>
+<input  name="PLAYALL" type="hidden" value="N">
+<input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked> Playing all rounds?
+<img id="id_plicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_plicon')"
+title=
+"If you are not playing in every round, please tell us.
 You can use the comment box below for details."
-      >
+>
 
-      <span class="sp-shim vs-big"></span>
-      <br>
-      <input  name="FIRST" type="hidden" value="N">
-      <input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"> First rated tournament?
-      <img id="id_tficon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_tficon')"
-           title=
-             "If you were not found on EGD, please confirm that this is your very first tournament in Europe.
+<span class="sp-shim vs-big"></span>
+<br>
+
+<input  name="FIRST" type="hidden" value="N">
+<input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"> First rated tournament?
+<img id="id_tficon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_tficon')"
+title=
+"If you were not found on EGD, please confirm that this is your very first tournament in Europe.
 If you have played in a rated tournament before, please try to find yourself on EGD.
 Then, if you have made changes, tell us that the new details above are a correction to your EGD record."
-      >
-      <span class="sp-shim vs-big"></span>
-      <br>
-      <input  name="PUBLIC" type="hidden" value="N">
-      <input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked> Public entry?
-      <img id="id_puicon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_puicon')"
-           title=
-             "If you wish to remain anonymous, please uncheck this box.
+>
+<span class="sp-shim vs-big"></span>
+<br>
+<input  name="PUBLIC" type="hidden" value="N">
+<input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked > Public entry?
+<img id="id_puicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_puicon')"
+title=
+"If you wish to remain anonymous, please uncheck this box.
 In that case we show only your grade on the entry list."
-      >
-    </div>
+>
+</div>
 
-    <!-- --------------------------------------------------------------------- CUSTOM BLOCK -->
-    <span class="sp-shim vs-sec"></span>
-    <div class="dv-fields">
-      <!--
-      Add here input fields that do not require validation e.g. checkbox, radio buttons, dropdown list.
-      See the Tourman documentation.
-       -->
+<!-- ---------------------------------- CUSTOM BLOCK ---------------------------------- -->
+<span class="sp-shim vs-sec"></span>
+<div class="dv-fields">
+<!--
+Add here input fields that do not require validation e.g. checkbox, radio buttons, dropdown list.
+See the Tourman documentation.
+ -->
 
-      <!-- radio -->
+<!-- --------------------------------- EXAMPLE radio ---------------------------------- -->
 `;
     // Add Radio customizable items.
     for (let radioItem of this.radioList) {
@@ -580,7 +458,7 @@ In that case we show only your grade on the entry list."
 
     // Add Checkbox customizable items.
     html_str = html_str + `
-      <!-- EXAMPLE checkbox -->
+<!-- -------------------------------- EXAMPLE checkbox -------------------------------- -->
 `;
     for (let checkBoxItem of this.checkBoxList) {
       html_str = html_str + checkBoxItem.toHTML();
@@ -589,110 +467,112 @@ In that case we show only your grade on the entry list."
 
     // Add DropDown customizable items.
     html_str = html_str + `
-      <!-- EXAMPLE dropdown -->
+<!-- -------------------------------- EXAMPLE dropdown -------------------------------- -->
 `;
     for (let dropDownItem of this.dropDownList) {
       html_str = html_str + dropDownItem.toHTML();
     }
 
       html_str = html_str + `
-    </div>
-  </fieldset>
 
-  <!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
-  <fieldset class="bk-fields">
-    <div class="dv-fields">
+</div>
+</fieldset>
+
+<!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
+<fieldset class="bk-fields">
+<div class="dv-fields">
 <span class="sp-left">
 <input id="id_email" class="in-email" type="text"  value=""
-       placeholder="current email address"
-       title = "Please provide your current email address">
+        placeholder="current email address"
+        title = "Please provide your current email address">
 </span>
 
-      <span class="sp-left vs-med">
-<img id="id_emicon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_emicon')"
-     title="An email will be sent to you with all your form details.">
+<span class="sp-left vs-med">
+<img id="id_emicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_emicon')"
+title="An email will be sent to you with all your form details.">
 </span>
 
-      <span class="sp-right vs-med"><!--  -->
-<img id="id_evicon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_evicon')"
-     title=
-       "Please ensure that your address is valid.
+<span class="sp-right vs-med"><!--  -->
+<img id="id_evicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_evicon')"
+title=
+"Please ensure that your address is valid.
 Check the box to confirm your address.
 An email is sent to you with all your entry details.
 Your email address is not stored anywhere by this form."
 >
 </span>
 
-      <div id="id_emailquery" class="dv-emailchk">
-        <input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"
-               title="Please confirm that your address is valid &#13; and that you will monitor it">
-        Valid email?
-      </div>
+<div id="id_emailquery" class="dv-emailchk">
+<input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"
+    title="Please confirm that your address is valid &#13; and that you will monitor it">
+Valid email?
+</div>
 
-      <span class="sp-right">
+<span class="sp-right">
 <input id = "id_pmail" name="PRI-EMAILPLAYER" type="hidden" value="nomail">
 </span>
 
-      <br>
-      <textarea id="id_pnote" class="in-pnote" name="NOTE" rows="3" cols="30" maxlength="105"
-                autocomplete="off"
-                placeholder=
-                  "Add here brief additional information.
+<br>
+<textarea id="id_pnote" class="in-pnote" name="NOTE" rows="3" cols="30" maxlength="105"
+autocomplete="off"
+placeholder=
+"Add here brief additional information.
 For any complex issues, please email the Tournament Director."
 
-                title = "Minimal punctuation is accepted in this comment field.">
+title = "Minimal punctuation is accepted in this comment field.">
 </textarea>
-      <br>
+<br>
 
-      <span class="sp-shim vs-max"></span>
-      <input id="id_submit" class="in-control sp-left tf_larger" type="submit" value="Submit" enabled="true"
-             title="the form data is sanitised and you will &#13; be asked to confirm changes made">
+<span class="sp-shim vs-max"></span>
+<input id="id_submit" class="in-control sp-left tf_larger" type="submit" value="Submit" enabled="true"
+    title="the form data is sanitised and you will &#13; be asked to confirm changes made">
 
-      <input id="id_restart" class="in-control sp-right tf_larger" type="button" value="Reset" onclick="restart()"
-             title="restarts the page from scratch">
-      <img id="id_suicon" class="icon-help" src="info.png" alt="info" onclick="show_info('id_suicon')"
-           title="If you need to make a correction after you Submit the form:
+<input id="id_restart" class="in-control sp-right tf_larger" type="button" value="Reset" onclick="restart()"
+    title="restarts the page from scratch">
+<img id="id_suicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_suicon')"
+title="If you need to make a correction after you Submit the form:
 Please just email the Tournament Director.
 Try to avoid Submitting the form again - thanks.">
 
-      <div id="id_errlog" class="bk-error" hidden><br>ERROR<br></div> <!-- Visible during test -->
+<div id="id_errlog" class="bk-error" hidden><br>ERROR<br></div> <!-- Visible during test -->
 
-    </div>
-  </fieldset>
+</div>
+</fieldset>
 
-  <!-- -------------------------------------------------------------------- SYSTEM FIELDS -->
-  <!--                                                                                                                                                                    -->
-  <!--                                                                                                                                                                    -->
-  <span id="id_tourtitle" hidden>` + this.tournamentName + `</span>                                  <!-- Browser Tab title -->
+<!-- ---------------------------------- SYSTEM FIELDS ---------------------------------- -->
+<!--                                                                                     -->
+<!--                                                                                     -->
+<span id="id_tourtitle" hidden>` + this.getTourTitle() + `</span>                   <!-- Browser Tab title -->
 
-  <span id="id_fstatus" hidden>st-test</span>                                                       <!-- Form status  -->
-  <!-- The content  can be set to one of:                                                                                                                 -->
-  <!-- 'st-test' - emails are written to files on the server                                                              -->
-  <!-- 'st-live' - emails are sent to player and TD                                                                               -->
+<span id="id_fstatus" hidden>st-test</span>                            <!-- Form status  -->
+<!-- The content  can be set to one of:                                                  -->
+<!-- 'st-test' - emails are written to files on the server                               -->
+<!-- 'st-live' - emails are sent to player and TD                                        -->
 
-  <input id="id_tbase"  name="SYS-TOURBASE" type="hidden" value="tourdir">
-  <!-- SYS-TOURBASE defines the name of the directory containing the entryform.html file. -->
-  <!-- This directory must be a child of 'tournaments'                                                                    -->
+<input id="id_tbase"  name="SYS-TOURBASE" type="hidden" value="`+this.getTourBase() +`">
+<!-- SYS-TOURBASE defines the name of the directory containing the entryform.html file.  -->
+<!-- This directory must be a child of 'tournaments'                                     -->
 
-  <input id="id_pstate" name="SYS-PSTATE"   type="hidden" value="E">               <!-- automatic -->
+<input id="id_pstate" name="SYS-PSTATE"   type="hidden" value="E">        <!-- automatic -->
 
-  <!-- The PSTATE is the last field of the player record in player-entries.txt                    -->
-  <!-- The field value can be one of:                                                                                                     -->
-  <!--                                                                                                                                                                    -->
-  <!-- E - player entered and published                                                                                                   -->
-  <!-- A - player entered anonymously                                                                                                     -->
-  <!-- D - player has been deleted (reserved for the future)                                                              -->
+<!-- The PSTATE is the last field of the player record in player-entries.txt             -->
+<!-- The field value can be one of:                                                      -->
+<!--                                                                                     -->
+<!-- E - player entered and published                                                    -->
+<!-- A - player entered anonymously                                                      -->
+<!-- D - player has been deleted (reserved for the future)                               -->
 </form>
 
-<!-- ---------------------------------------------------------------------------------- -->
-<!-- JAVASCRIPT                                                                                 -->
-<!-- ---------------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------------------------- -->
+<!-- JAVASCRIPT                                                                          -->
+<!-- ----------------------------------------------------------------------------------- -->
 <noscript>
-  As Javascript appears to be missing or turned off, the form cannot be processed.<br><br>
+As Javascript appears to be missing or turned off, the form cannot be processed.<br><br>
 
-  Please email the tournament director stating: <br>
-  your name, grade, club, and country.<br><br>
-  Many thanks.
+Please email the tournament director stating: <br>
+your name, grade, club, and country.<br><br>
+
+Many thanks.
 </noscript>
 
 <script src = "../errlogsys/debug-tool.js"> </script>
@@ -700,11 +580,11 @@ Try to avoid Submitting the form again - thanks.">
 <script src = "../entrysys/entryform-interface.js"> </script>
 
 <!-- ---------------------------------------------------------------------------------- -->
-<!-- INITIALISATION FOR CUSTOM BLOCK                                                                                                    -->
+<!-- INITIALISATION FOR CUSTOM BLOCK                                                    -->
 <!-- ---------------------------------------------------------------------------------- -->
 <script type="text/javascript">
-  var default_custom_fields = function default_custom_fields()
-  {
+var default_custom_fields = function default_custom_fields()
+{
 `;
 
     // Add defaults for Radio customizable items.
@@ -723,18 +603,37 @@ Try to avoid Submitting the form again - thanks.">
     }
 
 
-    html_str = html_str + `  }
+    html_str = html_str + `
+}
 
-  var custom_submit = function custom_submit() { return true; }
+var custom_submit = function custom_submit() { return true; }
 </script>
 
 <!-- ---------------------------------------------------------------------------------- -->
-<!-- STARTUP ACTION                                                                                                     -->
+<!-- STARTUP ACTION                                                                     -->
 <!-- ---------------------------------------------------------------------------------- -->
 <script type="text/javascript"> default_startup(); </script>
 <!-- ---------------------------------------------------------------------------------- -->
 </body>
-</html>`;
+</html>
+
+`;
     return html_str;
+  }
+
+  getTourBase() {
+   return sanitizeString(this.tournamentName, '-');
+  }
+
+  getWebTitle() {
+    return capitalizeString(sanitizeString(this.tournamentName+' '+this.tournamentYear, '-'));
+  }
+  getTourTitle() {
+    return capitalizeString(sanitizeString(this.tournamentName+' '+this.tournamentYear, ' '));
+  }
+
+  sanitizeEmail(input_email: string) {
+    let output = input_email.replace('@', ' at ').replace('.', ' dot ');
+    return sanitizeString(output, ' ')
   }
 }
