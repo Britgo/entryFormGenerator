@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CheckBox, DropDown, Radio} from "../models";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {sanitizeString, capitalizeString} from "../models";
+import {DomSanitizer} from "@angular/platform-browser";
+import {sanitizeString, capitalizeString, capitalizeAll} from "../models";
 
 @Component({
   selector: 'app-editor',
@@ -51,11 +51,11 @@ export class EditorComponent{
     if (this.backupEmail.length !== 0) {
       backupEmail = this.sanitizeEmail(this.backupEmail);
     }
-   return `CFG-TOURBASE    ` + this.getTourBase() +`
-CFG-TOURNAME    ` + sanitizeString(this.tournamentName, ' ') + `
-CFG-DIRECTOR    ` + sanitizeString(this.tournamentDirector, ' ') + `
-CFG-EMAIL-TD    ` + this.sanitizeEmail(this.email) + `
-CFG-EMAIL-DM    `+ backupEmail;
+   return `CFG-TOURBASE\t` + this.getTourBase() +`
+CFG-TOURNAME\t` + capitalizeString(sanitizeString(this.tournamentName, ' ')) + `
+CFG-DIRECTOR\t` + capitalizeAll(sanitizeString(this.tournamentDirector, ' ')) + `
+CFG-EMAIL-TD\t` + this.sanitizeEmail(this.email) + `
+CFG-EMAIL-DM\t`+ backupEmail;
   }
 
   generateHTMLCode() {
@@ -633,7 +633,7 @@ var custom_submit = function custom_submit() { return true; }
   }
 
   sanitizeEmail(input_email: string) {
-    let output = input_email.replace('@', ' at ').replace('.', ' dot ');
+    let output = input_email.replace('@', ' at ').replaceAll('.', ' dot ');
     return sanitizeString(output, ' ')
   }
 }

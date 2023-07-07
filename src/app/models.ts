@@ -9,6 +9,12 @@ export function capitalizeString(input: string) {
   return output.charAt(0).toUpperCase() + output.slice(1);
 }
 
+export function capitalizeAll(input: string): string {
+  let l = input.split(' ');
+  l = l.map(capitalizeString);
+  return l.join(' ')
+}
+
 export function sanitizeString(input: string, spaceReplacement: string = '_') {
   let output = '';
   for (let char of input.toLowerCase()) {
