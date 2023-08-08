@@ -9,7 +9,7 @@ input
   background-color:ivory;
 }
 
-form.frm-entry { width: 40em; }
+form.frm-entry { width: 40em; padding-top: 10pt}
 
 fieldset
 {

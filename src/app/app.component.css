@@ -3,6 +3,16 @@
   align-content: center;
 }
 
+.page-third {
+    width: 33%;
+    align-content: center;
+  }
+
+.page-fifth {
+  width: 20%;
+  align-content: center;
+}
+
 .spacedContainer {
   display: flex;
   position: relative;
