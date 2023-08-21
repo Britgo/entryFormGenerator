@@ -15,10 +15,10 @@ export function capitalizeAll(input: string): string {
   return l.join(' ')
 }
 
-export function sanitizeString(input: string, spaceReplacement: string = '_') {
+export function sanitizeString(input: string, spaceReplacement: string = '_', allowedSpecialCharacters: string = '') {
   let output = '';
   for (let char of input.toLowerCase()) {
-    if (ALLOWED_CHARACTERS.indexOf(char) !== -1) {
+    if (ALLOWED_CHARACTERS.indexOf(char) !== -1  && allowedSpecialCharacters.indexOf(char) !== -1) {
       output = output + char;
     } else {
       if (char === ' ') {

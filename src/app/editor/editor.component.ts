@@ -634,6 +634,6 @@ var custom_submit = function custom_submit() { return true; }
 
   sanitizeEmail(input_email: string) {
     let output = input_email.replace('@', ' at ').replaceAll('.', ' dot ');
-    return sanitizeString(output, ' ')
+    return sanitizeString(output, ' ', '_-')
   }
 }
