@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "docs",
             "baseHref": "/entryFormGenerator/",
-            "deployUrl": "/entryFormGenerator/",
+//            "deployUrl": "/entryFormGenerator/",
             "index": {
               "input": "src/index.html",
               "output": "404.html"
