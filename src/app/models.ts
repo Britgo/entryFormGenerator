@@ -58,7 +58,7 @@ export class Radio {
   }
 
   getOptionValue(option: number) {
-    return sanitizeString(this.options[this.preProcessOption(option)]);
+    return sanitizeString(this.options[this.preProcessOption(option)], '');
   }
 
   toHTML() {
@@ -139,7 +139,7 @@ export class DropDown {
     let html_str = '<span class="sp-shim vs-max"></span>\n';
     html_str = html_str + '<select id="'+this.getID()+'" name="'+this.getName()+'" title="'+this.tooltip+'">\n';
     for (let option of this.options) {
-      html_str = html_str + '<option value="'+sanitizeString(option)+'">'+option+'</option>\n';
+      html_str = html_str + '<option value="'+sanitizeString(option, '')+'">'+option+'</option>\n';
     }
     html_str = html_str + '</select>\n&nbsp;&nbsp;' + this.name+'\n';
     html_str = html_str + '<img id="' + this.getQIconID() + '" class="icon-help" src="../entrysys/info.png" alt="info"';
