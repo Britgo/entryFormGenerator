@@ -38,7 +38,7 @@ div.dv-fields
 }
 
 div.dv-tooltip {
-  position: absolute; top:43em; left:29em;
+  position: absolute; left:29em;
 
   min-width: 13em; max-width: 20em; min-height: 7em;
 

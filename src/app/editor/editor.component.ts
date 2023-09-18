@@ -20,14 +20,36 @@ export class EditorComponent{
   @Input() checkBoxList: CheckBox[] = [];
   @Input() dropDownList: DropDown[] = [];
   @Input() validateEmail: boolean = false;
+  @Input() showCountry: boolean = true;
+  @Input() showClub: boolean = true;
+  @Input() showGrade: boolean = true;
+  @Input() playAllRounds: boolean = true;
+  @Input() firstTournament: boolean = true;
+  @Input() publicEntry: boolean = true;
 
   @Output() updateRadio = new EventEmitter<Radio[]>();
   @Output() updateCheckBox = new EventEmitter<CheckBox[]>();
   @Output() updateDropDown = new EventEmitter<DropDown[]>();
   @Output() updateValidateEmail = new EventEmitter<boolean>();
+  @Output() updateShowCountry = new EventEmitter<boolean>();
+  @Output() updateShowClub = new EventEmitter<boolean>();
+  @Output() updateShowGrade = new EventEmitter<boolean>();
+  @Output() updatePlayAllRounds = new EventEmitter<boolean>();
+  @Output() updateFirstTournament = new EventEmitter<boolean>();
+  @Output() updatePublicEntry = new EventEmitter<boolean>();
   @Output() updateAdditionalInfo = new EventEmitter<string>();
 
   constructor(private sanitizer: DomSanitizer) {
+  }
+
+  getTooltipHeight() {
+    let height = this.showCountry?41:37;
+    height = this.showClub?height:(height-4);
+    height = this.showGrade?height:(height-4);
+    height = this.playAllRounds?height:(height-1);
+    height = this.firstTournament?height:(height-1);
+    height = this.publicEntry?height:(height-1);
+    return height;
   }
 
   downloadEntryFormFiles() {
@@ -105,7 +127,7 @@ action="../entrysys/entryform-handler.php" method="post"
 Either hover or click<br><br> on an info icon <span class="icon-i"> i </span><br><br>for help.
 </div>
 
-<div id="id_tooltip" class="dv-tooltip" onclick="show_default_tip()"
+<div id="id_tooltip" class="dv-tooltip" style="top:` + this.getTooltipHeight() + `em;" onclick="show_default_tip()"
 title=
 "Either hover or click on an info icon (i) for help.">
 </div>
@@ -234,7 +256,7 @@ Use underscore (_) if you have no given name.
 </div>
 
 <span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
-<div class="dv-fields bk-fields">
+<div ` + this.showCountry?`class="dv-fields bk-fields"`:`hidden` + `>
 
 <span class="sp-left">Country Code</span>
 <span class="sp-land">Country Name</span>
@@ -346,7 +368,7 @@ title="The country code will take precedence."
 </span>
 </div>
 
-<div class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
+<div ` + this.showClub?`class="dv-fields bk-fields"`:`hidden` + `> <!-- ------------------------------------------- Club -->
 <span class="sp-left">Club Code</span>
 <span class="sp-club">Club Name</span>
 <br>
@@ -378,7 +400,7 @@ Tell the TD if you regularly play in several clubs.
 </span>
 </div>
 
-<div class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
+<div ` + this.showGrade?`class="dv-fields bk-fields"`:`hidden` + `><!-- ---------------------------------------- Grade -->
 <span class="sp-left">Grade</span>
 <span class="sp-strength">Strength</span>
 <br>
@@ -414,31 +436,33 @@ title="Your strength is obtained from EGD. Please see the info to the right.">
 
 <span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
 <div class="dv-fields bk-fields">
- <span class="sp-shim vs-mic"></span>
+ <span ` + this.playAllRounds?`class="sp-shim vs-mic"`:`hidden` + `></span>
 <input  name="PLAYALL" type="hidden" value="N">
-<input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked> Playing all rounds?
-<img id="id_plicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_plicon')"
+<input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked` + this.playAllRounds?`> Playing all rounds?`:` hidden>` + `
+<img id="id_plicon" ` + this.playAllRounds?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_plicon')"
 title=
 "If you are not playing in every round, please tell us.
 You can use the comment box below for details."
 >
 
-<span class="sp-shim vs-big"></span>
-<br>
+`+ this.playAllRounds?`<span class="sp-shim vs-big"></span>
+<br>`:`` + `
 
 <input  name="FIRST" type="hidden" value="N">
-<input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"> First rated tournament?
-<img id="id_tficon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_tficon')"
+<input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"` + this.firstTournament?`> First rated tournament?`:`hidden>` + `
+<img id="id_tficon" ` + this.firstTournament?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_tficon')"
 title=
 "If you were not found on EGD, please confirm that this is your very first tournament in Europe.
 If you have played in a rated tournament before, please try to find yourself on EGD.
 Then, if you have made changes, tell us that the new details above are a correction to your EGD record."
 >
-<span class="sp-shim vs-big"></span>
-<br>
+
+`+ this.firstTournament?`<span class="sp-shim vs-big"></span>
+<br>`:`` + `
+
 <input  name="PUBLIC" type="hidden" value="N">
-<input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked > Public entry?
-<img id="id_puicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_puicon')"
+<input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked` + this.publicEntry?`> Public entry?`:`hidden>` + `
+<img id="id_puicon" ` + this.publicEntry?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_puicon')"
 title=
 "If you wish to remain anonymous, please uncheck this box.
 In that case we show only your grade on the entry list."

@@ -8,6 +8,7 @@
 
   <div id="id_tooltip"
        class="dv-tooltip"
+       style="top:{{getTooltipHeight()}}em;"
        matTooltip="Either hover or click on an info icon (i) for help."
        matTooltipShowDelay="1000"
        matTooltipPositionAtOrigin="true"
@@ -154,7 +155,7 @@ Use underscore (_) if you have no given name."
     </div>
 
     <span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
-    <div class="dv-fields bk-fields">
+    <div *ngIf="showCountry" class="dv-fields bk-fields">
 
       <span class="sp-left">Country Code</span>
       <span class="sp-land">Country Name</span>
@@ -271,7 +272,7 @@ Use underscore (_) if you have no given name."
       </span>
     </div>
 
-    <div class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
+    <div *ngIf="showClub" class="dv-fields bk-fields"> <!-- ------------------------------------------- Club -->
       <span class="sp-left">Club Code</span>
       <span class="sp-club">Club Name</span>
       <br>
@@ -316,7 +317,7 @@ or spaces, but no digits."
       </span>
     </div>
 
-    <div class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
+    <div *ngIf="showGrade" class="dv-fields bk-fields"><!-- ---------------------------------------- Grade -->
       <span class="sp-left">Grade</span>
       <span class="sp-strength">Strength</span>
       <br>
@@ -363,10 +364,10 @@ Please let us know reasons if you wish to enter at a different grade."
 
     <span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
     <div class="dv-fields bk-fields">
-      <span class="sp-shim vs-mic"></span>
+      <span *ngIf="playAllRounds" class="sp-shim vs-mic"></span>
       <input  name="PLAYALL" type="hidden" value="N">
-      <input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked> Playing all rounds?
-      <img id="id_plicon" class="icon-help" src="assets/question_mark.png" alt="info"
+      <input *ngIf="playAllRounds" id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked>{{getPlayAllRoundsText()}}
+      <img *ngIf="playAllRounds" id="id_plicon" class="icon-help" src="assets/question_mark.png" alt="info"
            matTooltip="If you are not playing in every round, please tell us.
 You can use the comment box below for details."
            matTooltipShowDelay="1000"
@@ -374,11 +375,12 @@ You can use the comment box below for details."
            (click)="setShownTooltip('If you are not playing in every round, please tell us.&#13;'+
            'You can use the comment box below for details.')">
 
-      <span class="sp-shim vs-big"></span>
-      <br>
-      <input  name="FIRST" type="hidden" value="N">
-      <input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"> First rated tournament?
-      <img id="id_tficon" class="icon-help" src="assets/question_mark.png" alt="info"
+      <span *ngIf="playAllRounds" class="sp-shim vs-big"></span>
+      <br *ngIf="playAllRounds">
+
+      <input *ngIf="firstTournament" name="FIRST" type="hidden" value="N">
+      <input *ngIf="firstTournament" id="id_firstegd" name="FIRST"  type="checkbox" value="Y">{{getFirstTournamentText()}}
+      <img *ngIf="firstTournament" id="id_tficon" class="icon-help" src="assets/question_mark.png" alt="info"
            matTooltip="If you were not found on EGD, please confirm that this is your very first tournament in Europe.
 If you have played in a rated tournament before, please try to find yourself on EGD.
 Then, if you have made changes, tell us that the new details above are a correction to your EGD record."
@@ -388,11 +390,12 @@ Then, if you have made changes, tell us that the new details above are a correct
            'tournament in Europe.&#13;'+
            'If you have played in a rated tournament before, please try to find yourself on EGD.&#13;'+
            'Then, if you have made changes, tell us that the new details above are a correction to your EGD record.')">
-      <span class="sp-shim vs-big"></span>
-      <br>
+      <span *ngIf="firstTournament" class="sp-shim vs-big"></span>
+      <br *ngIf="firstTournament">
+
       <input  name="PUBLIC" type="hidden" value="N">
-      <input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked> Public entry?
-      <img id="id_puicon" class="icon-help" src="assets/question_mark.png" alt="info"
+      <input *ngIf="publicEntry" id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked>{{getPublicEntryText()}}
+      <img *ngIf="publicEntry" id="id_puicon" class="icon-help" src="assets/question_mark.png" alt="info"
            matTooltip="If you wish to remain anonymous, please uncheck this box.
 In that case we show only your grade on the entry list."
            matTooltipShowDelay="1000"

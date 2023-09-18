@@ -27,6 +27,40 @@
     <label igxLabel for="backupEmail"><b>backup email</b></label>
   </igx-input-group>
 </span>
+<hr>
+<span class="spacedContainer">
+  <span class="w33">
+    <b>Show country</b>
+    <input type="radio" [checked]="showCountry" (click)="updateShowCountry.emit(!showCountry)">
+  </span>
+
+  <span class="w33">
+    <b>Show club</b>
+    <input type="radio" [checked]="showClub" (click)="updateShowClub.emit(!showClub)">
+  </span>
+
+  <span class="w33">
+    <b>Show Grade</b>
+    <input type="radio" [checked]="showGrade" (click)="updateShowGrade.emit(!showGrade)">
+  </span>
+</span>
+
+<span class="spacedContainer">
+  <span class="w33">
+    <b>Ask if play all rounds</b>
+    <input type="radio" [checked]="playAllRounds" (click)="updatePlayAllRounds.emit(!playAllRounds)">
+  </span>
+
+  <span class="w33">
+    <b>Ask if first tournament</b>
+    <input type="radio" [checked]="firstTournament" (click)="updateFirstTournament.emit(!firstTournament)">
+  </span>
+
+  <span class="w33">
+    <b>Ask if public entry</b>
+    <input type="radio" [checked]="publicEntry" (click)="updatePublicEntry.emit(!publicEntry)">
+  </span>
+</span>
 
 <span class="spacedContainer">
   <span>
@@ -34,7 +68,7 @@
     <input type="radio" [checked]="validateEmail" (click)="updateValidateEmail.emit(!validateEmail)">
   </span>
 
-  <igx-input-group>
+  <igx-input-group class="w33">
     <input igxInput name="additionalInfo" type="text"
            [(ngModel)]="additionalInfo"
            (change)="updateAdditionalInfo.emit(additionalInfo)"/>
