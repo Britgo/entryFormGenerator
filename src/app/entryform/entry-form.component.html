@@ -439,9 +439,11 @@ In that case we show only your grade on the entry list."
     </div>
   </fieldset>
 
+  <hr>
   <!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
   <fieldset class="bk-fields">
     <div class="dv-fields">
+      <span *ngIf="additionalInfo!==''">{{additionalInfo}}<br></span>
       <span class="sp-left">
         <input id="id_email" class="in-email" type="text"  value=""
                placeholder="current email address"
@@ -458,7 +460,7 @@ In that case we show only your grade on the entry list."
              (click)="setShownTooltip('An email will be sent to you with all your form details.')">
       </span>
 
-      <span class="sp-right vs-med"><!--  -->
+      <span *ngIf="validateEmail" class="sp-right vs-med"><!--  -->
         <img id="id_evicon" class="icon-help" src="assets/question_mark.png" alt="info"
              matTooltip="Please ensure that your address is valid.
 Check the box to confirm your address.
@@ -472,7 +474,7 @@ Your email address is not stored anywhere by this form."
              'Your email address is not stored anywhere by this form.')">
       </span>
 
-      <div id="id_emailquery" class="dv-emailchk">
+      <div *ngIf="validateEmail" id="id_emailquery" class="dv-emailchk">
         <input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"
                matTooltip="Please confirm that your address is valid
 and that you will monitor it."

@@ -2,16 +2,21 @@
   <div class="page-fifth" style="padding-left: 10pt;">
     <app-entryform [radioList]="radioList"
                    [checkBoxList]="checkBoxList"
-                   [dropDownList]="dropDownList">
+                   [dropDownList]="dropDownList"
+                   [validateEmail]="validateEmail"
+                   [additionalInfo]="additionalInfo">
     </app-entryform>
   </div>
   <div class="page-half" style="padding-right: 10pt;">
     <app-editor [radioList]="radioList"
                 [checkBoxList]="checkBoxList"
                 [dropDownList]="dropDownList"
+                [validateEmail]="validateEmail"
                 (updateRadio)="updateRadio($event)"
                 (updateCheckBox)="updateCheckBox($event)"
-                (updateDropDown)="updateDropDown($event)">
+                (updateDropDown)="updateDropDown($event)"
+                (updateValidateEmail)="updateValidateEmail($event)"
+                (updateAdditionalInfo)="updateAdditionalInfo($event)">
     </app-editor>
   </div>
 </div>

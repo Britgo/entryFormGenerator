@@ -28,6 +28,19 @@
   </igx-input-group>
 </span>
 
+<span class="spacedContainer">
+  <span>
+    <b>Ask for e-mail validation</b>
+    <input type="radio" [checked]="validateEmail" (click)="updateValidateEmail.emit(!validateEmail)">
+  </span>
+
+  <igx-input-group>
+    <input igxInput name="additionalInfo" type="text"
+           [(ngModel)]="additionalInfo"
+           (change)="updateAdditionalInfo.emit(additionalInfo)"/>
+    <label igxLabel for="additionalInfo"><b>Additional information</b></label>
+  </igx-input-group>
+</span>
 
 <div class="spacedContainer">
 <app-radio-editor class="w33"

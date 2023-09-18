@@ -14,13 +14,18 @@ export class EditorComponent{
   tournamentDirector: string = 'Name Surname';
   email: string = "username@email.com"
   backupEmail: string = "username@email.com"
+  additionalInfo: string = ""
+
   @Input() radioList: Radio[] = [];
   @Input() checkBoxList: CheckBox[] = [];
   @Input() dropDownList: DropDown[] = [];
+  @Input() validateEmail: boolean = false;
 
   @Output() updateRadio = new EventEmitter<Radio[]>();
   @Output() updateCheckBox = new EventEmitter<CheckBox[]>();
   @Output() updateDropDown = new EventEmitter<DropDown[]>();
+  @Output() updateValidateEmail = new EventEmitter<boolean>();
+  @Output() updateAdditionalInfo = new EventEmitter<string>();
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -480,8 +485,9 @@ See the Tourman documentation.
 
 <!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
 <fieldset class="bk-fields">
-<div class="dv-fields">
-<span class="sp-left">
+<div class="dv-fields">` +
+this.additionalInfo === ''? '' : '<span class="centered">' + this.additionalInfo + '</span><br>'
+ + `<span class="sp-left">
 <input id="id_email" class="in-email" type="text"  value=""
         placeholder="current email address"
         title = "Please provide your current email address">
@@ -492,7 +498,7 @@ See the Tourman documentation.
 title="An email will be sent to you with all your form details.">
 </span>
 
-<span class="sp-right vs-med"><!--  -->
+<span ` + this.validateEmail? 'class="sp-right vs-med"' : 'hidden'  +`><!--  -->
 <img id="id_evicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_evicon')"
 title=
 "Please ensure that your address is valid.
@@ -502,8 +508,8 @@ Your email address is not stored anywhere by this form."
 >
 </span>
 
-<div id="id_emailquery" class="dv-emailchk">
-<input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"
+<div id="id_emailquery" ` + this.validateEmail? 'class="dv-emailchk"' : 'hidden'  + `>
+<input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"` + this.validateEmail? '' : ' checked'  + `
     title="Please confirm that your address is valid &#13; and that you will monitor it">
 Valid email?
 </div>
