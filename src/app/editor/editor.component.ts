@@ -256,7 +256,10 @@ Use underscore (_) if you have no given name.
 </div>
 
 <span class="sp-shim vs-sec"></span>  <!-- -------------------------------------- Country -->
-<div ` + this.showCountry?`class="dv-fields bk-fields"`:`hidden` + `>
+<div `;
+    // Hide country if asked.
+    html_str = html_str + (this.showCountry?`class="dv-fields bk-fields"`:`hidden`);
+    html_str = html_str + `>
 
 <span class="sp-left">Country Code</span>
 <span class="sp-land">Country Name</span>
@@ -368,7 +371,10 @@ title="The country code will take precedence."
 </span>
 </div>
 
-<div ` + this.showClub?`class="dv-fields bk-fields"`:`hidden` + `> <!-- ------------------------------------------- Club -->
+<div `;
+    // Hide club if asked.
+    html_str = html_str + (this.showClub?`class="dv-fields bk-fields"`:`hidden`);
+    html_str = html_str + `> <!-- ------------------------------------------- Club -->
 <span class="sp-left">Club Code</span>
 <span class="sp-club">Club Name</span>
 <br>
@@ -400,7 +406,10 @@ Tell the TD if you regularly play in several clubs.
 </span>
 </div>
 
-<div ` + this.showGrade?`class="dv-fields bk-fields"`:`hidden` + `><!-- ---------------------------------------- Grade -->
+<div `;
+    // Hide grade if asked.
+    html_str = html_str + (this.showGrade?`class="dv-fields bk-fields"`:`hidden`);
+    html_str = html_str + `><!-- ---------------------------------------- Grade -->
 <span class="sp-left">Grade</span>
 <span class="sp-strength">Strength</span>
 <br>
@@ -436,33 +445,56 @@ title="Your strength is obtained from EGD. Please see the info to the right.">
 
 <span class="sp-shim vs-sec"></span> <!-- ---------------------------------------- Status -->
 <div class="dv-fields bk-fields">
- <span ` + this.playAllRounds?`class="sp-shim vs-mic"`:`hidden` + `></span>
+ <span `;
+    // Hide play all grounds if asked.
+    html_str = html_str + (this.playAllRounds?`class="sp-shim vs-mic"`:`hidden`);
+    html_str = html_str + `></span>
 <input  name="PLAYALL" type="hidden" value="N">
-<input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked` + this.playAllRounds?`> Playing all rounds?`:` hidden>` + `
-<img id="id_plicon" ` + this.playAllRounds?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_plicon')"
+<input id= "id_allrounds" name="PLAYALL" type="checkbox" value="Y" checked`;
+    html_str = html_str + (this.playAllRounds?`> Playing all rounds?`:` hidden>`);
+    html_str = html_str + `
+<img id="id_plicon" `;
+    html_str = html_str + (this.playAllRounds?`class="icon-help"`:`hidden`);
+    html_str = html_str + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_plicon')"
 title=
 "If you are not playing in every round, please tell us.
 You can use the comment box below for details."
 >
 
-`+ this.playAllRounds?`<span class="sp-shim vs-big"></span>
-<br>`:`` + `
+`;
+    html_str = html_str + (this.playAllRounds?`<span class="sp-shim vs-big"></span>
+<br>`:``);
+    html_str = html_str + `
 
 <input  name="FIRST" type="hidden" value="N">
-<input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"` + this.firstTournament?`> First rated tournament?`:`hidden>` + `
-<img id="id_tficon" ` + this.firstTournament?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_tficon')"
+<input id="id_firstegd" name="FIRST"  type="checkbox" value="Y"`;
+
+    // Hide first tournament if asked.
+    html_str = html_str + (this.firstTournament?`> First rated tournament?`:`hidden>`);
+    html_str = html_str + `
+<img id="id_tficon" `;
+    html_str = html_str + (this.firstTournament?`class="icon-help"`:`hidden`);
+    html_str = html_str + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_tficon')"
 title=
 "If you were not found on EGD, please confirm that this is your very first tournament in Europe.
 If you have played in a rated tournament before, please try to find yourself on EGD.
 Then, if you have made changes, tell us that the new details above are a correction to your EGD record."
 >
 
-`+ this.firstTournament?`<span class="sp-shim vs-big"></span>
-<br>`:`` + `
+`;
+    html_str = html_str + (this.firstTournament?`<span class="sp-shim vs-big"></span>
+<br>`:``);
+    html_str = html_str + `
 
 <input  name="PUBLIC" type="hidden" value="N">
-<input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked` + this.publicEntry?`> Public entry?`:`hidden>` + `
-<img id="id_puicon" ` + this.publicEntry?`class="icon-help"`:`hidden` + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_puicon')"
+<input id="id_public" name="PUBLIC"  type="checkbox" value="Y" checked`;
+
+    // Hide first tournament if asked.
+    html_str = html_str + (this.publicEntry?`> Public entry?`:`hidden>`);
+    html_str = html_str + `
+<img id="id_puicon" `;
+    html_str = html_str + (this.publicEntry?`class="icon-help"`:`hidden`);
+    html_str = html_str + ` src="../entrysys/info.png"  alt="info" onclick="show_info('id_puicon')"
 title=
 "If you wish to remain anonymous, please uncheck this box.
 In that case we show only your grade on the entry list."
@@ -509,9 +541,10 @@ See the Tourman documentation.
 
 <!-- --------------------------------------------------------------------- SUBMIT BLOCK -->
 <fieldset class="bk-fields">
-<div class="dv-fields">` +
-this.additionalInfo === ''? '' : '<span class="centered">' + this.additionalInfo + '</span><br>'
- + `<span class="sp-left">
+<div class="dv-fields">`;
+    // Add additional info.
+    html_str = html_str + ((this.additionalInfo === '')? '' : ('<span class="centered">' + this.additionalInfo + '</span><br>'));
+    html_str = html_str + `<span class="sp-left">
 <input id="id_email" class="in-email" type="text"  value=""
         placeholder="current email address"
         title = "Please provide your current email address">
@@ -522,7 +555,10 @@ this.additionalInfo === ''? '' : '<span class="centered">' + this.additionalInfo
 title="An email will be sent to you with all your form details.">
 </span>
 
-<span ` + this.validateEmail? 'class="sp-right vs-med"' : 'hidden'  +`><!--  -->
+<span `;
+    // hide e-mail validation if asked.
+    html_str = html_str + (this.validateEmail? `class="sp-right vs-med"`:`hidden`);
+    html_str = html_str +`><!--  -->
 <img id="id_evicon" class="icon-help" src="../entrysys/info.png"  alt="info" onclick="show_info('id_evicon')"
 title=
 "Please ensure that your address is valid.
@@ -532,8 +568,12 @@ Your email address is not stored anywhere by this form."
 >
 </span>
 
-<div id="id_emailquery" ` + this.validateEmail? 'class="dv-emailchk"' : 'hidden'  + `>
-<input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"` + this.validateEmail? '' : ' checked'  + `
+<div id="id_emailquery" `;
+    html_str = html_str + (this.validateEmail? 'class="dv-emailchk"' : 'hidden');
+    html_str = html_str + `>
+<input id= "id_emailcheck" type="checkbox" value="N" autocomplete="off"`;
+    html_str = html_str + (this.validateEmail? '' : ' checked');
+    html_str = html_str + `
     title="Please confirm that your address is valid &#13; and that you will monitor it">
 Valid email?
 </div>
