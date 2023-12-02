@@ -114,7 +114,7 @@ export class CheckBox {
   }
 
   defaultToHTML() {
-    return 'document.getElementById(\''+this.getID()+'\').checked=true;\n';
+    return 'document.getElementById(\''+this.getID()+'\').checked=' + this.checked? 'true':'false' + ';\n';
   }
 }
 
