@@ -1,40 +1,10 @@
 <div class="mainContainer">
   <div class="page-fifth" style="padding-left: 10pt;">
-    <app-entryform [radioList]="radioList"
-                   [checkBoxList]="checkBoxList"
-                   [dropDownList]="dropDownList"
-                   [validateEmail]="validateEmail"
-                   [showCountry]="showCountry"
-                   [showClub]="showClub"
-                   [showGrade]="showGrade"
-                   [playAllRounds]="playAllRounds"
-                   [firstTournament]="firstTournament"
-                   [publicEntry]="publicEntry"
-                   [additionalInfo]="additionalInfo">
+    <app-entryform >
     </app-entryform>
   </div>
   <div class="page-half" style="padding-right: 10pt;">
-    <app-editor [radioList]="radioList"
-                [checkBoxList]="checkBoxList"
-                [dropDownList]="dropDownList"
-                [validateEmail]="validateEmail"
-                [showCountry]="showCountry"
-                [showClub]="showClub"
-                [showGrade]="showGrade"
-                [playAllRounds]="playAllRounds"
-                [firstTournament]="firstTournament"
-                [publicEntry]="publicEntry"
-                (updateRadio)="updateRadio($event)"
-                (updateCheckBox)="updateCheckBox($event)"
-                (updateDropDown)="updateDropDown($event)"
-                (updateValidateEmail)="updateValidateEmail($event)"
-                (updateShowCountry)="updateShowCountry($event)"
-                (updateShowClub)="updateShowClub($event)"
-                (updateShowGrade)="updateShowGrade($event)"
-                (updatePlayAllRounds)="updatePlayAllRounds($event)"
-                (updateFirstTournament)="updateFirstTournament($event)"
-                (updatePublicEntry)="updatePublicEntry($event)"
-                (updateAdditionalInfo)="updateAdditionalInfo($event)">
+    <app-editor >
     </app-editor>
   </div>
 </div>

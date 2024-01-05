@@ -3,30 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EditorComponent } from './editor/editor.component';
-import { EntryFormComponent } from './entryform/entry-form.component';
+import { EntryFormComponent } from './entry-form/entry-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { CustomRadioComponent } from './entryform/custom-radio/custom-radio.component';
-import { CustomCheckBoxComponent } from './entryform/custom-check-box/custom-check-box.component';
-import { CustomDropDownComponent } from './entryform/custom-drop-down/custom-drop-down.component';
 import {FormsModule} from "@angular/forms";
-import { RadioEditorComponent } from './editor/radio-editor/radio-editor.component';
-import { CheckBoxEditorComponent } from './editor/check-box-editor/check-box-editor.component';
-import { DropDownEditorComponent } from './editor/drop-down-editor/drop-down-editor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IgxInputGroupModule } from 'igniteui-angular';
+import { TableGeneratorComponent } from './entry-form/table-generator/table-generator.component';
+import { TableComponent } from './entry-form/table/table.component';
+import { RowComponent } from './entry-form/table/row/row.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorComponent,
     EntryFormComponent,
-    CustomRadioComponent,
-    CustomCheckBoxComponent,
-    CustomDropDownComponent,
-    RadioEditorComponent,
-    CheckBoxEditorComponent,
-    DropDownEditorComponent
+    TableGeneratorComponent,
+    TableComponent,
+    RowComponent,
   ],
   imports: [
     BrowserModule,
