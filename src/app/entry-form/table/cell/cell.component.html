@@ -1,0 +1,9 @@
+<app-empty-cell *ngIf="isEmptyCell()" [cell]="getEmptyCell()"></app-empty-cell>
+<app-one-line-cell *ngIf="isOneLineCell()"
+                   [cell]="getOneLineCell()"
+                   (on_cell_describe)="processDescriptionChange()">
+</app-one-line-cell>
+<app-two-lines-cell *ngIf="isTwoLinesCell()"
+                    [cell]="getTwoLinesCell()"
+                    (on_cell_describe)="processDescriptionChange()">
+</app-two-lines-cell>

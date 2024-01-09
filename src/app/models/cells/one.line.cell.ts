@@ -41,6 +41,13 @@ export class OneLineCell extends Cell {
   override getComponentWithDefault(): FormEntry {
     return this.form_entry;
   }
+
+  override getDescription() {
+    if (this.info_image !== null) {
+      return this.info_image.description;
+    }
+    return '';
+  }
 }
 
 // This class models the one line input text models used as default elements.

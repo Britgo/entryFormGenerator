@@ -1,7 +1,7 @@
 // This page contains code used in order to generate the last part of the entry form page
 
 import {capitalizeAll, sanitizeString} from "./string.formatting";
-import {CustomBlock} from "./custom.block";
+import {TableGenerator} from "./table.generator";
 
 // This function generates the
 function getTitle(clubName: string, year: number) {
@@ -9,9 +9,9 @@ function getTitle(clubName: string, year: number) {
 }
 
 /*This function is used in order to return the last part of the entry form page.*/
-export function getSystemFields(clubName: string, year: number, customBlock: CustomBlock) {
+export function getSystemFields(club_name: string, year: number, custom_block: TableGenerator) {
   // We start by getting the title of the page
-  const title = getTitle(clubName, year);
+  const title = getTitle(club_name, year);
 
   // Now we get the code used to initialize the custom cells needing initialization.
   // Start by writing the initial bit of the initialization block.
@@ -22,7 +22,7 @@ export function getSystemFields(clubName: string, year: number, customBlock: Cus
   var default_custom_fields = function default_custom_fields() {`;
 
   // For every cell needing initialization we add the corresponding starting value.
-  for (let cell of customBlock.getAllCells()) {
+  for (let cell of custom_block.getAllCells()) {
     initializationString = initializationString + cell.getSetupJavascriptCode();
   }
   // add the last part of the initialization block.

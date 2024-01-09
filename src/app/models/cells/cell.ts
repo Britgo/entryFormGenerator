@@ -3,12 +3,21 @@ import {FormEntry} from "./form-entries/form.entry";
 export class Cell {
   constructor(public colspan: number | null = null,
               public width: string | null = null,
-              public text_align: 'left' | 'right' = 'left') {
+              public text_align: 'left' | 'right' = 'left',
+              public editing: boolean = false) {
   }
 
   getHTMLCode(): string {
     return `
             <td></td>`;
+  }
+
+  exitEditMode() {
+    this.editing = false;
+  }
+
+  isInEditMode(): boolean {
+    return this.editing;
   }
 
   getComponentWithDefault(): FormEntry | null {
@@ -47,6 +56,29 @@ export class Cell {
             </td>`;
   }
 
+  getColspan(): number {
+    if (this.colspan === null) {
+      return 1;
+    }
+    return this.colspan;
+  }
+
+  getStyle() {
+    let style: {'text-align': string, 'width'?: string, 'border'?: string} = {
+      'text-align': this.text_align,
+    };
+    if (this.width !== null) {
+      style['width'] = this.width;
+    }
+    if (this.isInEditMode()) {
+      style['border'] = ' border: 1px solid #ff0000'
+    }
+    return style;
+  }
+
+  getDescription() {
+    return "";
+  }
 }
 
 export class EmptyCell extends Cell {
@@ -65,7 +97,7 @@ export class EmptyCell extends Cell {
     }
 
     HTMLCode = HTMLCode + '>';
-    HTMLCode = HTMLCode + '<span style="visibility: hidden;">empty row</span></td>';
+    HTMLCode = HTMLCode + '<span style="visibility: hidden;">empty cell</span></td>';
     return HTMLCode
   }
 }

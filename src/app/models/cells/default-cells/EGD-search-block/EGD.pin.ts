@@ -1,6 +1,6 @@
 import {TextInput} from "../../form-entries/text.input";
 import {InfoImage} from "../../form-entries/info.image";
-import {TwoLineInput} from "../../two.line.cell";
+import {TwoLineInput} from "../../two.lines.cell";
 
 const text_input = new TextInput(
   'id_egdpin',

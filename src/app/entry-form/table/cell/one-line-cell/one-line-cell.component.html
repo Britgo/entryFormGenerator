@@ -1,0 +1,3 @@
+<app-form-entry [form_entry]="cell.form_entry"></app-form-entry>
+<span *ngIf="cell.name !== ''">&nbsp;{{ cell.name }}</span>
+<app-info-image *ngIf="cell.info_image !== null" (click)="processInfoImageClick()"></app-info-image>

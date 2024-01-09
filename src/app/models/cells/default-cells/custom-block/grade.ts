@@ -1,4 +1,4 @@
-import {TwoLineInput} from "../../two.line.cell";
+import {TwoLineInput} from "../../two.lines.cell";
 import {TextInput} from "../../form-entries/text.input";
 import {InfoImage} from "../../form-entries/info.image";
 

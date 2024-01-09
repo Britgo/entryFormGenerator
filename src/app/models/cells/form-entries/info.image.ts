@@ -2,7 +2,7 @@ import {FormEntry} from "./form.entry";
 
 export class InfoImage extends FormEntry {
   constructor(private readonly id: string,
-              private readonly description: string) {
+              public readonly description: string) {
     super();
   }
 

@@ -1,0 +1,6 @@
+<span>{{ cell.name }}</span>
+<br>
+<span>
+  <app-form-entry [form_entry]="cell.form_entry"></app-form-entry>
+  <app-info-image *ngIf="cell.info_image !== null" (click)="processInfoImageClick()"></app-info-image>
+</span>

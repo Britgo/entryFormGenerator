@@ -1,10 +1,13 @@
 <div class="mainContainer">
   <div class="page-fifth" style="padding-left: 10pt;">
-    <app-entryform >
-    </app-entryform>
+    <app-entry-form [egd_search_block]="egd_search_block"
+                    [custom_block]="custom_block"
+                    [player_email_block]="player_email_block"
+                    (on_cell_select)="processOnCellSelect($event)">
+    </app-entry-form>
   </div>
   <div class="page-half" style="padding-right: 10pt;">
-    <app-editor >
+    <app-editor>
     </app-editor>
   </div>
 </div>

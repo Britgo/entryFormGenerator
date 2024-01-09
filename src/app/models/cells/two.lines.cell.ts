@@ -5,7 +5,7 @@ import {Dropdown} from "./form-entries/dropdown";
 import {Cell} from "./cell";
 
 // This class models the two line cells appearing in the form.
-export class TwoLineCell extends Cell {
+export class TwoLinesCell extends Cell {
   constructor(public name: string,
               public form_entry: FormEntry,
               public info_image: InfoImage | null,
@@ -54,10 +54,17 @@ export class TwoLineCell extends Cell {
                  </span>`
     return HTMLCode;
   }
+
+  override getDescription() {
+    if (this.info_image !== null) {
+      return this.info_image.description;
+    }
+    return '';
+  }
 }
 
 // This class models the two line input text models used as default elements.
-export class TwoLineInput extends TwoLineCell {
+export class TwoLineInput extends TwoLinesCell {
   constructor (name: string,
                public text_input: TextInput,
                info_image: InfoImage,
@@ -69,7 +76,7 @@ export class TwoLineInput extends TwoLineCell {
 }
 
 // This class models the two line input text models used as default elements.
-export class TwoLineDropdown extends TwoLineCell {
+export class TwoLineDropdown extends TwoLinesCell {
   constructor (name: string,
                public dropdown: Dropdown,
                info_image: InfoImage | null = null,

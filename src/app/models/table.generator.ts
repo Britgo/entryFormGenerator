@@ -1,50 +1,7 @@
-import {Cell, EmptyCell} from "./cells/cell";
-
-export class Row {
-  constructor(public cells: Cell[]) {}
-
-  addCell(cell: Cell, position: number = -1): void {
-    // Push in the last position if position is not satisfied.
-    if (position === -1) {
-      this.cells.push(cell);
-      return;
-    }
-
-    this.cells.splice(position, 0, cell);
-    return;
-  }
-
-  removeCell(position: number): void {
-    // Remove an element in the array.
-    this.cells.splice(position, 1);
-    return;
-  }
-
-  getHTMLCode(): string {
-    // Start by opening the table and fieldset.
-    let HTMLCode = `
-        <tr>`
-    // Get the HTML code for every row.
-    for (let cell of this.cells) {
-      HTMLCode = HTMLCode + cell.getHTMLCode();
-    }
-
-    // Close table and fieldset.
-    HTMLCode = HTMLCode + `
-        </tr>`;
-    return HTMLCode;
-  }
-}
-
-export class EmptyRow extends Row {
-  constructor(columns: number = 2) {
-    super([new EmptyCell(columns)]);
-  }
-
-  override addCell(cell: Cell, position: number = -1): void { return; }
-
-  override removeCell(position: number): void { return; }
-}
+import {Cell} from "./cells/cell";
+import {CellPosition, getPositiveResidue} from "./cell.position";
+import {throwError} from "rxjs";
+import {Row} from "./row";
 
 export class TableGenerator {
   constructor(public rows: Row[], public width: string = '100%') {}
@@ -64,6 +21,62 @@ export class TableGenerator {
     // Remove an element in the array.
     this.rows.splice(position, 1);
     return;
+  }
+
+  getRow(position: number): Row {
+    // Get the requested row.
+    return this.rows[getPositiveResidue(position, this.getNRows())];
+  }
+
+  addCell(cell: Cell, position: CellPosition): void {
+    if (position.isNull()) {
+      return;
+    }
+
+    const row = this.getRow(position.getRowIndex(this.getNRows()))
+    row.addCell(cell, position.getCellIndex(row.getNCells()));
+    return;
+  }
+
+  removeCell(position: CellPosition): void {
+    if (position.isNull()) {
+      return;
+    }
+
+    // Get appropriate row and remove the cell from there.
+    const row_index: number = position.getRowIndex(this.getNRows());
+    const row = this.getRow(row_index);
+    row.removeCell(position.getCellIndex(row.getNCells()));
+
+    // If there are no cells left in the row then we remove the row too.
+    if (row.isEmpty()) {
+      this.removeRow(row_index);
+    }
+    return;
+  }
+
+  getCell(position: CellPosition): Cell {
+    if (position.isNull()) {
+      throwError(() => new Error('position should not be null to get cell.'));
+    }
+
+    const row = this.getRow(position.getRowIndex(this.getNRows()));
+    return row.getCell(position.getCellIndex(row.getNCells()));
+  }
+
+  exitEditMode() {
+    for (let row of this.rows) {
+      row.exitEditMode();
+    }
+  }
+
+  isInEditMode(): boolean {
+    for (let row of this.rows) {
+      if (row.isInEditMode()) {
+        return true;
+      }
+    }
+    return false;
   }
 
   getAllCells(): Cell[] {
@@ -91,5 +104,9 @@ export class TableGenerator {
 </fieldset>
 `;
     return HTMLCode;
+  }
+
+  getNRows() {
+    return this.rows.length;
   }
 }

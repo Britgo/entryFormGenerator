@@ -32,7 +32,7 @@ export class Dropdown extends FormEntry {
               public options: Option[],
               public description: string = '',
               private name: string = '',
-              public width: string | null,
+              public width: string | null = null,
               public margin_bottom: string | null = null,
               public margin_top: string | null = null,
               private onchange: string | null = null) {

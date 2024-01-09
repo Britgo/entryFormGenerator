@@ -1,4 +1,4 @@
-import {TwoLineDropdown, TwoLineInput} from "../../two.line.cell";
+import {TwoLineDropdown, TwoLineInput} from "../../two.lines.cell";
 import {Dropdown, Option} from "../../form-entries/dropdown";
 
 const dropdown: Dropdown = new Dropdown(

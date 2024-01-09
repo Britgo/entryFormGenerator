@@ -9,18 +9,36 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {FormsModule} from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IgxInputGroupModule } from 'igniteui-angular';
-import { TableGeneratorComponent } from './entry-form/table-generator/table-generator.component';
 import { TableComponent } from './entry-form/table/table.component';
-import { RowComponent } from './entry-form/table/row/row.component';
+import { CellComponent } from './entry-form/table/cell/cell.component';
+import { TwoLinesCellComponent } from './entry-form/table/cell/two-lines-cell/two-lines-cell.component';
+import { OneLineCellComponent } from './entry-form/table/cell/one-line-cell/one-line-cell.component';
+import { EmptyCellComponent } from './entry-form/table/cell/empty-cell/empty-cell.component';
+import { FormEntryComponent } from './entry-form/table/cell/form-entry/form-entry.component';
+import { InfoImageComponent } from './entry-form/table/cell/info-image/info-image.component';
+import { ButtonComponent } from './entry-form/table/cell/form-entry/button/button.component';
+import { CheckboxComponent } from './entry-form/table/cell/form-entry/checkbox/checkbox.component';
+import { DropdownComponent } from './entry-form/table/cell/form-entry/dropdown/dropdown.component';
+import { TextAreaComponent } from './entry-form/table/cell/form-entry/text-area/text-area.component';
+import { TextInputComponent } from './entry-form/table/cell/form-entry/text-input/text-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorComponent,
     EntryFormComponent,
-    TableGeneratorComponent,
     TableComponent,
-    RowComponent,
+    CellComponent,
+    TwoLinesCellComponent,
+    OneLineCellComponent,
+    EmptyCellComponent,
+    FormEntryComponent,
+    InfoImageComponent,
+    ButtonComponent,
+    CheckboxComponent,
+    DropdownComponent,
+    TextAreaComponent,
+    TextInputComponent,
   ],
   imports: [
     BrowserModule,
