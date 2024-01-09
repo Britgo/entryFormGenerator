@@ -5,8 +5,8 @@ export class TextInput extends FormEntry {
               private name: string = '',
               public placeholder: string = '',
               public description: string = '',
-              private autocomplete: 'off' | 'on' = 'off',
-              private value: string = '',
+              public autocomplete: 'off' | 'on' = 'off',
+              public value: string = '',
               public width: string = '5.0em',
               public maxlength: number | null = null,
               private onkeyup: string | null = null,) {

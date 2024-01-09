@@ -73,4 +73,21 @@ export class TextArea extends FormEntry {
                 </textarea>`;
     return HTMLCode;
   }
+
+  getStyle() {
+    let style: {
+      'margin-top'?: string,
+      'margin-bottom'?: string,
+      'padding-left'?: string,
+      'width'?: string,
+      'resize'?: string
+    } = {}
+
+    if (this.margin_top !== '') { style['margin-top'] = this.margin_top; }
+    if (this.margin_bottom !== '') { style['margin-bottom'] = this.margin_bottom; }
+    if (this.padding_left !== '') { style['padding-left'] = this.padding_left; }
+    if (this.width !== '') { style['width'] = this.width; }
+    if (this.resize !== '') { style['resize'] = this.resize }
+    return style;
+  }
 }

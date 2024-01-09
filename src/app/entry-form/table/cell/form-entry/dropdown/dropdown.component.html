@@ -1,1 +1,5 @@
-<p>dropdown works!</p>
+<select [ngStyle]="dropdown.getStyle()">
+  <option *ngFor="let option of dropdown.options" [selected]="option.selected? 'true' : 'false'">
+    {{ option.name }}
+  </option>
+</select>

@@ -8,7 +8,7 @@ export class Option {
 
   getHTMLCode(): string {
     let HTMLCode = `
-                        <option`+`value="..." selected="true">COUNTRY NAMES</option>`;
+                        <option`;
 
     // Add value if any.
     if (this.value !== null) {
@@ -17,7 +17,7 @@ export class Option {
 
     // Add selected if selected.
     if (this.selected) {
-      HTMLCode = HTMLCode + `selected="true"`;
+      HTMLCode = HTMLCode + ` selected="true"`;
     }
 
     // Add name and close option.
@@ -62,22 +62,29 @@ export class Dropdown extends FormEntry {
                                name="`+this.name+`"`;
     }
 
-    // Add style.
-    HTMLCode = HTMLCode + `
-                        style="width: `+this.width+`;`;
-
-    // Add margins if needed.
-    if (this.margin_bottom !== null) {
+    // Add style if any.
+    if (this.isStyleSpecified()) {
       HTMLCode = HTMLCode + `
-                               margin-bottom: `+this.margin_bottom+`;`;
-    }
+                        style="`;
+      if (this.width !== null) {
+        HTMLCode = HTMLCode + `
+                               width: ` + this.width + `;`;
+      }
 
-    if (this.margin_top !== null) {
-      HTMLCode = HTMLCode + `
-                               margin-top: `+this.margin_top+`;`;
-    }
+      // Add margins if needed.
+      if (this.margin_bottom !== null) {
+        HTMLCode = HTMLCode + `
+                               margin-bottom: ` + this.margin_bottom + `;`;
+      }
 
-    HTMLCode = HTMLCode + `">`;
+      if (this.margin_top !== null) {
+        HTMLCode = HTMLCode + `
+                               margin-top: ` + this.margin_top + `;`;
+      }
+
+      HTMLCode = HTMLCode + `"`;
+    }
+    HTMLCode = HTMLCode + ">";
 
     // For every option add its HTML code.
     for (let option of this.options) {
@@ -100,5 +107,23 @@ export class Dropdown extends FormEntry {
       i = i + 1;
     }
     return '';
+  }
+
+  getStyle() {
+    let style: { 'width'?: string, 'margin-bottom'?: string, 'margin-top'?: string } = {}
+    if (this.width !== null) {
+      style['width'] = this.width;
+    }
+    if (this.margin_bottom !== null) {
+      style['margin-bottom'] = this.margin_bottom;
+    }
+    if (this.margin_top !== null) {
+      style['margin-top'] = this.margin_top;
+    }
+    return style;
+  }
+
+  private isStyleSpecified() {
+    return this.width !== null || this.margin_bottom !== null || this.margin_top !== null;
   }
 }

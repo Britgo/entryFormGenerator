@@ -7,5 +7,9 @@ import {Checkbox} from "../../../../../models/cells/form-entries/checkbox";
   styleUrls: ['./checkbox.component.css']
 })
 export class CheckboxComponent {
-  @Input() form_entry: Checkbox = new Checkbox('id', 'name', false)
+  @Input() checkbox: Checkbox = new Checkbox('id', 'name', false)
+
+  toggleChecked() {
+    this.checkbox.checked = !this.checkbox.checked;
+  }
 }

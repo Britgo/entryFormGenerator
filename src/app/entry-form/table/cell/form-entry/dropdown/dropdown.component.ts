@@ -7,5 +7,5 @@ import {Dropdown} from "../../../../../models/cells/form-entries/dropdown";
   styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent {
-  @Input() form_entry: Dropdown = new Dropdown('id', []);
+  @Input() dropdown: Dropdown = new Dropdown('id', []);
 }

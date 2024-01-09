@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';import {Button} from "../../../..
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
-  @Input() form_entry: Button = new Button('id', 'value', 'description')
+  @Input() button: Button = new Button('id', 'value', 'description')
 }

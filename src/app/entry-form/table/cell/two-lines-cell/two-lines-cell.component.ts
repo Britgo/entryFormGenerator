@@ -8,9 +8,9 @@ import {Checkbox} from "../../../../models/cells/form-entries/checkbox";
   styleUrls: ['./two-lines-cell.component.css']
 })
 export class TwoLinesCellComponent {
-  @Input() cell: TwoLinesCell = new TwoLinesCell('two lines cell',
-                                                  new Checkbox('id', 'checkbox', false),
-                                                 null);
+  @Input() two_lines_cell: TwoLinesCell = new TwoLinesCell('two lines cell',
+                                                            new Checkbox('id', 'checkbox', false),
+                                                           null);
   @Output() on_cell_describe = new EventEmitter<void>();
 
   processInfoImageClick() {

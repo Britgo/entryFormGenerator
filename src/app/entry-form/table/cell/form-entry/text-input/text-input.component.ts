@@ -7,5 +7,5 @@ import {TextInput} from "../../../../../models/cells/form-entries/text.input";
   styleUrls: ['./text-input.component.css']
 })
 export class TextInputComponent {
-  @Input() form_entry: TextInput = new TextInput('id')
+  @Input() text_input: TextInput = new TextInput('id')
 }

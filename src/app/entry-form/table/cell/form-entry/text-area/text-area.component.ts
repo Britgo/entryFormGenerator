@@ -7,5 +7,9 @@ import {TextArea} from "../../../../../models/cells/form-entries/text.area";
   styleUrls: ['./text-area.component.css']
 })
 export class TextAreaComponent {
-  @Input() form_entry: TextArea = new TextArea('input_id', 'input_name', 'id', 'placeholder', 'description')
+  @Input() text_area: TextArea = new TextArea('input_id',
+                                              'input_name',
+                                              'id',
+                                              'placeholder',
+                                              'description')
 }

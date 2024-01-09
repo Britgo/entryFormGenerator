@@ -7,5 +7,5 @@ import {EmptyCell} from "../../../../models/cells/cell";
   styleUrls: ['./empty-cell.component.css']
 })
 export class EmptyCellComponent {
-  @Input() cell: EmptyCell = new EmptyCell();
+  @Input() empty_cell: EmptyCell = new EmptyCell();
 }

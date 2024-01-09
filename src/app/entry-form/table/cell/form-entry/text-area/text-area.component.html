@@ -1,1 +1,8 @@
-<p>text-area works!</p>
+<input type="hidden" value="nomail">
+<textarea [rows]="text_area.rows"
+          [cols]="text_area.columns"
+          [maxLength]="text_area.maxlength"
+          autocomplete="off"
+          [placeholder]="text_area.placeholder"
+          [ngStyle]="text_area.getStyle()">
+</textarea>

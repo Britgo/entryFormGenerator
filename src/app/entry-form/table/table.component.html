@@ -5,9 +5,10 @@
       <td *ngFor="let cell of row.cells; index as j"
           [ngStyle]="cell.getStyle()"
           [colSpan]="cell.getColspan()"
-          (click)="processCellSelection(i, j, cell)"
-          (on_cell_describe)="processDescriptionChange(cell)">
-        <app-cell [cell]="cell"></app-cell>
+          (click)="processCellSelection(i, j, cell)">
+        <app-cell [cell]="cell"
+                  (on_cell_describe)="processDescriptionChange(cell)">
+        </app-cell>
       </td>
     </tr>
   </table>

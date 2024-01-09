@@ -3,7 +3,7 @@ import {joinStringArray} from "../../utils";
 
 export class Button extends FormEntry {
   constructor(private id: string,
-              private value: string,
+              public value: string,
               public description: string,
               private type: 'submit' | 'button' = 'button',
               private enabled: boolean = true,
