@@ -3,7 +3,7 @@ import {FormEntry} from "./form-entries/form.entry";
 export class Cell {
   constructor(public colspan: number | null = null,
               public width: string | null = null,
-              public text_align: 'left' | 'right' = 'left',
+              public text_align: 'left' | 'right' | 'center' = 'left',
               public editing: boolean = false) {
   }
 

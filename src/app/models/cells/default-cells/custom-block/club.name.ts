@@ -7,6 +7,9 @@ const text_input: TextInput = new TextInput(
   'CLUB',
   '',
   'The full club name can have hyphens &#13; or spaces, but no digits.',
+  'off',
+  '',
+  '10.5em',
 );
 
 const info_image: InfoImage = new InfoImage(

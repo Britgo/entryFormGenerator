@@ -1,7 +1,7 @@
 import {Cell} from "../../cell";
 import {CLUB_CODE} from "./club.code";
 import {CLUB_NAME} from "./club.name";
-import {COUNTRY_CODE} from "../EGD-search-block/country.code";
+import {EGD_BLOCK_COUNTRY_CODE} from "../EGD-search-block/country.code";
 import {COUNTRY_NAME} from "./country.name";
 import {FAMILY_NAME} from "./family.name";
 import {FIRST} from "./first";
@@ -14,7 +14,7 @@ import {STRENGTH} from "./strength";
 export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
   CLUB_CODE,
   CLUB_NAME,
-  COUNTRY_CODE,
+  EGD_BLOCK_COUNTRY_CODE,
   COUNTRY_NAME,
   FAMILY_NAME,
   FIRST,

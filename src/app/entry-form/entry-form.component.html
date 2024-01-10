@@ -15,6 +15,6 @@
 </app-table>
 
 <div class="dv-tooltip-new"
-     (click)="setInfoMessage(DEFAULT_INFO_MESSAGE)">
-{{info_message}}
+     (click)="setInfoMessage(DEFAULT_INFO_MESSAGE)"
+     [innerHTML]="info_message">
 </div>

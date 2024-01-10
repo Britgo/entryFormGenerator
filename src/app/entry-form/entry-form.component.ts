@@ -4,6 +4,7 @@ import {EGD_SEARCH_BLOCK} from "../models/EGD.search.block";
 import {CUSTOM_BLOCK} from "../models/custom.block";
 import {PLAYER_EMAIL_BLOCK} from "../models/player.email.block";
 import {CellPosition} from "../models/cell.position";
+import {processStringForInfoMessage} from "../models/string.formatting";
 
 
 @Component({
@@ -18,17 +19,18 @@ export class EntryFormComponent {
   @Input() edit_mode: boolean = true
   @Output() on_cell_select = new EventEmitter<CellPosition>();
 
-  DEFAULT_INFO_MESSAGE: string = `
-Either hover or click
-<br>
-on an info icon <span class="icon-i-new"> i </span>
-<br>
-for help.`;
-  info_message: string = '';
+  DEFAULT_INFO_MESSAGE: string = `Either hover or click<br>on an info icon <span class="icon-i-new"> i </span><br>for help.`;
+  info_message: string = this.DEFAULT_INFO_MESSAGE;
 
 
   setInfoMessage(message: string) {
-    this.info_message = message;
+    const new_info_message = processStringForInfoMessage(message);
+
+    if (new_info_message === this.info_message) {
+      this.info_message = this.DEFAULT_INFO_MESSAGE;
+    } else {
+      this.info_message = new_info_message;
+    }
   }
 
   processOnCellSelect(cellPosition: CellPosition) {

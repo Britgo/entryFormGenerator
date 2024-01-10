@@ -3,22 +3,21 @@ import {TextInput} from "../../form-entries/text.input";
 import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
-  'id_gname',
-  'GIVEN',
+  'id_lcode',
+  'CODE-CY',
   '',
-  'Your given name must not be blank - use underscore (_) if needed.',
+  'A 2 letter country code',
   'off',
-  '',
-  '38.3em',
+  'UK',
 );
 
 const info_image: InfoImage = new InfoImage(
-  'id_ginfo',
-  `Type your given name including any middle names if needed.
-Use underscore (_) if you have no given name.`
+  'id_ccicon',
+  `We need your two-letter country code.
+You can select from the Country Name list instead.`
 );
 
-export const CLUB_CODE = new TwoLineInput(
+export const CUSTOM_BLOCK_COUNTRY_CODE = new TwoLineInput(
   'Country Code',
   text_input,
   info_image,

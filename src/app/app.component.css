@@ -1,28 +1,19 @@
-.page-half {
-  width: 40%;
-  align-content: center;
-}
+/*.spacedContainer {*/
+/*  display: flex;*/
+/*  position: relative;*/
+/*  justify-content: space-around;*/
+/*  width: 100%;*/
+/*}*/
 
-.page-third {
-    width: 33%;
-    align-content: center;
-  }
-
-.page-fifth {
-  width: 20%;
-  align-content: center;
-}
-
-.spacedContainer {
-  display: flex;
-  position: relative;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.mainContainer {
+.main-container {
   display: flex;
   position: relative;
   justify-content: space-between;
   width: 100%;
+}
+
+.editor {
+  position: absolute;
+  left: 850pt;
+  top: 0pt;
 }

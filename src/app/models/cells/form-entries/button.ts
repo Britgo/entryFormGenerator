@@ -1,11 +1,10 @@
 import {FormEntry} from "./form.entry";
-import {joinStringArray} from "../../utils";
 
 export class Button extends FormEntry {
   constructor(private id: string,
               public value: string,
               public description: string,
-              private type: 'submit' | 'button' = 'button',
+              public type: 'submit' | 'button' = 'button',
               private enabled: boolean = true,
               private onclick: string = '') {
     super();

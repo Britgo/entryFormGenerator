@@ -5,9 +5,14 @@ import {InfoImage} from "../../form-entries/info.image";
 const text_input = new TextInput(
   'id_email',
   '',
-  'current email address',
-  'please provide your current email address',
+  'Current email address',
+  'Please provide your current email address',
   'on',
+  '',
+  '16em',
+  null,
+  null,
+  '0.4em',
 );
 
 const info_image: InfoImage = new InfoImage(

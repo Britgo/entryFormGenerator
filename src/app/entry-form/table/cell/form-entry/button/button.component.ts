@@ -10,4 +10,4 @@ export class ButtonComponent {
     @Input() button: Button = new Button('id', 'value', 'description');
     POSITION_AT_ORIGIN: boolean = MAT_TOOLTIP_POSITION_AT_ORIGIN;
     SHOW_DELAY: number = MAT_TOOLTIP_SHOW_DELAY;
-}
+  }

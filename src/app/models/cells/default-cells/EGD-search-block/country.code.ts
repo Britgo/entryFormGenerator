@@ -8,7 +8,7 @@ const text_input = new TextInput(
   'ISO code',
   '',
   'off',
-  '',
+  'UK',
   '5.0em',
   2,
   `handle_keyup_qdata('id_lsearch', event)`,
@@ -20,7 +20,7 @@ const info_image: InfoImage = new InfoImage(
 This will start a new search.`
 );
 
-export const COUNTRY_CODE = new TwoLineInput(
+export const EGD_BLOCK_COUNTRY_CODE = new TwoLineInput(
   'Country Code',
   text_input,
   info_image,

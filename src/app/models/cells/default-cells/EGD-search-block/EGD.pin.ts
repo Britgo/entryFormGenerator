@@ -9,19 +9,19 @@ const text_input = new TextInput(
   '',
   'on',
   '',
-  '7em',
+  '6.9em',
   8,
   `handle_keyup_qpin(event)`,
 );
 
 const info_image: InfoImage = new InfoImage(
   'id_segdpin',
-  `Type your 8 digit EGD pin.&#13;
+  `Type your 8 digit EGD pin.
 The pin is automatically set if you searched using your initials.`
 );
 
 export const EGD_PIN = new TwoLineInput(
-  'EGD Pin',
+  'EGD pin',
   text_input,
   info_image,
   null,

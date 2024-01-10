@@ -28,3 +28,29 @@ export function sanitizeString(input: string, spaceReplacement: string = '_', al
   }
   return output
 }
+
+export function joinStringArray(string_array: string[], separator: string = ' '): string {
+  if (string_array.length === 0) {
+    return '';
+  }
+
+  let output = string_array[0];
+  let skipped_first = false;
+  for (let str of string_array) {
+    if (!skipped_first) {
+      skipped_first = true;
+    } else {
+      output = output + separator + str;
+    }
+  }
+  return output;
+}
+
+export function processStringForInfoMessage(message: string) {
+  return message.replaceAll('\n', '<br><br>');
+}
+
+export function processStringForTooltip(message: string) {
+  return message;
+  // return message.replaceAll('\n', ' &#13; ');
+}

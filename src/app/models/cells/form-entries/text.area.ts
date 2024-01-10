@@ -1,5 +1,4 @@
 import {FormEntry} from "./form.entry";
-import {joinStringArray} from "../../utils";
 
 export class TextArea extends FormEntry {
   constructor(private input_id: string,
@@ -11,11 +10,11 @@ export class TextArea extends FormEntry {
               public columns: number = 30,
               public maxlength: number = 105,
               public name: string = 'NOTE',
-              public margin_top: string = '0.7em',
-              public margin_bottom: string = '0.0em',
-              public padding_left: string = '0.5em',
-              public width: string = '100%',
-              public resize: string = 'none') {
+              public margin_top: string | null = '0.7em',
+              public margin_bottom: string | null = '0.0em',
+              public padding_left: string | null = '0.5em',
+              public width: string | null = '100%',
+              public resize: string | null = 'none') {
     super();
   }
 
@@ -36,30 +35,30 @@ export class TextArea extends FormEntry {
                           placeholder="`+this.placeholder+`"
                           title="`+this.description+`"`;
     // Add style.
-    if (this.margin_top + this.margin_bottom + this.padding_left + this.width + this.resize !== '') {
+    if (this.isStyleSpecified()) {
       HTMLCode = HTMLCode + `
                           style="`;
-      if (this.margin_top !== '') {
+      if (this.margin_top !== null) {
         HTMLCode = HTMLCode + `
                                  margin-top:`+this.margin_top + `;`;
       }
 
-      if (this.margin_bottom !== '') {
+      if (this.margin_bottom !== null) {
         HTMLCode = HTMLCode + `
                                  margin-bottom:`+this.margin_bottom + `;`;
       }
 
-      if (this.padding_left !== '') {
+      if (this.padding_left !== null) {
         HTMLCode = HTMLCode + `
                                  padding-left:`+this.padding_left + `;`;
       }
 
-      if (this.width !== '') {
+      if (this.width !== null) {
         HTMLCode = HTMLCode + `
                                  width:`+this.width + `;`;
       }
 
-      if (this.resize !== '') {
+      if (this.resize !== null) {
         HTMLCode = HTMLCode + `
                                  resize:`+this.resize + `;`;
       }
@@ -83,11 +82,15 @@ export class TextArea extends FormEntry {
       'resize'?: string
     } = {}
 
-    if (this.margin_top !== '') { style['margin-top'] = this.margin_top; }
-    if (this.margin_bottom !== '') { style['margin-bottom'] = this.margin_bottom; }
-    if (this.padding_left !== '') { style['padding-left'] = this.padding_left; }
-    if (this.width !== '') { style['width'] = this.width; }
-    if (this.resize !== '') { style['resize'] = this.resize }
+    if (this.margin_top !== null) { style['margin-top'] = this.margin_top; }
+    if (this.margin_bottom !== null) { style['margin-bottom'] = this.margin_bottom; }
+    if (this.padding_left !== null) { style['padding-left'] = this.padding_left; }
+    if (this.width !== null) { style['width'] = this.width; }
+    if (this.resize !== null) { style['resize'] = this.resize }
     return style;
+  }
+
+  private isStyleSpecified() {
+    return this.margin_top !== null || this.margin_bottom !== null || this.padding_left !== null || this.width !== null || this.resize !== null;
   }
 }

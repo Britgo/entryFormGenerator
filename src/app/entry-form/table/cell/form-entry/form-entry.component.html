@@ -2,4 +2,5 @@
 <app-checkbox *ngIf="isCheckbox()" [checkbox]="getCheckbox()"></app-checkbox>
 <app-dropdown *ngIf="isDropdown()" [dropdown]="getDropdown()"></app-dropdown>
 <app-text-area *ngIf="isTextArea()" [text_area]="getTextArea()"></app-text-area>
-<app-text-input *ngIf="isTextInput()" [text_input]="getTextInput()"></app-text-input>
+<app-text-input *ngIf="isTextInput()" [text_input]="getTextInput()" [style.width]="getTextInput().width">
+</app-text-input>

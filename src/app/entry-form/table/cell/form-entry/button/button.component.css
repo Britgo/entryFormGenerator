@@ -1,0 +1,10 @@
+input.in-control {
+  height: 1.5em; width: 9em;
+  margin-top:0.0em;
+  padding: 0;
+  font-weight: bold;
+}
+
+.tf_larger {
+  font-size: larger;
+}
