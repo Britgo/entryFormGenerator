@@ -1,1 +1,48 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<app-form-editing *ngIf="editing_step===0"
+                  [edit_mode]="edit_mode"
+                  [custom_block]="custom_block"
+                  [selected_cell]="selected_cell"
+                  (edit_mode_change)="updateEditMode($event)"
+                  (custom_block_change)="onCustomBlockChange($event)"
+                  (prev_step)="changeEditingStep(-1)"
+                  (next_step)="changeEditingStep(1)">
+
+</app-form-editing>
+
+<app-tournament-name *ngIf="editing_step===1"
+                     [tour_config]="tour_config"
+                     (tour_name_change)="onTourNameChange($event)"
+                     (prev_step)="changeEditingStep(-1)"
+                     (next_step)="changeEditingStep(1)">
+
+</app-tournament-name>
+
+<app-tournament-title *ngIf="editing_step===2"
+                      [tour_config]="tour_config"
+                      (tour_title_change)="onTourTitleChange($event)"
+                      (prev_step)="changeEditingStep(-1)"
+                      (next_step)="changeEditingStep(1)">
+
+</app-tournament-title>
+
+<app-tournament-director *ngIf="editing_step===3"
+                         [tour_config]="tour_config"
+                         (tour_director_change)="onTDChange($event)"
+                         (prev_step)="changeEditingStep(-1)"
+                         (next_step)="changeEditingStep(1)">
+</app-tournament-director>
+
+<app-tournament-director-email *ngIf="editing_step===4"
+                               [tour_config]="tour_config"
+                               (td_email_change)="onTDEmailChange($event)"
+                               (prev_step)="changeEditingStep(-1)"
+                               (next_step)="changeEditingStep(1)">
+
+</app-tournament-director-email>
+
+<app-draw-master-email *ngIf="editing_step===5"
+                       [tour_config]="tour_config"
+                       (dm_email_change)="onDMEmailChange($event)"
+                       (prev_step)="changeEditingStep(-1)"
+                       (finish)="onFinish()">
+</app-draw-master-email>

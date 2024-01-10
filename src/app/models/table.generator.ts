@@ -28,6 +28,11 @@ export class TableGenerator {
     return this.rows[getPositiveResidue(position, this.getNRows())];
   }
 
+  changeRow(new_row: Row, position: number) {
+    // Get the requested row.
+    this.rows[getPositiveResidue(position, this.getNRows())] = new_row;
+  }
+
   addCell(cell: Cell, position: CellPosition): void {
     if (position.isNull()) {
       return;
@@ -64,19 +69,20 @@ export class TableGenerator {
     return row.getCell(position.getCellIndex(row.getNCells()));
   }
 
+  changeCell(new_cell: Cell, position: CellPosition){
+    if (position.isNull()) {
+      throwError(() => new Error('position should not be null to get cell.'));
+    }
+
+    const new_row = this.getRow(position.getRowIndex(this.getNRows()));
+    new_row.changeCell(new_cell, position.getCellIndex(new_row.getNCells()));
+    this.changeRow(new_row, position.getRowIndex(this.getNRows()))
+  }
+
   exitEditMode() {
     for (let row of this.rows) {
       row.exitEditMode();
     }
-  }
-
-  isInEditMode(): boolean {
-    for (let row of this.rows) {
-      if (row.isInEditMode()) {
-        return true;
-      }
-    }
-    return false;
   }
 
   getAllCells(): Cell[] {

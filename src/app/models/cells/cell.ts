@@ -63,15 +63,16 @@ export class Cell {
     return this.colspan;
   }
 
-  getStyle() {
+  getStyle(edit_mode: boolean = false) {
     let style: {'text-align': string, 'width'?: string, 'border'?: string} = {
       'text-align': this.text_align,
     };
     if (this.width !== null) {
       style['width'] = this.width;
     }
-    if (this.isInEditMode()) {
-      style['border'] = ' border: 1px solid #ff0000'
+
+    if (this.isInEditMode() && edit_mode) {
+      style['border'] = '1px solid #ff0000'
     }
     return style;
   }

@@ -1,9 +1,8 @@
 <fieldset class="bk-fields">
   <table [style.width]="table.width">
-    <tr *ngFor="let row of table.rows; index as i"
-        [ngStyle]="row.getStyle()">
+    <tr *ngFor="let row of table.rows; index as i">
       <td *ngFor="let cell of row.cells; index as j"
-          [ngStyle]="cell.getStyle()"
+          [ngStyle]="cell.getStyle(edit_mode)"
           [colSpan]="cell.getColspan()"
           (click)="processCellSelection(i, j, cell)">
         <app-cell [cell]="cell"

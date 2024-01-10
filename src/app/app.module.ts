@@ -21,6 +21,12 @@ import { CheckboxComponent } from './entry-form/table/cell/form-entry/checkbox/c
 import { DropdownComponent } from './entry-form/table/cell/form-entry/dropdown/dropdown.component';
 import { TextAreaComponent } from './entry-form/table/cell/form-entry/text-area/text-area.component';
 import { TextInputComponent } from './entry-form/table/cell/form-entry/text-input/text-input.component';
+import { FormEditingComponent } from './editor/form-editing/form-editing.component';
+import { TournamentNameComponent } from './editor/tournament-name/tournament-name.component';
+import { TournamentTitleComponent } from './editor/tournament-title/tournament-title.component';
+import { TournamentDirectorComponent } from './editor/tournament-director/tournament-director.component';
+import { TournamentDirectorEmailComponent } from './editor/tournament-director-email/tournament-director-email.component';
+import { DrawMasterEmailComponent } from './editor/draw-master-email/draw-master-email.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { TextInputComponent } from './entry-form/table/cell/form-entry/text-inpu
     DropdownComponent,
     TextAreaComponent,
     TextInputComponent,
+    FormEditingComponent,
+    TournamentNameComponent,
+    TournamentTitleComponent,
+    TournamentDirectorComponent,
+    TournamentDirectorEmailComponent,
+    DrawMasterEmailComponent,
   ],
   imports: [
     BrowserModule,

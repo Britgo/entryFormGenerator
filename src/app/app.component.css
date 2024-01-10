@@ -1,19 +1,14 @@
-/*.spacedContainer {*/
-/*  display: flex;*/
-/*  position: relative;*/
-/*  justify-content: space-around;*/
-/*  width: 100%;*/
-/*}*/
-
-.main-container {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .editor {
   position: absolute;
-  left: 850pt;
-  top: 0pt;
+  left: 860pt;
+  top: 0;
+}
+
+.separation-bar {
+  position: absolute;
+  left: 854pt;
+  top: 0;
+  height: 100%;
+  width: 2pt;
+  background: black;
 }

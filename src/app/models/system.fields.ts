@@ -1,18 +1,11 @@
 // This page contains code used in order to generate the last part of the entry form page
 
-import {capitalizeAll, sanitizeString} from "./string.formatting";
 import {TableGenerator} from "./table.generator";
+import {TourConfig} from "./tour.config";
 
-// This function generates the
-function getTitle(clubName: string, year: number) {
-  return capitalizeAll(sanitizeString(clubName, ' ')) + year.toString();
-}
 
 /*This function is used in order to return the last part of the entry form page.*/
-export function getSystemFields(club_name: string, year: number, custom_block: TableGenerator) {
-  // We start by getting the title of the page
-  const title = getTitle(club_name, year);
-
+export function getSystemFields(custom_block: TableGenerator, tour_config: TourConfig) {
   // Now we get the code used to initialize the custom cells needing initialization.
   // Start by writing the initial bit of the initialization block.
   let initializationString: string = `    <!-- ---------------------------------------------------------------------------------- -->
@@ -36,14 +29,14 @@ export function getSystemFields(club_name: string, year: number, custom_block: T
 <div id="id_errlog" class="bk-error" hidden><br>ERROR<br></div>
   <!--                                                                                     -->
   <!--                                                                                     -->
-  <span id="id_tourtitle" hidden>`+title+`</span>              <!-- Browser Tab title -->
+  <span id="id_tourtitle" hidden>`+tour_config.getTourTitle()+`</span>              <!-- Browser Tab title -->
 
 <span id="id_fstatus" hidden>st-test</span>                            <!-- Form status  -->
 <!-- The content  can be set to one of:                                                  -->
 <!-- 'st-test' - emails are written to files on the server                               -->
 <!-- 'st-live' - emails are sent to player and TD                                        -->
 
-<input id="id_tbase"  name="SYS-TOURBASE" type="hidden" value="club-name">
+<input id="id_tbase"  name="SYS-TOURBASE" type="hidden" value="`+tour_config.getTourBase()+`">
   <!-- SYS-TOURBASE defines the name of the directory containing the entryform.html file.  -->
 <!-- This directory must be a child of 'tournaments'                                     -->
 

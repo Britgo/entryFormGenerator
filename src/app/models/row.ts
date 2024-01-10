@@ -27,6 +27,11 @@ export class Row {
     return this.cells[getPositiveResidue(position, this.getNCells())];
   }
 
+  changeCell(new_cell: Cell, position: number) {
+    // Return the requested cell.
+    this.cells[getPositiveResidue(position, this.getNCells())] = new_cell;
+  }
+
   exitEditMode() {
     for (let cell of this.cells) {
       cell.exitEditMode();
@@ -40,14 +45,6 @@ export class Row {
       }
     }
     return false;
-  }
-
-  getStyle() {
-    let style: { 'border'?: string } = {}
-    if (this.isInEditMode()) {
-      style['border'] = ' border: 1px solid #ff0000'
-    }
-    return style;
   }
 
   getHTMLCode(): string {
