@@ -1,4 +1,7 @@
-<select [ngStyle]="dropdown.getStyle()">
+<select [ngStyle]="dropdown.getStyle()"
+        matTooltip="{{dropdown.description}}"
+        matTooltipShowDelay="{{SHOW_DELAY}}"
+        matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">
   <option *ngFor="let option of dropdown.options" [selected]="option.selected? 'true' : 'false'">
     {{ option.name }}
   </option>

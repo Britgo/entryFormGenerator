@@ -4,5 +4,8 @@
           [maxLength]="text_area.maxlength"
           autocomplete="off"
           [placeholder]="text_area.placeholder"
-          [ngStyle]="text_area.getStyle()">
+          [ngStyle]="text_area.getStyle()"
+          matTooltip="{{text_area.description}}"
+          matTooltipShowDelay="{{SHOW_DELAY}}"
+          matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">
 </textarea>

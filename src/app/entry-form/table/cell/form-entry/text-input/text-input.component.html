@@ -3,4 +3,7 @@
        [placeholder]="text_input.placeholder"
        type="text"
        [value]="text_input.value"
-       [maxLength]="text_input.maxlength">
+       [maxLength]="text_input.maxlength"
+       matTooltip="{{text_input.description}}"
+       matTooltipShowDelay="{{SHOW_DELAY}}"
+       matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">

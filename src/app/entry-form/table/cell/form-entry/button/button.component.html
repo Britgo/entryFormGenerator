@@ -1,1 +1,5 @@
-<input class="in-control tf_larger" [value]="button.value">
+<input class="in-control tf_larger"
+       [value]="button.value"
+       matTooltip="{{button.description}}"
+       matTooltipShowDelay="{{SHOW_DELAY}}"
+       matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">
