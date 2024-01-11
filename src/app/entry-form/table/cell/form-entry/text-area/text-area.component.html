@@ -6,6 +6,6 @@
           [placeholder]="text_area.placeholder"
           [ngStyle]="text_area.getStyle()"
           matTooltip="{{edit_mode? null: text_area.description}}"
-          matTooltipShowDelay="{{edit_mode? null: SHOW_DELAY}}"
-          matTooltipPositionAtOrigin="{{edit_mode? null: POSITION_AT_ORIGIN}}">
+          [matTooltipShowDelay]="SHOW_DELAY"
+          [matTooltipPosition]="POSITION">
 </textarea>

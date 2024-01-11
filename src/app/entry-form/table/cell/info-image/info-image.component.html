@@ -2,5 +2,5 @@
            class="icon-help"
            alt="info"
            matTooltip="{{edit_mode? null: info_image.description}}"
-           matTooltipShowDelay="{{edit_mode? null: SHOW_DELAY}}"
-           matTooltipPositionAtOrigin="{{edit_mode? null: POSITION_AT_ORIGIN}}">
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION">

@@ -1,1 +1,63 @@
-<p>cell-editing works!</p>
+<p class="spaced-container">
+  <span>
+    <span>
+      Column span
+    </span>
+    <br>
+    <input autocomplete="off"
+           placeholder="1"
+           type="number"
+           [(ngModel)]="colspan"
+           matTooltip="`This number represents the number of columns your cell will occupy.
+If left blank this number will default to 1.`"
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateColspan()">
+  </span>
+
+  <span>
+    <span>
+      Width {{cell.width === null? '' : '('+cell.width+')'}}
+    </span>
+    <br>
+    <input autocomplete="off"
+           type="text"
+           [(ngModel)]="width_size"
+           matTooltip="`This is the size of the cell. If negative it will default to not be specified.`"
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateWidth()">
+    <select #unit_selection (change)="onUnitChange(unit_selection.value)"
+            matTooltip="`This is the unit used for the cell size. Choose one among the available options.`"
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === width_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+
+  <span *ngIf="!isEmptyCell()">
+    <span>
+      Text align
+    </span>
+    <br>
+    <select #alignment_selection (change)="onAlignmentChange(alignment_selection.value)"
+            [value]="cell.text_align"
+            matTooltip="`This is the alignment of the text within the cell. Choose one of the available options.`"
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let alignment of ALIGN_OPTIONS"
+              [value]="alignment"
+              [selected]="alignment === cell.text_align? 'selected': ''">
+        {{alignment}}
+      </option>
+    </select>
+  </span>
+</p>
+
+<div *ngIf="!isEmptyCell()">
+  The editing cell is not empty
+</div>

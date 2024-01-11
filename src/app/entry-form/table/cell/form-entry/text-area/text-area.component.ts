@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {TextArea} from "../../../../../models/cells/form-entries/text.area";
-import {MAT_TOOLTIP_POSITION_AT_ORIGIN, MAT_TOOLTIP_SHOW_DELAY} from "../../../../../models/constants";
+import {MAT_TOOLTIP_POSITION, MAT_TOOLTIP_SHOW_DELAY} from "../../../../../models/constants";
+import {TooltipPosition} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-text-area',
@@ -15,6 +16,6 @@ export class TextAreaComponent {
                                               'description');
   @Input() edit_mode: boolean = true
 
-  POSITION_AT_ORIGIN: boolean = MAT_TOOLTIP_POSITION_AT_ORIGIN;
+  POSITION: TooltipPosition = MAT_TOOLTIP_POSITION;
   SHOW_DELAY: number = MAT_TOOLTIP_SHOW_DELAY;
 }

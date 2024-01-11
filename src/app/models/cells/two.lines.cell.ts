@@ -11,7 +11,7 @@ export class TwoLinesCell extends Cell {
               public info_image: InfoImage | null,
               colspan: number | null = null,
               width: string | null = null,
-              text_align: 'left' | 'right' = 'left') {
+              text_align: 'left' | 'right' | 'center' = 'left') {
     super(colspan, width, text_align);
   }
   override getHTMLCode(): string {

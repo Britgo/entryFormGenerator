@@ -2,6 +2,8 @@ import {Cell, EmptyCell} from "./cells/cell";
 import {CellPosition, getPositiveResidue} from "./cell.position";
 import {throwError} from "rxjs";
 import {EmptyRow, Row} from "./row";
+import {OneLineCell} from "./cells/one.line.cell";
+import {TwoLinesCell} from "./cells/two.lines.cell";
 
 export class TableGenerator {
   constructor(public rows: Row[], public width: string = '100%') {}
@@ -71,7 +73,7 @@ export class TableGenerator {
     return;
   }
 
-  getCell(position: CellPosition): Cell {
+  getCell(position: CellPosition): EmptyCell | OneLineCell | TwoLinesCell {
     if (position.isNull()) {
       throwError(() => new Error('position should not be null to get cell.'));
     }

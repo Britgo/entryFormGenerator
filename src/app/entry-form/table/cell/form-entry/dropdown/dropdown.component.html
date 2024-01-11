@@ -1,7 +1,7 @@
 <select [ngStyle]="dropdown.getStyle()"
         matTooltip="{{edit_mode? null: dropdown.description}}"
-        matTooltipShowDelay="{{edit_mode? null: SHOW_DELAY}}"
-        matTooltipPositionAtOrigin="{{edit_mode? null: POSITION_AT_ORIGIN}}">
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
   <option *ngFor="let option of dropdown.options" [selected]="option.selected? 'selected': ''">
     {{ option.name }}
   </option>
