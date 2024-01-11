@@ -103,13 +103,6 @@ export class CellCreationComponent {
     ];
   }
 
-  private setAllCellsInEditMode(cell_array: Cell[]) {
-    for (let cell of cell_array) {
-      cell.editing = true;
-    }
-    return cell_array;
-  }
-
   onCellSelect(cell: Cell) {
     this.create_cell.emit(cell);
   }
