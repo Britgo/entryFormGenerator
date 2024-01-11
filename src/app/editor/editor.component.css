@@ -28,7 +28,8 @@
   top: 10pt;
   align-self: center;
   background-color: #ffd391;
-  width: 42em;
+  width: 30em;
+  font-size: larger;
 }
 
 input.in-control {

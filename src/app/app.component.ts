@@ -55,9 +55,7 @@ export class AppComponent {
   }
 
   updateEditMode(edit_mode: boolean) {
-    console.log('edit mode change app component');
     this.edit_mode = edit_mode;
-    console.log(this.edit_mode);
   }
 
   private generateHTMLCode() {

@@ -4,13 +4,13 @@
     name for it you can just write the name of the club running the tournament or the name of the city/town the
     tournament will be held in.
   </p>
-  <span class="left-align-container">
+  <p class="left-align-container">
     <input type="text"
            placeholder="club name"
            [(ngModel)]="tour_config.tour_name"
            (change)="tour_name_change.emit(tour_config.getTourName())">
-  </span>
-  <span class="spaced-container">
+  </p>
+  <p class="spaced-container">
     <input class="in-control tf_larger"
            value="Back"
            type="button"
@@ -19,5 +19,5 @@
            value="Next"
            type="button"
            (click)="onNextStep()">
-  </span>
+  </p>
 </fieldset>

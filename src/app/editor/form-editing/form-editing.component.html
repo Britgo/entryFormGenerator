@@ -1,10 +1,13 @@
 <fieldset class="bk-fields">
-  <h2 style="text-align: center">Edit mode {{edit_mode? 'ON' : 'OFF'}}
+  <p style="text-align: center">
+    <span class="title">
+      Edit mode {{edit_mode? 'ON' : 'OFF'}}
+    </span>
     <input class="in-control tf_larger"
            [value]="getEditModeButtonValue()"
            [type]="'button'"
            (click)="toggleEditMode()">
-  </h2>
+  </p>
   <p *ngIf="!edit_mode">Press the button above in order to enter edit mode.</p>
   <p *ngIf="edit_mode && selected_cell.isNull()">
     Click on one of the cells in the form on the left in order to edit it.
@@ -15,10 +18,10 @@
     column: {{selected_cell.getCellIndex()}}
   </p>
 
-  <span class="right-align-container">
+  <p class="right-align-container">
     <input class="in-control tf_larger"
            value="Next"
            type="button"
            (click)="onFinish()">
-  </span>
+  </p>
 </fieldset>

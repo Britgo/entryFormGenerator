@@ -32,9 +32,8 @@ export class FormEditingComponent {
 
   onFinish() {
     this.edit_mode = false;
-    console.log('edit mode change form editing');
-    console.log(this.edit_mode);
     this.edit_mode_change.emit(false);
+    this.custom_block_change.emit(this.custom_block);
     this.next_step.emit()
   }
 }

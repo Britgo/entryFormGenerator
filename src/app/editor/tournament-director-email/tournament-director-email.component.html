@@ -4,13 +4,13 @@
     This will be the primary contact email for queries regarding the tournament and every time a player registers to
     the tournament a message will be sent to this email.
   </p>
-  <span class="left-align-container">
+  <p class="left-align-container">
     <input type="text"
            placeholder="username@email.com"
            [(ngModel)]="tour_config.td_email"
            (change)="td_email_change.emit(tour_config.td_email)">
-  </span>
-  <span class="spaced-container">
+  </p>
+  <p class="spaced-container">
     <input class="in-control tf_larger"
            value="Back"
            type="button"
@@ -19,5 +19,5 @@
            value="Next"
            type="button"
            (click)="onNextClick()">
-  </span>
+  </p>
 </fieldset>

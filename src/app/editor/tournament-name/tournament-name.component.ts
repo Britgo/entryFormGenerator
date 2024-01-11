@@ -14,7 +14,7 @@ export class TournamentNameComponent {
   @Output() tour_name_change = new EventEmitter<string>();
 
   onNextStep() {
-    if (this.tour_config.getTourDirector() === '') {
+    if (this.tour_config.getTourName() === '') {
       alert('Tournament name must be specified.');
     } else {
       this.next_step.emit()

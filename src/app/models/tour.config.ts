@@ -37,10 +37,14 @@ CFG-EMAIL-DM\t`+this.getDMEmail();
 
   getTourTitle() :string {
     if (this.tour_title === null || this.tour_title === '') {
-      return this.getTourName() + new Date().getFullYear().toString();
+      return this.getEmptyTourTitle();
     }
 
     return capitalizeString(sanitizeString(this.tour_title, ' '));
+  }
+
+  getEmptyTourTitle() :string {
+    return this.getTourName() + ' ' + new Date().getFullYear().toString();
   }
 
   getEntryFormLink() {

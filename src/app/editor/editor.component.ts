@@ -3,7 +3,6 @@ import {TableGenerator} from "../models/table.generator";
 import {CUSTOM_BLOCK} from "../models/custom.block";
 import {CellPosition} from "../models/cell.position";
 import {DEFAULT_TOUR_CONFIG, TourConfig} from "../models/tour.config";
-import {PAGE_HEAD} from "../models/head";
 
 @Component({
   selector: 'app-editor',
@@ -63,8 +62,6 @@ export class EditorComponent{
 
   updateEditMode(edit_mode: boolean) {
     this.edit_mode = edit_mode;
-    console.log('edit mode change editor component');
-    console.log(this.edit_mode);
     this.edit_mode_change.emit(edit_mode);
   }
 }
