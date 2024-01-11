@@ -32,6 +32,6 @@ export class FormEntryEditingComponent {
   }
 
   onIdChange(id: string) {
-    this.id_change.emit();
+    this.id_change.emit(id);
   }
 }
