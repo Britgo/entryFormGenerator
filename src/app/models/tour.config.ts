@@ -8,7 +8,7 @@ export class TourConfig {
               public tour_title: string | null = null) {
   }
 
-  getOutputText() {
+  getOutputText() :string {
     return `CFG-TOURBASE\t`+this.getTourBase()+`
 CFG-TOURNAME\t`+this.getTourName()+`
 CFG-DIRECTOR\t`+this.getTourDirector()+`
@@ -16,34 +16,45 @@ CFG-EMAIL-TD\t`+this.td_email+`
 CFG-EMAIL-DM\t`+this.getDMEmail();
   }
 
-  getTourBase() {
+  getTourBase() :string {
     return sanitizeString(this.tour_name, '-');
   }
 
-  getTourName() {
+  getTourName() :string {
     return capitalizeString(sanitizeString(this.tour_name, ' '));
   }
 
-  getTourDirector() {
+  getTourDirector() :string {
     return capitalizeAll(sanitizeString(this.tour_director, ' '));
   }
 
-  getDMEmail() {
-    return !this.dm_email? "UNKNOWN": this.dm_email;
+  getDMEmail() :string {
+    if (this.dm_email === null || this.dm_email === '') {
+      return "UNKNOWN";
+    }
+    return this.dm_email;
   }
 
-  getTourTitle() {
-    if (this.tour_title === null) {
+  getTourTitle() :string {
+    if (this.tour_title === null || this.tour_title === '') {
       return this.getTourName() + new Date().getFullYear().toString();
     }
 
     return capitalizeString(sanitizeString(this.tour_title, ' '));
   }
 
+  getEntryFormLink() {
+    return 'https://www.britgo.org/tournams/'+this.getTourBase()+'/'+this.getTourBase()+'-form.html'
+  }
+
+  getEntriesList() {
+    return 'https://www.britgo.org/tournams/'+this.getTourBase()+'/tour-entries.html'
+  }
+
 }
 
 export const DEFAULT_TOUR_CONFIG = new TourConfig(
-  'club name',
-  'Name Surname',
-  'username@email.com'
+  '',
+  '',
+  ''
 );

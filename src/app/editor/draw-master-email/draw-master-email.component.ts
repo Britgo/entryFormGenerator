@@ -10,6 +10,6 @@ export class DrawMasterEmailComponent {
   @Input() tour_config: TourConfig = DEFAULT_TOUR_CONFIG;
 
   @Output() prev_step = new EventEmitter<void>();
-  @Output() finish = new EventEmitter<void>();
+  @Output() next_step = new EventEmitter<void>();
   @Output() dm_email_change = new EventEmitter<string>();
 }

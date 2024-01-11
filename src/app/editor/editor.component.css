@@ -5,6 +5,24 @@
   width: 100%;
 }
 
+.left-align-container {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+}
+
+.center-align-container {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.right-align-container {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
 .bk-fields {
   position: relative;
   top: 10pt;

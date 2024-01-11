@@ -12,4 +12,12 @@ export class TournamentDirectorEmailComponent {
   @Output() prev_step = new EventEmitter<void>();
   @Output() next_step = new EventEmitter<void>();
   @Output() td_email_change = new EventEmitter<string>();
+
+  onNextClick() {
+    if (this.tour_config.td_email === '') {
+      alert('Tournament director email must be specified.');
+    } else {
+      this.next_step.emit()
+    }
+  }
 }

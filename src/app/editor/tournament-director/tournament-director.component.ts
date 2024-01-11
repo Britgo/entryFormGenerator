@@ -12,4 +12,12 @@ export class TournamentDirectorComponent {
   @Output() prev_step = new EventEmitter<void>();
   @Output() next_step = new EventEmitter<void>();
   @Output() tour_director_change = new EventEmitter<string>();
+
+  onNextClick() {
+    if (this.tour_config.getTourDirector() === '') {
+      alert('Tournament director must be specified.');
+    } else {
+      this.next_step.emit()
+    }
+  }
 }

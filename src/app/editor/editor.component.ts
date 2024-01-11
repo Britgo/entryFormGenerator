@@ -3,6 +3,7 @@ import {TableGenerator} from "../models/table.generator";
 import {CUSTOM_BLOCK} from "../models/custom.block";
 import {CellPosition} from "../models/cell.position";
 import {DEFAULT_TOUR_CONFIG, TourConfig} from "../models/tour.config";
+import {PAGE_HEAD} from "../models/head";
 
 @Component({
   selector: 'app-editor',
@@ -23,11 +24,11 @@ export class EditorComponent{
   editing_step: number = 0;
 
   changeEditingStep(change: number) {
-    this.editing_step = Math.min(Math.max(0, change + this.editing_step), 5);
+    this.editing_step = Math.min(Math.max(0, change + this.editing_step), 6);
   }
 
   onFinish() {
-
+    this.finish.emit();
   }
 
   onCustomBlockChange(custom_block: TableGenerator) {

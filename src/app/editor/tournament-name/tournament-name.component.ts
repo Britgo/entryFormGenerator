@@ -12,4 +12,12 @@ export class TournamentNameComponent {
   @Output() prev_step = new EventEmitter<void>();
   @Output() next_step = new EventEmitter<void>();
   @Output() tour_name_change = new EventEmitter<string>();
+
+  onNextStep() {
+    if (this.tour_config.getTourDirector() === '') {
+      alert('Tournament name must be specified.');
+    } else {
+      this.next_step.emit()
+    }
+  }
 }

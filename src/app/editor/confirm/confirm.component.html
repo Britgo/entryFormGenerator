@@ -1,0 +1,48 @@
+<fieldset class="bk-fields">
+  <p>
+    Please make sure that the information below is correct and press on the "Finish" button in order to download the
+    entry form files.
+    <br>
+    Once the files are downloaded make sure to email them to Marco at "PraderioM at Gmail dot com". He will
+    check everything is correct and upload the files on the BGA page. After that the tournament entry form will be
+    available at {{tour_config.getEntryFormLink()}}  and you will be able to consult the tournament entries in
+    {{tour_config.getEntriesList()}}.
+    <br>
+    Beware that the data below might differ slightly from the one inserted in previous steps as some small formatting
+    is necessary.
+  </p>
+
+  <table>
+    <tr>
+      <td><b>Tournament name</b></td>
+      <td>&nbsp;{{tour_config.getTourName()}}</td>
+    </tr>
+    <tr>
+      <td><b>Tournament title</b></td>
+      <td>&nbsp;{{tour_config.getTourTitle()}}</td>
+    </tr>
+    <tr>
+      <td><b>Tournament director</b></td>
+      <td>&nbsp;{{tour_config.getTourDirector()}}</td>
+    </tr>
+    <tr>
+      <td><b>Tournament director email</b></td>
+      <td>&nbsp;{{tour_config.td_email}}</td>
+    </tr>
+    <tr>
+      <td><b>Draw master email</b></td>
+      <td>&nbsp;{{tour_config.getDMEmail()}}</td>
+    </tr>
+  </table>
+
+  <span class="spaced-container">
+    <input class="in-control tf_larger"
+           value="Back"
+           type="button"
+           (click)="prev_step.emit()">
+    <input class="in-control tf_larger"
+           value="Finish"
+           type="button"
+           (click)="finish.emit()">
+  </span>
+</fieldset>

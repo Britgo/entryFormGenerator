@@ -1,5 +1,15 @@
 <fieldset class="bk-fields">
-  Tournament director email
+  <p>
+    Write below the email of the tournament director (i.e. {{tour_config.getTourDirector()}}).
+    This will be the primary contact email for queries regarding the tournament and every time a player registers to
+    the tournament a message will be sent to this email.
+  </p>
+  <span class="left-align-container">
+    <input type="text"
+           placeholder="username@email.com"
+           [(ngModel)]="tour_config.td_email"
+           (change)="td_email_change.emit(tour_config.td_email)">
+  </span>
   <span class="spaced-container">
     <input class="in-control tf_larger"
            value="Back"
@@ -8,6 +18,6 @@
     <input class="in-control tf_larger"
            value="Next"
            type="button"
-           (click)="next_step.emit()">
+           (click)="onNextClick()">
   </span>
 </fieldset>

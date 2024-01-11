@@ -44,5 +44,11 @@
                        [tour_config]="tour_config"
                        (dm_email_change)="onDMEmailChange($event)"
                        (prev_step)="changeEditingStep(-1)"
-                       (finish)="onFinish()">
+                       (next_step)="changeEditingStep(1)">
 </app-draw-master-email>
+
+<app-confirm *ngIf="editing_step===6"
+             [tour_config]="tour_config"
+             (prev_step)="changeEditingStep(-1)"
+             (finish)="onFinish()">
+</app-confirm>

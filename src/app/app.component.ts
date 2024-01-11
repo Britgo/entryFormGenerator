@@ -5,6 +5,8 @@ import {CUSTOM_BLOCK} from "./models/custom.block";
 import {PLAYER_EMAIL_BLOCK} from "./models/player.email.block";
 import {CellPosition} from "./models/cell.position";
 import {DEFAULT_TOUR_CONFIG, TourConfig} from "./models/tour.config";
+import {PAGE_HEAD} from "./models/head";
+import {getSystemFields} from "./models/system.fields";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,24 @@ export class AppComponent {
   }
 
   downloadDocuments() {
-    // TODO implement.
+      this.downloadEntryForm()
+      this.downloadTourConfig()
+  }
+
+  downloadEntryForm() {
+    const blob = new Blob([this.generateHTMLCode()], {type: 'application/octet-stream'});
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.download = this.tour_config.getTourBase()+"-form.html";
+    anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+    anchor.click();
+  }
+
+  downloadTourConfig() {
+    const blob = new Blob([this.tour_config.getOutputText()], {type: 'application/octet-stream'});
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.download = "tour-config";
+    anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+    anchor.click();
   }
 
   updateCustomBlock(custom_block: TableGenerator) {
@@ -39,5 +58,13 @@ export class AppComponent {
     console.log('edit mode change app component');
     this.edit_mode = edit_mode;
     console.log(this.edit_mode);
+  }
+
+  private generateHTMLCode() {
+    let HTML_code: string = PAGE_HEAD;
+    HTML_code = HTML_code + this.egd_search_block.getHTMLCode();
+    HTML_code = HTML_code + this.player_email_block.getHTMLCode();
+    HTML_code = HTML_code + getSystemFields(this.custom_block, this.tour_config);
+    return HTML_code;
   }
 }

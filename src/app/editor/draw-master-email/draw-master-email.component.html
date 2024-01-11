@@ -1,13 +1,28 @@
 <fieldset class="bk-fields">
-  Draw master email
+  <p>
+    In case there is someone assisting the tournament organization (e.g. the draw master) write their email below.
+    Otherwise leave it blank.
+    <br>
+    An message will be sent to the email below for every player registering to the tournament.
+    <br>
+    It is highly recommended to have at least 2 people in charge of the tournament since it can be a lot of work for a
+    single person. Specially on the day of the tournament.
+  </p>
+  <span class="left-align-container">
+    <input type="text"
+           placeholder="username@email.com"
+           [(ngModel)]="tour_config.dm_email"
+           (change)="dm_email_change.emit(tour_config.getDMEmail())">
+  </span>
+
   <span class="spaced-container">
     <input class="in-control tf_larger"
            value="Back"
            type="button"
            (click)="prev_step.emit()">
     <input class="in-control tf_larger"
-           value="Finish"
+           value="Next"
            type="button"
-           (click)="finish.emit()">
+           (click)="next_step.emit()">
   </span>
 </fieldset>
