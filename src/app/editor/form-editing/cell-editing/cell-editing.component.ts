@@ -1,8 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {EmptyCell} from "../../../models/cells/cell";
-import {OneLineCell} from "../../../models/cells/one.line.cell";
-import {TwoLinesCell} from "../../../models/cells/two.lines.cell";
-import {TextInput} from "../../../models/cells/form-entries/text.input";
+import {EmptyCell, FormCell} from "../../../models/cells/cell";
 import {
   ALIGN_OPTIONS,
   MAT_TOOLTIP_POSITION,
@@ -10,14 +7,16 @@ import {
   SIZE_UNITS
 } from "../../../models/constants";
 import {TooltipPosition} from "@angular/material/tooltip";
+import {Dropdown, Option} from "../../../models/cells/form-entries/dropdown";
+import {InfoImage} from "../../../models/cells/form-entries/info.image";
 
 @Component({
   selector: 'app-cell-editing',
   templateUrl: './cell-editing.component.html',
-  styleUrls: ['./cell-editing.component.css', '../../editor.component.css']
+  styleUrls: ['./cell-editing.component.css', '../../editor.component.css', '../form-editing.component.css']
 })
 export class CellEditingComponent implements OnChanges{
-  @Input() cell: OneLineCell | TwoLinesCell | EmptyCell = new EmptyCell();
+  @Input() cell: FormCell | EmptyCell = new EmptyCell();
 
   colspan :number = this.getColSpan();
   width_size :string = this.getWidthSize();
@@ -35,7 +34,6 @@ export class CellEditingComponent implements OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes['cell'].firstChange) {
       this.resetValuesFromCell();
     } else if (changes['cell'].previousValue !== changes['cell'].currentValue) {
@@ -47,9 +45,9 @@ export class CellEditingComponent implements OnChanges{
     return this.cell instanceof EmptyCell;
   }
 
-  getCustomCell() {
-    if (!this.isEmptyCell()) { return this.cell }
-    return new OneLineCell('NAME', new TextInput('id'), null);
+  getFormCell() {
+    if (this.cell instanceof FormCell) { return this.cell }
+    return new FormCell('NAME', new Dropdown('id', [new Option('OPTION 1')]), null);
   }
 
   private getWidthSize() {
@@ -102,5 +100,18 @@ export class CellEditingComponent implements OnChanges{
     } else {
       this.cell.text_align = alignment;
     }
+  }
+
+  addInformationIcon() {
+    const non_empty_cell = this.getFormCell();
+    non_empty_cell.info_image = new InfoImage(non_empty_cell.form_entry.id + 'icon', '');
+  }
+
+  removeInformationIcon() {
+    this.getFormCell().info_image = null;
+  }
+
+  onIdChange(id: string) {
+    this.getFormCell().getInfoImage().id = id + 'icon';
   }
 }

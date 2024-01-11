@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_lcode',
-  'CODE-CY',
+  'EXT-T-CODE-CY',
   '',
   'A 2 letter country code',
   'off',

@@ -28,15 +28,15 @@ export class Option {
 }
 
 export class Dropdown extends FormEntry {
-  constructor(private id: string,
+  constructor(id: string,
               public options: Option[],
               public description: string = '',
-              private name: string = '',
+              public name: string = '',
               public width: string | null = null,
               public margin_bottom: string | null = null,
               public margin_top: string | null = null,
               private onchange: string | null = null) {
-    super();
+    super(id);
   }
 
   override getHTMLCode(): string {

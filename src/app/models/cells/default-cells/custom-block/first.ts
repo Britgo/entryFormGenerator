@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const checkbox: Checkbox = new Checkbox(
   'id_firstegd',
-  'FIRST',
+  'EXT-C-FIRST',
   false,
 );
 

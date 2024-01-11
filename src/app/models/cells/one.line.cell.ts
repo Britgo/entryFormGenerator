@@ -2,20 +2,21 @@ import {InfoImage} from "./form-entries/info.image";
 import {FormEntry} from "./form-entries/form.entry";
 import {TextInput} from "./form-entries/text.input";
 import {Dropdown} from "./form-entries/dropdown";
-import {Cell} from "./cell";
+import {FormCell} from "./cell";
 import {Checkbox} from "./form-entries/checkbox";
 import {TextArea} from "./form-entries/text.area";
 import {Button} from "./form-entries/button";
 
+
 // This class models the two line cells appearing in the form.
-export class OneLineCell extends Cell {
-  constructor(public name: string,
-              public form_entry: FormEntry,
-              public info_image: InfoImage | null,
+export class OneLineCell extends FormCell {
+  constructor(name: string,
+              form_entry: FormEntry,
+              info_image: InfoImage | null,
               colspan: number | null = null,
               width: string | null = null,
               text_align: 'left' | 'right' | 'center' = 'left') {
-    super(colspan, width, text_align);
+    super(name, form_entry, info_image, colspan, width, text_align);
   }
   override getHTMLCode(): string {
     let HTMLCode = this.getCellOpenHTMLCode();
@@ -40,13 +41,6 @@ export class OneLineCell extends Cell {
 
   override getComponentWithDefault(): FormEntry {
     return this.form_entry;
-  }
-
-  override getDescription() {
-    if (this.info_image !== null) {
-      return this.info_image.description;
-    }
-    return '';
   }
 }
 

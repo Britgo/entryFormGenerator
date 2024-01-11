@@ -93,7 +93,7 @@ const dropdown: Dropdown = new Dropdown(
     new Option('No Such Code', false, '??')
   ],
   'The country code will take precedence.',
-  'COUNTRY',
+  'EXT-D-COUNTRY',
   '12em',
   null,
   null,

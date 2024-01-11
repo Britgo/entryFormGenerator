@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_cname',
-  'CLUB',
+  'EXT-T-CLUB',
   '',
   'The full club name can have hyphens &#13; or spaces, but no digits.',
   'off',

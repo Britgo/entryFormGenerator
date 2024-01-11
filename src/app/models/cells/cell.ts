@@ -1,4 +1,5 @@
 import {FormEntry} from "./form-entries/form.entry";
+import {InfoImage} from "./form-entries/info.image";
 
 export class Cell {
   constructor(public colspan: number | null = null,
@@ -79,6 +80,28 @@ export class Cell {
 
   getDescription() {
     return "";
+  }
+}
+
+export class FormCell extends Cell {
+  constructor(public name: string,
+              public form_entry: FormEntry,
+              public info_image: InfoImage | null,
+              colspan: number | null = null,
+              width: string | null = null,
+              text_align: 'left' | 'right' | 'center' = 'left') {
+    super(colspan, width, text_align);
+  }
+
+  getInfoImage() {
+    if (this.info_image !== null) {
+      return this.info_image;
+    }
+    return new InfoImage('id', '');
+  }
+
+  override getDescription() {
+    return this.getInfoImage().description;
   }
 }
 

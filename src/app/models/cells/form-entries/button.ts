@@ -1,13 +1,13 @@
 import {FormEntry} from "./form.entry";
 
 export class Button extends FormEntry {
-  constructor(private id: string,
+  constructor(id: string,
               public value: string,
               public description: string,
               public type: 'submit' | 'button' = 'button',
               private enabled: boolean = true,
               private onclick: string = '') {
-    super();
+    super(id);
   }
 
   override getHTMLCode(): string {

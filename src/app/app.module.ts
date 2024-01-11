@@ -30,6 +30,10 @@ import { DrawMasterEmailComponent } from './editor/draw-master-email/draw-master
 import { ConfirmComponent } from './editor/confirm/confirm.component';
 import { CellCreationComponent } from './editor/form-editing/cell-creation/cell-creation.component';
 import { CellEditingComponent } from './editor/form-editing/cell-editing/cell-editing.component';
+import { FormEntryEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/form-entry-editing.component';
+import { CheckboxEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/checkbox-editing/checkbox-editing.component';
+import { TextInputEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/text-input-editing/text-input-editing.component';
+import { DropdownEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/dropdown-editing/dropdown-editing.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,10 @@ import { CellEditingComponent } from './editor/form-editing/cell-editing/cell-ed
     ConfirmComponent,
     CellCreationComponent,
     CellEditingComponent,
+    FormEntryEditingComponent,
+    CheckboxEditingComponent,
+    TextInputEditingComponent,
+    DropdownEditingComponent,
   ],
   imports: [
     BrowserModule,

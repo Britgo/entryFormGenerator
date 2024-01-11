@@ -5,7 +5,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_gname',
-  'GIVEN',
+  'EXT-T-GIVEN',
   '',
   'Your given name must not be blank - use underscore (_) if needed.',
   'off',

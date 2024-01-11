@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_grade',
-  'GRADE',
+  'EXT-T-GRADE',
   '',
   'One or two digits followed by k,d, or p.',
   'off',

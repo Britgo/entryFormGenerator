@@ -3,7 +3,7 @@ import {FormEntry} from "./form.entry";
 export class TextArea extends FormEntry {
   constructor(private input_id: string,
               private input_name: string,
-              private id: string,
+              id: string,
               public placeholder: string,
               public description: string,
               public rows: number = 3,
@@ -15,7 +15,7 @@ export class TextArea extends FormEntry {
               public padding_left: string | null = '0.5em',
               public width: string | null = '100%',
               public resize: string | null = 'none') {
-    super();
+    super(id);
   }
 
   override getHTMLCode(): string {

@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_rated',
-  'EGDRATE',
+  'EXT-T-EGDRATE',
   '',
   'Your strength is obtained from EGD. Please see the info to the right.',
   'off',

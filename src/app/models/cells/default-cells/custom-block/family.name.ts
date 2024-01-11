@@ -4,7 +4,7 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_fname',
-  'FAMILY',
+  'EXT-T-FAMILY',
   '',
   'A family name may not be empty.',
   'off',

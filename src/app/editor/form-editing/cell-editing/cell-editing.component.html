@@ -4,12 +4,13 @@
       Column span
     </span>
     <br>
-    <input autocomplete="off"
+    <input class="short-input"
+           autocomplete="off"
            placeholder="1"
            type="number"
            [(ngModel)]="colspan"
-           matTooltip="`This number represents the number of columns your cell will occupy.
-If left blank this number will default to 1.`"
+           matTooltip="This number represents the number of columns your cell will occupy.
+If left blank this number will default to 1."
            [matTooltipShowDelay]="SHOW_DELAY"
            [matTooltipPosition]="POSITION"
            (change)="updateColspan()">
@@ -20,15 +21,16 @@ If left blank this number will default to 1.`"
       Width {{cell.width === null? '' : '('+cell.width+')'}}
     </span>
     <br>
-    <input autocomplete="off"
+    <input class="short-input"
+           autocomplete="off"
            type="text"
            [(ngModel)]="width_size"
-           matTooltip="`This is the size of the cell. If negative it will default to not be specified.`"
+           matTooltip="This is the size of the cell. If negative it will default to not be specified."
            [matTooltipShowDelay]="SHOW_DELAY"
            [matTooltipPosition]="POSITION"
            (change)="updateWidth()">
     <select #unit_selection (change)="onUnitChange(unit_selection.value)"
-            matTooltip="`This is the unit used for the cell size. Choose one among the available options.`"
+            matTooltip="This is the unit used for the cell size. Choose one among the available options."
             [matTooltipShowDelay]="SHOW_DELAY"
             [matTooltipPosition]="POSITION">
       <option *ngFor="let unit of SIZE_UNITS"
@@ -46,7 +48,7 @@ If left blank this number will default to 1.`"
     <br>
     <select #alignment_selection (change)="onAlignmentChange(alignment_selection.value)"
             [value]="cell.text_align"
-            matTooltip="`This is the alignment of the text within the cell. Choose one of the available options.`"
+            matTooltip="This is the alignment of the text within the cell. Choose one of the available options."
             [matTooltipShowDelay]="SHOW_DELAY"
             [matTooltipPosition]="POSITION">
       <option *ngFor="let alignment of ALIGN_OPTIONS"
@@ -59,5 +61,57 @@ If left blank this number will default to 1.`"
 </p>
 
 <div *ngIf="!isEmptyCell()">
-  The editing cell is not empty
+  <div class="hor-line"></div>
+  <p class="spaced-container">
+    <span>
+      <span>
+        Shown text
+      </span>
+      <br>
+      <input class="mid-input"
+             autocomplete="off"
+             type="text"
+             [(ngModel)]="getFormCell().name"
+             matTooltip="This is the text appearing on your cell. It should be descriptive but short."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION">
+      <span *ngIf="getFormCell().info_image !== null">
+        <br>
+        <br>
+        <input class="in-control tf_larger"
+               value="Remove icon"
+               type="button"
+               matTooltip="Click to remove the information icon of this cell."
+               [matTooltipShowDelay]="SHOW_DELAY"
+               [matTooltipPosition]="POSITION"
+               (click)="removeInformationIcon()">
+      </span>
+    </span>
+
+    <span *ngIf="getFormCell().info_image === null">
+      <input class="in-control tf_larger"
+             value="Add info icon"
+             type="button"
+             matTooltip="Click to add an information icon to this cell."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION"
+             (click)="addInformationIcon()">
+    </span>
+
+    <span *ngIf="getFormCell().info_image !== null">
+      <textarea [(ngModel)]="getFormCell().getInfoImage().description"
+                rows="3"
+                cols="30"
+                autocomplete="off"
+                placeholder="Write here any more extensive description regarding the selected cell.
+  The message you write here will appear whenever you press the information icon in the cell."
+                class="description-input">
+      </textarea>
+    </span>
+  </p>
+
+  <div class="hor-line"></div>
+  <app-form-entry-editing [form_entry]="getFormCell().form_entry"
+                            (id_change)="onIdChange($event)">
+  </app-form-entry-editing>
 </div>

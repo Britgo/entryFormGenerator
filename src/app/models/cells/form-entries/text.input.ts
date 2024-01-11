@@ -1,7 +1,7 @@
 import {FormEntry} from "./form.entry";
 
 export class TextInput extends FormEntry {
-  constructor(private id: string,
+  constructor(id: string,
               private name: string = '',
               public placeholder: string = '',
               public description: string = '',
@@ -11,7 +11,7 @@ export class TextInput extends FormEntry {
               public maxlength: number | null = null,
               private onkeyup: string | null = null,
               public margin_top: string | null = '',) {
-    super();
+    super(id);
   }
 
   override getHTMLCode(): string {
