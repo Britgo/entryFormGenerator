@@ -3,7 +3,7 @@ import {FormEntry} from "./form.entry";
 export class Option {
   constructor(public name: string,
               public selected: boolean = false,
-              private value: string | null = null) {
+              public value: string | null = null) {
   }
 
   getHTMLCode(): string {
@@ -37,6 +37,20 @@ export class Dropdown extends FormEntry {
               public margin_top: string | null = null,
               private onchange: string | null = null) {
     super(id);
+  }
+
+  selectOption(selected_option: Option) {
+    for (let option of this.options) {
+      option.selected = option === selected_option;
+    }
+  }
+
+  addOption(option: Option) {
+    this.options.push(option);
+  }
+
+  removeOption(index: number) {
+    this.options.splice(index, 1);
   }
 
   override getHTMLCode(): string {
@@ -125,5 +139,9 @@ export class Dropdown extends FormEntry {
 
   private isStyleSpecified() {
     return this.width !== null || this.margin_bottom !== null || this.margin_top !== null;
+  }
+
+  getNOptions() :number {
+    return this.options.length
   }
 }

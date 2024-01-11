@@ -1,1 +1,182 @@
-<p>dropdown-editing works!</p>
+<p class="spaced-container">
+  <span>
+    <span>
+      id
+    </span>
+    <br>
+    <input class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="dropdown.id"
+           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="onIdChange()">
+  </span>
+  <span>
+    <span>
+      Email identifier
+    </span>
+    <br>
+    EXT-D-<input class="mid-input"
+                 autocomplete="off"
+                 type="text"
+                 [(ngModel)]="name"
+                 matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
+                 [matTooltipShowDelay]="SHOW_DELAY"
+                 [matTooltipPosition]="POSITION"
+                 (change)="updateName()">
+  </span>
+</p>
+<div class="hor-line"></div>
+<p>
+  <span>
+    Tooltip
+  </span>
+  <br>
+  <textarea [(ngModel)]="dropdown.description"
+            rows="3"
+            cols="30"
+            autocomplete="off"
+            placeholder="Write here any tooltip that you want to be shown when hovering over the dropbox."
+            class="description-input">
+      </textarea>
+</p>
+
+<div class="hor-line"></div>
+<span class="sub-title"> OPTIONS </span>
+<input class="in-control tf_larger"
+       [value]="getToggleOptionsText()"
+       type="button"
+       (click)="toggleShowOptions()">
+<div *ngIf="show_options">
+  <span *ngFor="let option of dropdown.options; index as i" class="spaced-container">
+    <span>
+      <span>
+        Name
+      </span>
+      <br>
+      <input class="mid-input"
+             autocomplete="off"
+             type="text"
+             [(ngModel)]="option.name"
+             matTooltip="This is the text that will visible in the dropdown."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION">
+    </span>
+    <span>
+      <span>
+        value
+      </span>
+      <br>
+      <input class="mid-input"
+             autocomplete="off"
+             type="text"
+             [(ngModel)]="option.value"
+             matTooltip="When a new player registers if they select this option you will see this text in the received email."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION">
+    </span>
+    <span matTooltip="If checked this will be the option showing by default in the dropdown."
+          [matTooltipShowDelay]="SHOW_DELAY"
+          [matTooltipPosition]="POSITION">
+      <br>
+      <span>Selected</span>&nbsp;<input type="checkbox" (click)="selectOption(option)" [checked]="option.selected">
+    </span>
+    <span>
+      <br>
+      <input class="in-remove tf_larger"
+             value="Remove"
+             type="button"
+             matTooltip="Click to remove this option from the dropdown."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION"
+             (click)="removeOption(i)">
+    </span>
+  </span>
+
+  <input class="in-control tf_larger"
+         value="Add option"
+         type="button"
+         matTooltip="Click to add a new option to the dropdown."
+         [matTooltipShowDelay]="SHOW_DELAY"
+         [matTooltipPosition]="POSITION"
+         (click)="addOption()">
+</div>
+
+<div class="hor-line"></div>
+
+<p class="spaced-container">
+  <span>
+    <span>
+      Width {{dropdown.width === null? '' : '('+dropdown.width+')'}}
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="width_size"
+           matTooltip="This is the size of the dropdown. If negative it will default to not be specified."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateWidth()">
+    <select #width_unit_selection (change)="onWidthUnitChange(width_unit_selection.value)"
+            matTooltip="This is the unit used for the dropdown size. Choose one among the available options."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === width_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+  <span>
+    <span>
+      Margin bottom {{dropdown.margin_bottom === null? '' : '('+dropdown.margin_bottom+')'}}
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="margin_bottom_size"
+           matTooltip="This is the size of the dropdown. If negative it will default to not be specified."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateMarginBottom()">
+    <select #margin_bottom_unit_selection (change)="onMarginBottomUnitChange(margin_bottom_unit_selection.value)"
+            matTooltip="This is the unit used for the dropdown size. Choose one among the available options."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === margin_bottom_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+  <span>
+    <span>
+      Margin top {{dropdown.margin_top === null? '' : '('+dropdown.margin_top+')'}}
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="margin_top_size"
+           matTooltip="This is the size of the dropdown. If negative it will default to not be specified."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateMarginTop()">
+    <select #margin_top_unit_selection (change)="onMarginTopUnitChange(margin_top_unit_selection.value)"
+            matTooltip="This is the unit used for the dropdown size. Choose one among the available options."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === margin_top_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+</p>

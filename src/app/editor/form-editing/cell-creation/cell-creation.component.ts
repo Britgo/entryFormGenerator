@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import {v4 as uuid} from 'uuid';
 
 import {Cell, EmptyCell} from "../../../models/cells/cell";
@@ -85,7 +85,7 @@ export class CellCreationComponent {
       ),
       new OneLineDropdown(
         'NAME',
-        new Dropdown(uuid(), [new Option('OPTION 1')]),
+        new Dropdown(uuid(), [new Option('OPTION 1', true)]),
         null
       ),
       new OneLineCheckbox(
@@ -98,8 +98,15 @@ export class CellCreationComponent {
 
   getTwoLinesCells() :TwoLinesCell[] {
     return [
-      new TwoLineInput('NAME', new TextInput(uuid()), new InfoImage(uuid(), 'DESCRIPTION')),
-      new TwoLineDropdown('NAME', new Dropdown(uuid(), [new Option('OPTION 1')]), null)
+      new TwoLineInput(
+        'NAME',
+        new TextInput(uuid()), new InfoImage(uuid(), 'DESCRIPTION')
+      ),
+      new TwoLineDropdown(
+        'NAME',
+        new Dropdown(uuid(), [new Option('OPTION 1', true)]),
+        null
+      ),
     ];
   }
 
