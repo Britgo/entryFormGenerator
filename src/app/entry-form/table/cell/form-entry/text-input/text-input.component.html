@@ -4,6 +4,6 @@
        type="text"
        [value]="text_input.value"
        [maxLength]="text_input.maxlength"
-       matTooltip="{{text_input.description}}"
-       matTooltipShowDelay="{{SHOW_DELAY}}"
-       matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">
+       matTooltip="{{edit_mode? null: text_input.description}}"
+       matTooltipShowDelay="{{edit_mode? null: SHOW_DELAY}}"
+       matTooltipPositionAtOrigin="{{edit_mode? null: POSITION_AT_ORIGIN}}">

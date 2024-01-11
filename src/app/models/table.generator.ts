@@ -1,7 +1,7 @@
-import {Cell} from "./cells/cell";
+import {Cell, EmptyCell} from "./cells/cell";
 import {CellPosition, getPositiveResidue} from "./cell.position";
 import {throwError} from "rxjs";
-import {Row} from "./row";
+import {EmptyRow, Row} from "./row";
 
 export class TableGenerator {
   constructor(public rows: Row[], public width: string = '100%') {}
@@ -38,8 +38,19 @@ export class TableGenerator {
       return;
     }
 
+    if (position.is_new) {
+      if (cell instanceof EmptyCell) {
+        this.addRow(new EmptyRow(), position.getRowIndex())
+      } else {
+        this.addRow(new Row([]), position.getRowIndex());
+      }
+    }
     const row = this.getRow(position.getRowIndex(this.getNRows()))
-    row.addCell(cell, position.getCellIndex(row.getNCells()));
+    let pos = position.getCellIndex();
+    if (pos !== row.getNCells()) {
+      position.getCellIndex(row.getNCells())
+    }
+    row.addCell(cell, pos);
     return;
   }
 
@@ -114,5 +125,9 @@ export class TableGenerator {
 
   getNRows() {
     return this.rows.length;
+  }
+
+  getNewCellPosition(): CellPosition {
+    return new CellPosition(this.getNRows(), 0, true);
   }
 }

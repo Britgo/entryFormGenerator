@@ -1,6 +1,6 @@
 &nbsp;<img src="assets/question_mark.png"
            class="icon-help"
            alt="info"
-           matTooltip="{{info_image.description}}"
-           matTooltipShowDelay="{{SHOW_DELAY}}"
-           matTooltipPositionAtOrigin="{{POSITION_AT_ORIGIN}}">
+           matTooltip="{{edit_mode? null: info_image.description}}"
+           matTooltipShowDelay="{{edit_mode? null: SHOW_DELAY}}"
+           matTooltipPositionAtOrigin="{{edit_mode? null: POSITION_AT_ORIGIN}}">

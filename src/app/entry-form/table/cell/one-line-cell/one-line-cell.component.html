@@ -1,6 +1,11 @@
-<app-form-entry [form_entry]="one_line_cell.form_entry"></app-form-entry>
-<span *ngIf="one_line_cell.name !== ''" [innerHTML]="'&nbsp;' + one_line_cell.name "></span>
+<app-form-entry [form_entry]="one_line_cell.form_entry"
+                [edit_mode]="edit_mode">
+</app-form-entry>
+<span *ngIf="one_line_cell.name !== ''"
+      [innerHTML]="'&nbsp;' + one_line_cell.name ">
+</span>
 <app-info-image *ngIf="one_line_cell.info_image !== null"
                 [info_image]="one_line_cell.info_image"
+                [edit_mode]="edit_mode"
                 (click)="processInfoImageClick()">
 </app-info-image>

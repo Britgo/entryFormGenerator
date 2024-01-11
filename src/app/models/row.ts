@@ -72,8 +72,8 @@ export class Row {
 }
 
 export class EmptyRow extends Row {
-  constructor(columns: number = 2) {
-    super([new EmptyCell(columns)]);
+  constructor() {
+    super([new EmptyCell()]);
   }
 
   override addCell(cell: Cell, position: number = -1): void {

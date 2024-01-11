@@ -8,3 +8,7 @@ input.in-control {
 .tf_larger {
   font-size: larger;
 }
+
+input.in-control:hover {
+  cursor: pointer;
+}

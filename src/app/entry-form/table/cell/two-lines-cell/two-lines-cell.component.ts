@@ -11,6 +11,8 @@ export class TwoLinesCellComponent {
   @Input() two_lines_cell: TwoLinesCell = new TwoLinesCell('two lines cell',
                                                             new Checkbox('id', 'checkbox', false),
                                                            null);
+  @Input() edit_mode: boolean = true;
+
   @Output() on_cell_describe = new EventEmitter<void>();
 
   processInfoImageClick() {

@@ -1,9 +1,12 @@
 <span [innerHTML]="two_lines_cell.name"></span>
 <br>
 <span>
-  <app-form-entry [form_entry]="two_lines_cell.form_entry"></app-form-entry>
+  <app-form-entry [form_entry]="two_lines_cell.form_entry"
+                  [edit_mode]="edit_mode">
+  </app-form-entry>
   <app-info-image *ngIf="two_lines_cell.info_image !== null"
                   [info_image]="two_lines_cell.info_image"
+                  [edit_mode]="edit_mode"
                   (click)="processInfoImageClick()">
   </app-info-image>
 </span>

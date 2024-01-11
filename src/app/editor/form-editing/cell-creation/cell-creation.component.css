@@ -1,0 +1,10 @@
+.selected {
+  background-color: darkgray !important;
+}
+
+.cell-sample {
+  border: 1px solid black;
+}
+.cell-sample:hover {
+  cursor: pointer;
+}

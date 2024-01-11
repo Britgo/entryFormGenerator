@@ -11,6 +11,8 @@ import {OneLineCell} from "../../../models/cells/one.line.cell";
 })
 export class CellComponent {
   @Input() cell: Cell = new Cell();
+  @Input() edit_mode: boolean = true;
+
   @Output() on_cell_describe = new EventEmitter<void>();
 
   isEmptyCell(): boolean {

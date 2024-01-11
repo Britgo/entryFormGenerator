@@ -9,6 +9,7 @@ import {InfoImage} from "../../../../models/cells/form-entries/info.image";
 })
 export class InfoImageComponent {
   @Input() info_image: InfoImage = new InfoImage('id', 'description');
+  @Input() edit_mode: boolean = true
 
   protected readonly POSITION_AT_ORIGIN = MAT_TOOLTIP_POSITION_AT_ORIGIN;
   protected readonly SHOW_DELAY = MAT_TOOLTIP_SHOW_DELAY;

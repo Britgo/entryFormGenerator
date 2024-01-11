@@ -10,7 +10,9 @@ import {Checkbox} from "../../../../models/cells/form-entries/checkbox";
 export class OneLineCellComponent {
   @Input() one_line_cell: OneLineCell = new OneLineCell('two lines cell',
                                                          new Checkbox('id', 'checkbox', false),
-                                                        null)
+                                                        null);
+  @Input() edit_mode: boolean = true;
+
   @Output() on_cell_describe = new EventEmitter<void>();
 
   processInfoImageClick() {

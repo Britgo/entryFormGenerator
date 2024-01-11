@@ -13,6 +13,7 @@ import {TextInput} from "../../../../models/cells/form-entries/text.input";
 })
 export class FormEntryComponent {
   @Input() form_entry = new FormEntry();
+  @Input() edit_mode: boolean = true
 
   isButton(): boolean { return this.form_entry instanceof Button; }
   isCheckbox(): boolean { return this.form_entry instanceof Checkbox; }

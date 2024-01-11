@@ -28,6 +28,8 @@ import { TournamentDirectorComponent } from './editor/tournament-director/tourna
 import { TournamentDirectorEmailComponent } from './editor/tournament-director-email/tournament-director-email.component';
 import { DrawMasterEmailComponent } from './editor/draw-master-email/draw-master-email.component';
 import { ConfirmComponent } from './editor/confirm/confirm.component';
+import { CellCreationComponent } from './editor/form-editing/cell-creation/cell-creation.component';
+import { CellEditingComponent } from './editor/form-editing/cell-editing/cell-editing.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { ConfirmComponent } from './editor/confirm/confirm.component';
     TournamentDirectorEmailComponent,
     DrawMasterEmailComponent,
     ConfirmComponent,
+    CellCreationComponent,
+    CellEditingComponent,
   ],
   imports: [
     BrowserModule,

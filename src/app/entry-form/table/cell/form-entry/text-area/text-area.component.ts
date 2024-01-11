@@ -13,6 +13,8 @@ export class TextAreaComponent {
                                               'id',
                                               'placeholder',
                                               'description');
+  @Input() edit_mode: boolean = true
+
   POSITION_AT_ORIGIN: boolean = MAT_TOOLTIP_POSITION_AT_ORIGIN;
   SHOW_DELAY: number = MAT_TOOLTIP_SHOW_DELAY;
 }

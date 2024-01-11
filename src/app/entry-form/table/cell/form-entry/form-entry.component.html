@@ -1,6 +1,20 @@
-<app-button *ngIf="isButton()" [button]="getButton()"></app-button>
-<app-checkbox *ngIf="isCheckbox()" [checkbox]="getCheckbox()"></app-checkbox>
-<app-dropdown *ngIf="isDropdown()" [dropdown]="getDropdown()"></app-dropdown>
-<app-text-area *ngIf="isTextArea()" [text_area]="getTextArea()"></app-text-area>
-<app-text-input *ngIf="isTextInput()" [text_input]="getTextInput()" [style.width]="getTextInput().width">
+<app-button *ngIf="isButton()"
+            [button]="getButton()"
+            [edit_mode]="edit_mode">
+</app-button>
+<app-checkbox *ngIf="isCheckbox()"
+              [checkbox]="getCheckbox()">
+</app-checkbox>
+<app-dropdown *ngIf="isDropdown()"
+              [dropdown]="getDropdown()"
+              [edit_mode]="edit_mode">
+</app-dropdown>
+<app-text-area *ngIf="isTextArea()"
+               [text_area]="getTextArea()"
+               [edit_mode]="edit_mode">
+</app-text-area>
+<app-text-input *ngIf="isTextInput()"
+                [text_input]="getTextInput()"
+                [style.width]="getTextInput().width"
+                [edit_mode]="edit_mode">
 </app-text-input>

@@ -6,6 +6,7 @@
           [colSpan]="cell.getColspan()"
           (click)="processCellSelection(i, j, cell)">
         <app-cell [cell]="cell"
+                  [edit_mode]="edit_mode"
                   (on_cell_describe)="processDescriptionChange(cell)">
         </app-cell>
       </td>
