@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gba-entryform-template-generator": {
+    "bga-entryform-template-generator": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -14,11 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "docs",
-            "baseHref": "/entryFormGenerator/",
-            "index": {
-              "input": "src/index.html",
-              "output": "404.html"
-            },
+            "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -43,6 +39,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "https://praderiom.github.io/entryFormGenerator/",
               "budgets": [
                 {
                   "type": "initial",
@@ -72,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gba-entryform-template-generator:build:production"
+              "browserTarget": "bga-entryform-template-generator:build:production"
             },
             "development": {
-              "browserTarget": "gba-entryform-template-generator:build:development"
+              "browserTarget": "bga-entryform-template-generator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gba-entryform-template-generator:build"
+            "browserTarget": "bga-entryform-template-generator:build"
           }
         },
         "test": {
