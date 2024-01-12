@@ -78,7 +78,7 @@ export class DropdownEditingComponent implements OnChanges{
   }
 
   private getSize(size: string | null) {
-    if (size === null) {
+    if (size === null || size === '') {
       return '';
     }
     return parseFloat(size).toString();

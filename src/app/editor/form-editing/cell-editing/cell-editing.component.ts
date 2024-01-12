@@ -51,7 +51,7 @@ export class CellEditingComponent implements OnChanges{
   }
 
   private getWidthSize() {
-    if (this.cell.width === null) {
+    if (this.cell.width === null || this.cell.width === '') {
       return '';
     }
     return parseFloat(this.cell.width).toString();

@@ -1,1 +1,145 @@
-<p>text-input-editing works!</p>
+<p class="spaced-container">
+  <span>
+    <span>
+      id
+    </span>
+    <br>
+    <input class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="text_input.id"
+           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="onIdChange()">
+  </span>
+  <span>
+    <span>
+      Email identifier
+    </span>
+    <br>
+    EXT-T-<input class="mid-input"
+                 autocomplete="off"
+                 type="text"
+                 [(ngModel)]="name"
+                 matTooltip="When a new player registers you will receive their answer to this text under this identifier."
+                 [matTooltipShowDelay]="SHOW_DELAY"
+                 [matTooltipPosition]="POSITION"
+                 (change)="updateName()">
+  </span>
+</p>
+
+<div class="hor-line"></div>
+
+<p class="spaced-container">
+  <span>
+    <span>
+      Placeholder
+    </span>
+    <br>
+    <input class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="text_input.placeholder"
+           matTooltip="This is the text placeholder that will be shown in the input when empty."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION">
+  </span>
+  <span>
+    <span>
+      Default value
+    </span>
+    <br>
+    <input class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="text_input.value"
+           matTooltip="This is the default value of the input."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION">
+  </span>
+</p>
+
+<div class="hor-line"></div>
+<p>
+  <span>
+    Tooltip
+  </span>
+  <br>
+  <textarea [(ngModel)]="text_input.description"
+            rows="3"
+            cols="30"
+            autocomplete="off"
+            placeholder="Write here any tooltip that you want to be shown when hovering over the input."
+            class="description-input">
+  </textarea>
+</p>
+
+<div class="hor-line"></div>
+
+<p class="spaced-container">
+  <span>
+    <span>
+      Max length
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           placeholder="1"
+           type="number"
+           [(ngModel)]="max_length"
+           matTooltip="This number represents the maximum number of character allowed in the input.
+If left blank or negative this number will default to 1."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateMaxLength()">
+  </span>
+  <span>
+    <span>
+      Width {{text_input.width === null || text_input.width === ''? '' : '('+text_input.width+')'}}
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="width_size"
+           matTooltip="This is the size of the input. If negative it will default to not be specified."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateWidth()">
+    <select #width_unit_selection (change)="onWidthUnitChange(width_unit_selection.value)"
+            matTooltip="This is the unit used for the input size. Choose one among the available options."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === width_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+  <span>
+    <span>
+      Margin top {{text_input.margin_top === null || text_input.margin_top === ''? '' : '('+text_input.margin_top+')'}}
+    </span>
+    <br>
+    <input class="short-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="margin_top_size"
+           matTooltip="This is the size of the margin above the input. If negative it will default to not be specified."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="updateMarginTop()">
+    <select #margin_top_unit_selection (change)="onMarginTopUnitChange(margin_top_unit_selection.value)"
+            matTooltip="This is the unit used for the dmargin above the input. Choose one among the available options."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let unit of SIZE_UNITS"
+              [value]="unit"
+              [selected]="unit === margin_top_unit? 'selected': ''">
+        {{unit}}
+      </option>
+    </select>
+  </span>
+</p>

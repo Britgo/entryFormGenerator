@@ -61,6 +61,7 @@ export class AppComponent {
   private generateHTMLCode() {
     let HTML_code: string = PAGE_HEAD;
     HTML_code = HTML_code + this.egd_search_block.getHTMLCode();
+    HTML_code = HTML_code + this.custom_block.getHTMLCode();
     HTML_code = HTML_code + this.player_email_block.getHTMLCode();
     HTML_code = HTML_code + getSystemFields(this.custom_block, this.tour_config);
     return HTML_code;

@@ -2,7 +2,7 @@ import {FormEntry} from "./form.entry";
 
 export class TextInput extends FormEntry {
   constructor(id: string,
-              private name: string = '',
+              public name: string = '',
               public placeholder: string = '',
               public description: string = '',
               public autocomplete: 'off' | 'on' = 'off',

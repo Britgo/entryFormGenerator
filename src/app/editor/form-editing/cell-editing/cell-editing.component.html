@@ -18,7 +18,7 @@ If left blank this number will default to 1."
 
   <span>
     <span>
-      Width {{cell.width === null? '' : '('+cell.width+')'}}
+      Width {{cell.width === null || cell.width === ''? '' : '('+cell.width+')'}}
     </span>
     <br>
     <input class="short-input"
