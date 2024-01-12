@@ -16,7 +16,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Deploy
 
-To deploy on the github pages run `ng build --configuration production` while on the master branch and then push the files generated in the `docs/` directory. Deployment will happen automatically after that.
+To deploy on the github pages run `ng build --configuration production` while on the master branch and then push the files generated in the `docs/` directory.
+Deployment will happen automatically after that.
+Make sure to add unversioned files when pushing.
 
 ## Running unit tests
 
