@@ -1,0 +1,9 @@
+<input [ngStyle]="text_input.getStyle()"
+       [autocomplete]="text_input.autocomplete"
+       [placeholder]="text_input.placeholder"
+       type="text"
+       [value]="text_input.value"
+       [maxLength]="text_input.maxlength"
+       matTooltip="{{edit_mode? null: text_input.description}}"
+       [matTooltipShowDelay]="SHOW_DELAY"
+       [matTooltipPosition]="POSITION">

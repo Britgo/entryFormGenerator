@@ -1,28 +1,14 @@
-.page-half {
-  width: 40%;
-  align-content: center;
+.editor {
+  position: absolute;
+  left: 860pt;
+  top: 0;
 }
 
-.page-third {
-    width: 33%;
-    align-content: center;
-  }
-
-.page-fifth {
-  width: 20%;
-  align-content: center;
-}
-
-.spacedContainer {
-  display: flex;
-  position: relative;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.mainContainer {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  width: 100%;
+.separation-bar {
+  position: absolute;
+  left: 854pt;
+  top: 0;
+  height: 100%;
+  width: 2pt;
+  background: black;
 }

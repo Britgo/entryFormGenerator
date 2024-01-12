@@ -1,0 +1,12 @@
+<app-checkbox-editing *ngIf="isCheckbox()"
+                      [checkbox]="getCheckbox()"
+                      (id_change)="onIdChange($event)">
+</app-checkbox-editing>
+<app-dropdown-editing *ngIf="isDropdown()"
+                      [dropdown]="getDropdown()"
+                      (id_change)="onIdChange($event)">
+</app-dropdown-editing>
+<app-text-input-editing *ngIf="isTextInput()"
+                        [text_input]="getTextInput()"
+                        (id_change)="onIdChange($event)">
+</app-text-input-editing>

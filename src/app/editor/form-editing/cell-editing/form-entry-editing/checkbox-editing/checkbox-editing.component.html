@@ -1,0 +1,39 @@
+<p class="spaced-container">
+  <span>
+    <span>
+      id
+    </span>
+    <br>
+    <input class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="checkbox.id"
+           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="onIdChange()">
+  </span>
+  <span>
+    <span>
+      Email identifier
+    </span>
+    <br>
+    EXT-C-<input class="mid-input"
+                 autocomplete="off"
+                 type="text"
+                 [(ngModel)]="name"
+                 matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier."
+                 [matTooltipShowDelay]="SHOW_DELAY"
+                 [matTooltipPosition]="POSITION"
+                 (change)="updateName()">
+  </span>
+  <span matTooltip="This will be the default value of the checkbox in the generated form."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
+    <span>
+      Checked
+    </span>
+    <br>
+    <input type="checkbox" [(ngModel)]="checkbox.checked">
+  </span>
+</p>

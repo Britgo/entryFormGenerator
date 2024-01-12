@@ -1,59 +1,57 @@
-.w33{
-  width:30%
-}
-
-.w50{
-   width:45%
-}
-
-a{
-  color: black;
-  text-decoration: none;
-}
-
-.boldText {
-  font-weight: bolder;
-}
-
-.centered {
-  align-content: center;
-  align-self: center;
-}
-
-.clickable {
-
-}
-
-.clickable:hover{
-  cursor: pointer;
-}
-
-button.niceButton {
-  display: block;
-  /*position: absolute;*/
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5.5vh;
-  transition: .3s ease;
-
-  font-family: 'Secular One', sans-serif;
-  font-size: 2vh;
-  text-align: center;
-  vertical-align: center;
-  line-height: 2.1em;
-  /*background-color: #ffd391;*/
-  /*background-color: #868c8f;*/
-  background-color: #2e66f2;
-}
-
-button.niceButton:hover {
-  box-shadow: 0 0 6px rgb(0,0,0,.5);
-}
-
-.expandedContainer {
+.spaced-container {
   display: flex;
   position: relative;
   justify-content: space-between;
-  width: 85%;
+  width: 100%;
+}
+
+.line-wrap {
+  flex-wrap: wrap;
+}
+
+.left-align-container {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+}
+
+.center-align-container {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.vertically-centered-container {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.right-align-container {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
+.bk-fields {
+  position: relative;
+  top: 10pt;
+  align-self: center;
+  background-color: #ffd391;
+  width: 30em;
+  font-size: larger;
+}
+
+input.in-control {
+  height: 1.5em; width: 9em;
+  margin-top:0.0em;
+  padding: 0;
+  font-weight: bold;
+}
+
+input.in-control:hover {
+  cursor: pointer;
+}
+
+.tf_larger {
+  font-size: larger;
 }

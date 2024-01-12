@@ -1,0 +1,12 @@
+.title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.hor-line {
+  width: 100%;
+  height: 1px;
+  background: black;
+  margin-top: 5pt;
+  margin-bottom: 5pt;
+}

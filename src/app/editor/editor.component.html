@@ -1,98 +1,54 @@
-<br>
-<span class="spacedContainer">
-  <igx-input-group  class="w33">
-    <input igxInput name="tournamentName" type="text" [(ngModel)]="tournamentName"/>
-    <label igxLabel for="tournamentName"><b>Tournament name</b></label>
-  </igx-input-group>
-  <igx-input-group  class="w33">
-    <input igxInput name="tournamentDirector" type="text" [(ngModel)]="tournamentDirector"/>
-    <label igxLabel for="tournamentDirector"><b>Tournament director</b></label>
-  </igx-input-group>
-  <igx-input-group  class="w33">
-    <input igxInput name="email" type="text" [(ngModel)]="email"/>
-    <label igxLabel for="email"><b>email</b></label>
-  </igx-input-group>
-</span>
+<app-form-editing *ngIf="editing_step===0"
+                  [edit_mode]="edit_mode"
+                  [custom_block]="custom_block"
+                  [selected_cell]="selected_cell"
+                  (edit_mode_change)="updateEditMode($event)"
+                  (custom_block_change)="onCustomBlockChange($event)"
+                  (prev_step)="changeEditingStep(-1)"
+                  (next_step)="changeEditingStep(1)">
 
-<span class="spacedContainer">
-  <igx-input-group  class="w33">
-    <input igxInput name="tournamentYear" type="number" [(ngModel)]="tournamentYear"/>
-    <label igxLabel for="tournamentYear"><b>Tournament year</b></label>
-  </igx-input-group>
-  <span  class="w33">
+</app-form-editing>
 
-  </span>
-  <igx-input-group  class="w33">
-    <input igxInput name="backupEmail" type="text" [(ngModel)]="backupEmail"/>
-    <label igxLabel for="backupEmail"><b>backup email</b></label>
-  </igx-input-group>
-</span>
-<hr>
-<span class="spacedContainer">
-  <span class="w33">
-    <b>Show country</b>
-    <input type="radio" [checked]="showCountry" (click)="updateShowCountry.emit(!showCountry)">
-  </span>
+<app-tournament-name *ngIf="editing_step===1"
+                     [tour_config]="tour_config"
+                     (tour_name_change)="onTourNameChange($event)"
+                     (prev_step)="changeEditingStep(-1)"
+                     (next_step)="changeEditingStep(1)">
 
-  <span class="w33">
-    <b>Show club</b>
-    <input type="radio" [checked]="showClub" (click)="updateShowClub.emit(!showClub)">
-  </span>
+</app-tournament-name>
 
-  <span class="w33">
-    <b>Show Grade</b>
-    <input type="radio" [checked]="showGrade" (click)="updateShowGrade.emit(!showGrade)">
-  </span>
-</span>
+<app-tournament-title *ngIf="editing_step===2"
+                      [tour_config]="tour_config"
+                      (tour_title_change)="onTourTitleChange($event)"
+                      (prev_step)="changeEditingStep(-1)"
+                      (next_step)="changeEditingStep(1)">
 
-<span class="spacedContainer">
-  <span class="w33">
-    <b>Ask if play all rounds</b>
-    <input type="radio" [checked]="playAllRounds" (click)="updatePlayAllRounds.emit(!playAllRounds)">
-  </span>
+</app-tournament-title>
 
-  <span class="w33">
-    <b>Ask if first tournament</b>
-    <input type="radio" [checked]="firstTournament" (click)="updateFirstTournament.emit(!firstTournament)">
-  </span>
+<app-tournament-director *ngIf="editing_step===3"
+                         [tour_config]="tour_config"
+                         (tour_director_change)="onTDChange($event)"
+                         (prev_step)="changeEditingStep(-1)"
+                         (next_step)="changeEditingStep(1)">
+</app-tournament-director>
 
-  <span class="w33">
-    <b>Ask if public entry</b>
-    <input type="radio" [checked]="publicEntry" (click)="updatePublicEntry.emit(!publicEntry)">
-  </span>
-</span>
+<app-tournament-director-email *ngIf="editing_step===4"
+                               [tour_config]="tour_config"
+                               (td_email_change)="onTDEmailChange($event)"
+                               (prev_step)="changeEditingStep(-1)"
+                               (next_step)="changeEditingStep(1)">
 
-<span class="spacedContainer">
-  <span>
-    <b>Ask for e-mail validation</b>
-    <input type="radio" [checked]="validateEmail" (click)="updateValidateEmail.emit(!validateEmail)">
-  </span>
+</app-tournament-director-email>
 
-  <igx-input-group class="w33">
-    <input igxInput name="additionalInfo" type="text"
-           [(ngModel)]="additionalInfo"
-           (change)="updateAdditionalInfo.emit(additionalInfo)"/>
-    <label igxLabel for="additionalInfo"><b>Additional information</b></label>
-  </igx-input-group>
-</span>
+<app-draw-master-email *ngIf="editing_step===5"
+                       [tour_config]="tour_config"
+                       (dm_email_change)="onDMEmailChange($event)"
+                       (prev_step)="changeEditingStep(-1)"
+                       (next_step)="changeEditingStep(1)">
+</app-draw-master-email>
 
-<div class="spacedContainer">
-<app-radio-editor class="w33"
-                  [radioList]="radioList"
-                  (updateRadio)="updateRadio.emit($event)">
-</app-radio-editor>
-<app-check-box-editor  class="w33"
-                       [checkBoxList]="checkBoxList"
-                       (updateCheckBox)="updateCheckBox.emit($event)">
-</app-check-box-editor>
-<app-drop-down-editor  class="w33"
-                       [dropDownList]="dropDownList"
-                       (updateDropDown)="updateDropDown.emit($event)">
-</app-drop-down-editor>
-</div>
-
-<span class="spacedContainer">
-  <button class="niceButton boldText" (click)="downloadEntryFormFiles()">
-    Download entry form files
-  </button>
-</span>
+<app-confirm *ngIf="editing_step===6"
+             [tour_config]="tour_config"
+             (prev_step)="changeEditingStep(-1)"
+             (finish)="onFinish()">
+</app-confirm>

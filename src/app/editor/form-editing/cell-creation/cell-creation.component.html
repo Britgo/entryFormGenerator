@@ -1,0 +1,56 @@
+Select from the dropdown the type of cell you wish to create.
+<p class="spaced-container line-wrap">
+  <input [ngClass]="getButtonClass(pre_made_cell_mode)"
+         value="Pre made cell"
+         [type]="'button'"
+         (click)="enterPreMadeCellMode()">
+  <input [ngClass]="getButtonClass(one_line_cell_mode)"
+         value="One line cell"
+         [type]="'button'"
+         (click)="enterOneLineCellMode()">
+  <input [ngClass]="getButtonClass(two_lines_cell_mode)"
+         value="Two lines cell"
+         [type]="'button'"
+         (click)="enterTwoLinesCellMode()">
+  <input [ngClass]="getButtonClass(false)"
+         value="Empty cell"
+         [type]="'button'"
+         (click)="createEmptyCell()">
+</p>
+<div *ngIf="pre_made_cell_mode">
+  <p *ngIf="!preMadeCellsExist()">All pre made cells are already being used in the form. Add another type of cell</p>
+  <p *ngIf="preMadeCellsExist()">Click on the pre-made cell you wish to add and start customizing it.</p>
+  <div class="spaced-container line-wrap">
+    <app-cell *ngFor="let cell of getPreMadeCells()"
+              [cell]="cell"
+              (click)="onCellSelect(cell)"
+              class="cell-sample">
+    </app-cell>
+  </div>
+</div>
+<div *ngIf="one_line_cell_mode">
+  <p>Click on the one line cell you wish to add and start customizing it.</p>
+  <div class="spaced-container line-wrap">
+    <app-one-line-cell *ngFor="let cell of getOneLineCells()"
+                       [one_line_cell]="cell"
+                       (click)="onCellSelect(cell)"
+                       class="cell-sample">
+    </app-one-line-cell>
+  </div>
+</div>
+<div *ngIf="two_lines_cell_mode">
+  <p>Click on the two lines cell you wish to add and start customizing it.</p>
+  <div class="spaced-container line-wrap">
+    <app-two-lines-cell *ngFor="let cell of getTwoLinesCells()"
+                        [two_lines_cell]="cell"
+                        (click)="onCellSelect(cell)"
+                        class="cell-sample">
+    </app-two-lines-cell>
+  </div>
+</div>
+<p class="center-align-container">
+  <input class="in-control tf_larger"
+         value="Back"
+         [type]="'button'"
+         (click)="back.emit()">
+</p>

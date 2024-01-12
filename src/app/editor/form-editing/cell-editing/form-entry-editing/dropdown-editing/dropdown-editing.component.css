@@ -1,0 +1,14 @@
+input.in-remove {
+  height: 1.5em; width: 5em;
+  margin-top:0.0em;
+  padding: 0;
+  font-weight: bold;
+}
+
+input.in-remove:hover {
+  cursor: pointer;
+}
+.sub-title {
+  font-size: large;
+  font-weight: bold;
+}

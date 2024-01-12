@@ -1,0 +1,8 @@
+div.dv-tooltip-new {
+  position: absolute; top:10pt; left:450pt;
+  width: 400pt; min-height: 115pt;
+  visibility: visible;
+  padding:0.5em; border-radius: 5px;
+  font-size: x-large;
+  background-color: #ffe2aa;
+}

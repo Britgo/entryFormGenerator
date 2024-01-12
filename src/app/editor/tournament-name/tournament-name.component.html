@@ -1,0 +1,23 @@
+<fieldset class="bk-fields">
+  <p>
+    Write below the name of the tournament. If this is the first edition of the tournament and you don't have a clear
+    name for it you can just write the name of the club running the tournament or the name of the city/town the
+    tournament will be held in.
+  </p>
+  <p class="left-align-container">
+    <input type="text"
+           placeholder="club name"
+           [(ngModel)]="tour_config.tour_name"
+           (change)="tour_name_change.emit(tour_config.getTourName())">
+  </p>
+  <p class="spaced-container">
+    <input class="in-control tf_larger"
+           value="Back"
+           type="button"
+           (click)="prev_step.emit()">
+    <input class="in-control tf_larger"
+           value="Next"
+           type="button"
+           (click)="onNextStep()">
+  </p>
+</fieldset>

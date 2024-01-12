@@ -1,5 +1,12 @@
-import {Component, Input} from '@angular/core';
-import {CheckBox, DropDown, Radio} from "./models";
+import {Component} from '@angular/core';
+import {TableGenerator} from "./models/table.generator";
+import {EGD_SEARCH_BLOCK} from "./models/EGD.search.block";
+import {CUSTOM_BLOCK} from "./models/custom.block";
+import {PLAYER_EMAIL_BLOCK} from "./models/player.email.block";
+import {CellPosition} from "./models/cell.position";
+import {DEFAULT_TOUR_CONFIG, TourConfig} from "./models/tour.config";
+import {PAGE_HEAD} from "./models/head";
+import {getSystemFields} from "./models/system.fields";
 
 @Component({
   selector: 'app-root',
@@ -7,55 +14,56 @@ import {CheckBox, DropDown, Radio} from "./models";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tournament-entry-form-generator';
-  radioList: Radio[] = [new Radio('Choose your free meal', ['Lunch', 'Dinner', 'No Meal'], 2)];
-  checkBoxList: CheckBox[] = [new CheckBox('There is a discount for members of any Go association', 'Association member?', true)];
-  dropDownList: DropDown[] = [new DropDown('Travel', 'Modes of transport', 'Please tell us how you are traveling so that we can arrange a shuttle to the venue.', ['hyperdrive', 'elevator', 'sail'], 2)];
-  validateEmail: boolean = false;
-  showCountry: boolean = true;
-  showClub: boolean = true;
-  showGrade: boolean = true;
-  playAllRounds: boolean = true;
-  firstTournament: boolean = true;
-  publicEntry: boolean = true;
-  additionalInfo: string = '';
+  egd_search_block: TableGenerator = EGD_SEARCH_BLOCK;
+  custom_block: TableGenerator = CUSTOM_BLOCK;
+  player_email_block: TableGenerator = PLAYER_EMAIL_BLOCK;
+  tour_config: TourConfig = DEFAULT_TOUR_CONFIG;
+  edit_mode: boolean = true;
+  selected_cell: CellPosition = new CellPosition(null, null);
 
-  updateRadio(newRadioList: Radio[]) {
-    this.radioList = newRadioList;
+  processOnCellSelect(cellPosition: CellPosition) {
+    this.selected_cell = cellPosition;
   }
 
-  updateCheckBox(newCheckBoxList: CheckBox[]) {
-    this.checkBoxList = newCheckBoxList;
+  downloadDocuments() {
+      this.downloadEntryForm()
+      this.downloadTourConfig()
   }
 
-  updateDropDown(newDropDownList: DropDown[]) {
-    this.dropDownList = newDropDownList;
+  downloadEntryForm() {
+    const blob = new Blob([this.generateHTMLCode()], {type: 'application/octet-stream'});
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.download = this.tour_config.getTourBase()+"-form.html";
+    anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+    anchor.click();
   }
 
-  updateValidateEmail(validateEmail: boolean) {
-    this.validateEmail = validateEmail;
+  downloadTourConfig() {
+    const blob = new Blob([this.tour_config.getOutputText()], {type: 'application/octet-stream'});
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.download = "tour-config";
+    anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+    anchor.click();
   }
 
-  updateShowCountry(showCountry: boolean) {
-    this.showCountry = showCountry
-  }
-  updateShowClub(showClub: boolean) {
-    this.showClub = showClub
-  }
-  updateShowGrade(showGrade: boolean) {
-    this.showGrade = showGrade
-  }
-  updatePlayAllRounds(playAllRounds: boolean) {
-    this.playAllRounds = playAllRounds
-  }
-  updateFirstTournament(firstTournament: boolean) {
-    this.firstTournament = firstTournament
-  }
-  updatePublicEntry(publicEntry: boolean) {
-    this.publicEntry = publicEntry
+  updateCustomBlock(custom_block: TableGenerator) {
+    this.custom_block = custom_block;
   }
 
-  updateAdditionalInfo(text: string) {
-    this.additionalInfo = text;
+  updateTourConfig(tour_config: TourConfig) {
+    this.tour_config = tour_config;
+  }
+
+  updateEditMode(edit_mode: boolean) {
+    this.edit_mode = edit_mode;
+  }
+
+  private generateHTMLCode() {
+    let HTML_code: string = PAGE_HEAD;
+    HTML_code = HTML_code + this.egd_search_block.getHTMLCode();
+    HTML_code = HTML_code + this.custom_block.getHTMLCode();
+    HTML_code = HTML_code + this.player_email_block.getHTMLCode();
+    HTML_code = HTML_code + getSystemFields(this.custom_block, this.tour_config);
+    return HTML_code;
   }
 }

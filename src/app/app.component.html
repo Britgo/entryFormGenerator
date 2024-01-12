@@ -1,40 +1,20 @@
-<div class="mainContainer">
-  <div class="page-fifth" style="padding-left: 10pt;">
-    <app-entryform [radioList]="radioList"
-                   [checkBoxList]="checkBoxList"
-                   [dropDownList]="dropDownList"
-                   [validateEmail]="validateEmail"
-                   [showCountry]="showCountry"
-                   [showClub]="showClub"
-                   [showGrade]="showGrade"
-                   [playAllRounds]="playAllRounds"
-                   [firstTournament]="firstTournament"
-                   [publicEntry]="publicEntry"
-                   [additionalInfo]="additionalInfo">
-    </app-entryform>
-  </div>
-  <div class="page-half" style="padding-right: 10pt;">
-    <app-editor [radioList]="radioList"
-                [checkBoxList]="checkBoxList"
-                [dropDownList]="dropDownList"
-                [validateEmail]="validateEmail"
-                [showCountry]="showCountry"
-                [showClub]="showClub"
-                [showGrade]="showGrade"
-                [playAllRounds]="playAllRounds"
-                [firstTournament]="firstTournament"
-                [publicEntry]="publicEntry"
-                (updateRadio)="updateRadio($event)"
-                (updateCheckBox)="updateCheckBox($event)"
-                (updateDropDown)="updateDropDown($event)"
-                (updateValidateEmail)="updateValidateEmail($event)"
-                (updateShowCountry)="updateShowCountry($event)"
-                (updateShowClub)="updateShowClub($event)"
-                (updateShowGrade)="updateShowGrade($event)"
-                (updatePlayAllRounds)="updatePlayAllRounds($event)"
-                (updateFirstTournament)="updateFirstTournament($event)"
-                (updatePublicEntry)="updatePublicEntry($event)"
-                (updateAdditionalInfo)="updateAdditionalInfo($event)">
-    </app-editor>
-  </div>
+<!--<div class="main-container">-->
+<div>
+  <app-entry-form [egd_search_block]="egd_search_block"
+                  [custom_block]="custom_block"
+                  [player_email_block]="player_email_block"
+                  [edit_mode]="edit_mode"
+                  (on_cell_select)="processOnCellSelect($event)">
+  </app-entry-form>
+  <div class="separation-bar"></div>
+  <app-editor class="editor"
+              [custom_block]="custom_block"
+              [tour_config]="tour_config"
+              [selected_cell]="selected_cell"
+              [edit_mode]="edit_mode"
+              (edit_mode_change)="updateEditMode($event)"
+              (custom_block_change)="updateCustomBlock($event)"
+              (tour_config_change)="updateTourConfig($event)"
+              (finish)="downloadDocuments()">
+  </app-editor>
 </div>

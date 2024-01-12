@@ -1,4 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%;  font-size : 12px;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* This part of the css is used in order to reset the default css of multiple components.*/
+
+/* BASIC ELEMENTS */
+html, body, div,  fieldset, form, label, legend,
+span, pre, mark,
+table, caption, tbody, tfoot, thead, tr, th, td,
+dl, dt, dd, ol, ul, li,
+img, kbd, small,  sub, sup, b,strong, i, em
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*font-size: 10pt;*/
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* BOX SIZING http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html { box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+/* SCROLLBAR force a vertical scrollbar to prevent a jumpy page */
+html { overflow-y: scroll;}
+
+/* LINKS */
+a
+{
+  margin: 0; padding: 0; font-size: 100%; vertical-align: baseline;
+  background: transparent; text-decoration: none;
+}
+
+/* INPUT */
+input, select { vertical-align: middle; }
+
+pre {
+  /*white-space: pre; !* CSS2 *!*/
+  /*white-space: pre-wrap; !* CSS 2.1 *!*/
+  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom;}
+.ie7 input[type="checkbox"] {vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea { font: 99% sans-serif; }
+
+/* BEHAVIOUR */
+button, input, select, textarea { margin: 0; }	/* Webkit browsers add a 2px margin  outside form elements */
+button, input[type=button] {width: auto; overflow: visible;} /* make buttons play nice in IE */
+
+/* ---------------------------------------------------------------------------- */
+
+/* This part of the css sets the new default css of some components */
+
+body {
+  padding: 1.0em;
+  font-size: 10pt;
+}
+
+input {
+  border: 0.1em solid grey; border-radius: 0.2em;
+  padding: 0.2em 0.2em 0.2em 0.4em;
+  background-color:ivory;
+}
+
+form.frm-entry {
+  width: 40em;
+}
+
+fieldset {
+  padding: 0.9em;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #ffd391;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+.icon-i-new {
+  font-weight: bold;  font-style: italic;
+  font-family: "Tex Gyre Bonum", Helvetica;
+}
+

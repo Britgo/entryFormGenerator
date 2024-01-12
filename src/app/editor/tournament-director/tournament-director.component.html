@@ -1,0 +1,22 @@
+<fieldset class="bk-fields">
+  <p>
+    Write below the name of the tournament director. That is the person in charge of the tournament and the first person
+    that should be contacted in case there are any doubts regarding it. It is likely that that person is in fact you.
+  </p>
+  <p class="left-align-container">
+    <input type="text"
+           placeholder="Name Surname"
+           [(ngModel)]="tour_config.tour_director"
+           (change)="tour_director_change.emit(tour_config.getTourDirector())">
+  </p>
+  <p class="spaced-container">
+    <input class="in-control tf_larger"
+           value="Back"
+           type="button"
+           (click)="prev_step.emit()">
+    <input class="in-control tf_larger"
+           value="Next"
+           type="button"
+           (click)="onNextClick()">
+  </p>
+</fieldset>
