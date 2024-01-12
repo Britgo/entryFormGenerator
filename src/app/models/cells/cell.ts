@@ -43,11 +43,11 @@ export class Cell {
     }
 
     // specify text alignment.
-    HTMLCode = HTMLCode + ' style="text-align: ' + this.text_align;
+    HTMLCode = HTMLCode + ' style="text-align: ' + this.text_align + ';';
 
     // Might need to specify the width
     if (this.width !== null) {
-      HTMLCode = HTMLCode + ' width: ' + this.width;
+      HTMLCode = HTMLCode + ' width: ' + this.width + ';';
     }
     return HTMLCode + '">';
   }
@@ -117,7 +117,7 @@ export class EmptyCell extends Cell {
       HTMLCode = HTMLCode + ` colspan="2"`;
     }
     if (this.width !== null) {
-      HTMLCode = HTMLCode + ` style="width: ` + this.width + `"`;
+      HTMLCode = HTMLCode + ` style="width: ` + this.width + `;"`;
     }
 
     HTMLCode = HTMLCode + '>';

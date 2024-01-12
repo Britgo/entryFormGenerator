@@ -111,7 +111,7 @@ export class TableGenerator {
   getHTMLCode(): string {
     // Start by opening the table and fieldset.
     let HTMLCode = `<fieldset class="bk-fields">
-    <table style="width:`+this.width+`">
+    <table style="width:`+this.width+`;">
 `
     // Get the HTML code for every row.
     for (let row of this.rows) {
