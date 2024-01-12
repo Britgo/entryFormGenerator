@@ -1,13 +1,16 @@
-<!--<div class="main-container">-->
-<div>
-  <app-entry-form [egd_search_block]="egd_search_block"
-                  [custom_block]="custom_block"
-                  [player_email_block]="player_email_block"
-                  [edit_mode]="edit_mode"
-                  (on_cell_select)="processOnCellSelect($event)">
-  </app-entry-form>
-  <div class="separation-bar"></div>
-  <app-editor class="editor"
+<app-entry-form [egd_search_block]="egd_search_block"
+                [custom_block]="custom_block"
+                [player_email_block]="player_email_block"
+                [edit_mode]="edit_mode"
+                (on_cell_select)="processOnCellSelect($event)"
+                (on_cell_describe)="setInfoMessage($event)">
+</app-entry-form>
+<div class="editor-container">
+  <div class="dv-tooltip-new"
+       (click)="setInfoMessage(DEFAULT_INFO_MESSAGE)"
+       [innerHTML]="info_message">
+  </div>
+  <app-editor [style.top]="editor_top"
               [custom_block]="custom_block"
               [tour_config]="tour_config"
               [selected_cell]="selected_cell"

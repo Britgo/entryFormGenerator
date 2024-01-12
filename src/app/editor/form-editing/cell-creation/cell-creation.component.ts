@@ -79,18 +79,18 @@ export class CellCreationComponent {
     const checkbox_id = uuid();
     return [
       new OneLineInput(
-        'NAME',
+        'Text input',
         new TextInput(input_id),
         new InfoImage(input_id+'icon', 'DESCRIPTION')
       ),
       new OneLineDropdown(
-        'NAME',
+        'Dropdown',
         new Dropdown(uuid(), [new Option('OPTION 1', true)]),
         null
       ),
       new OneLineCheckbox(
-        'NAME',
-        new Checkbox(checkbox_id, 'NAME', false,),
+        'Checkbox',
+        new Checkbox(checkbox_id, 'Checkbox', false,),
         new InfoImage(checkbox_id+'icon', 'DESCRIPTION')
       ),
     ];
@@ -99,11 +99,11 @@ export class CellCreationComponent {
   getTwoLinesCells() :TwoLinesCell[] {
     return [
       new TwoLineInput(
-        'NAME',
+        'Text input',
         new TextInput(uuid()), new InfoImage(uuid(), 'DESCRIPTION')
       ),
       new TwoLineDropdown(
-        'NAME',
+        'Dropdown',
         new Dropdown(uuid(), [new Option('OPTION 1', true)]),
         null
       ),

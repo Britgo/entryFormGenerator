@@ -3,7 +3,7 @@
 }
 
 .cell-sample {
-  border: 1px solid black;
+  background: #d5742f;
 }
 .cell-sample:hover {
   cursor: pointer;

@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TableGenerator} from "../../models/table.generator";
-import {Cell, EmptyCell} from "../../models/cells/cell";
+import {Cell} from "../../models/cells/cell";
 import {CellPosition} from "../../models/cell.position";
-import {TwoLinesCell} from "../../models/cells/two.lines.cell";
 
 @Component({
   selector: 'app-table',
@@ -12,6 +11,7 @@ import {TwoLinesCell} from "../../models/cells/two.lines.cell";
 export class TableComponent {
   @Input() table: TableGenerator = new TableGenerator([]);
   @Input() edit_mode: boolean = false;
+
   @Output() on_cell_select= new EventEmitter<CellPosition>();
   @Output() on_cell_describe= new EventEmitter<string>();
 
@@ -32,17 +32,5 @@ export class TableComponent {
 
   processDescriptionChange(cell: Cell) {
     this.on_cell_describe.emit(cell.getDescription());
-  }
-
-  isOneLineCell(cell: Cell) {
-    return cell instanceof TwoLinesCell;
-  }
-
-  isTwoLinesCell(cell: Cell) {
-    return cell instanceof TwoLinesCell;
-  }
-
-  isEmptyCell(cell: Cell) {
-    return cell instanceof EmptyCell;
   }
 }

@@ -1,14 +1,12 @@
-.editor {
-  position: absolute;
-  left: 860pt;
-  top: 0;
+.editor-container {
+  position: absolute; top:10pt; left:450pt;
+  flex-direction: column;
 }
 
-.separation-bar {
-  position: absolute;
-  left: 854pt;
-  top: 0;
-  height: 100%;
-  width: 2pt;
-  background: black;
+div.dv-tooltip-new {
+  width: 400pt; min-height: 115pt;
+  visibility: visible;
+  padding:0.5em; border-radius: 5px;
+  font-size: x-large;
+  background-color: #ffe2aa;
 }

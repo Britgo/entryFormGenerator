@@ -65,7 +65,7 @@ export class Cell {
   }
 
   getStyle(edit_mode: boolean = false) {
-    let style: {'text-align': string, 'width'?: string, 'border'?: string} = {
+    let style: {'text-align': string, 'width'?: string, 'background'?: string} = {
       'text-align': this.text_align,
     };
     if (this.width !== null) {
@@ -73,7 +73,7 @@ export class Cell {
     }
 
     if (this.isInEditMode() && edit_mode) {
-      style['border'] = '1px solid #ff0000'
+      style['background'] = '#d5742f'
     }
     return style;
   }
