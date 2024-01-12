@@ -2,7 +2,7 @@
                 [edit_mode]="edit_mode">
 </app-form-entry>
 <span *ngIf="one_line_cell.name !== ''"
-      [innerHTML]="'&nbsp;' + one_line_cell.name ">
+      [innerHTML]="'<span>&nbsp;&nbsp;' + one_line_cell.name + '</span>'">
 </span>
 <app-info-image *ngIf="one_line_cell.info_image !== null"
                 [info_image]="one_line_cell.info_image"
