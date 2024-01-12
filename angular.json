@@ -38,8 +38,23 @@
             }
           },
           "configurations": {
-            "production": {
+            "gh-pages": {
               "baseHref": "https://praderiom.github.io/entryFormGenerator/",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1500kb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "3.8kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "production": {
               "budgets": [
                 {
                   "type": "initial",
