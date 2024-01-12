@@ -67,9 +67,7 @@ export class TextArea extends FormEntry {
     }
 
 
-    HTMLCode = HTMLCode + `>
-
-                </textarea>`;
+    HTMLCode = HTMLCode + `></textarea>`;
     return HTMLCode;
   }
 
