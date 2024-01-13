@@ -4,9 +4,16 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_ccode',
-  'EXT-T-CODE-CB',
+  'CODE-CB',
   '',
   'Club code letters or digits only (max 4 characters).',
+  'off',
+  '',
+  '5.0em',
+  null,
+  null,
+  null,
+  true
 );
 
 const info_image: InfoImage = new InfoImage(

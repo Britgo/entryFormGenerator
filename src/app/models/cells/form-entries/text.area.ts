@@ -14,8 +14,9 @@ export class TextArea extends FormEntry {
               public margin_bottom: string | null = '0.0em',
               public padding_left: string | null = '0.5em',
               public width: string | null = '100%',
-              public resize: string | null = 'none') {
-    super(id);
+              public resize: string | null = 'none',
+              immutable: boolean = false) {
+    super(id, immutable);
   }
 
   override getHTMLCode(): string {

@@ -4,7 +4,8 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const checkbox: Checkbox = new Checkbox(
   'id_allrounds',
-  'EXT-C-PLAYALL',
+  'PLAYALL',
+  true,
   true,
 );
 

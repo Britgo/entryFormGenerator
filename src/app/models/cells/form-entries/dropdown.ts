@@ -35,8 +35,9 @@ export class Dropdown extends FormEntry {
               public width: string | null = null,
               public margin_bottom: string | null = null,
               public margin_top: string | null = null,
-              private onchange: string | null = null) {
-    super(id);
+              private onchange: string | null = null,
+              immutable: boolean = false) {
+    super(id, immutable);
   }
 
   selectOption(selected_option: Option) {

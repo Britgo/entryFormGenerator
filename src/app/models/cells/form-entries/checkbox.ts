@@ -3,8 +3,9 @@ import {FormEntry} from "./form.entry";
 export class Checkbox extends FormEntry {
   constructor(id: string,
               public name: string,
-              public checked: boolean) {
-    super(id);
+              public checked: boolean,
+              immutable: boolean = false) {
+    super(id, immutable);
   }
 
   override getHTMLCode(): string {

@@ -4,13 +4,16 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_fname',
-  'EXT-T-FAMILY',
+  'FAMILY',
   '',
   'A family name may not be empty.',
   'off',
   '',
   '38.3em',
-  42
+  42,
+  null,
+  null,
+  true
 );
 
 const info_image: InfoImage = new InfoImage(

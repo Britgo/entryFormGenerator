@@ -4,13 +4,16 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_grade',
-  'EXT-T-GRADE',
+  'GRADE',
   '',
   'One or two digits followed by k,d, or p.',
   'off',
   '',
   '5em',
-  6
+  6,
+  null,
+  null,
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

@@ -4,11 +4,16 @@ import {InfoImage} from "../../form-entries/info.image";
 
 const text_input: TextInput = new TextInput(
   'id_lcode',
-  'EXT-T-CODE-CY',
+  'CODE-CY',
   '',
   'A 2 letter country code',
   'off',
   'UK',
+  '5.0em',
+  null,
+  null,
+  null,
+  true
 );
 
 const info_image: InfoImage = new InfoImage(

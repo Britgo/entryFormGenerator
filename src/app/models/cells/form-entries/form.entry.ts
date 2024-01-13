@@ -1,5 +1,5 @@
 export class FormEntry {
-  constructor(public id: string) {
+  constructor(public id: string, public immutable: boolean = false) {
   }
 
   getHTMLCode(): string {

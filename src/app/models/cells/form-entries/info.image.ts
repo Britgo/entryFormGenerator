@@ -2,8 +2,9 @@ import {FormEntry} from "./form.entry";
 
 export class InfoImage extends FormEntry {
   constructor(id: string,
-              public description: string) {
-    super(id);
+              public description: string,
+              immutable: boolean = false) {
+    super(id, immutable);
   }
 
   override getHTMLCode(): string {

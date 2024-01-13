@@ -5,7 +5,8 @@ import {Checkbox} from "../../form-entries/checkbox";
 
 const checkbox: Checkbox = new Checkbox(
   'id_public',
-  'EXT-C-PUBLIC',
+  'PUBLIC',
+  true,
   true,
 );
 

@@ -93,11 +93,12 @@ const dropdown: Dropdown = new Dropdown(
     new Option('No Such Code', false, '??')
   ],
   'The country code will take precedence.',
-  'EXT-D-COUNTRY',
+  'COUNTRY',
   '12em',
   null,
   null,
-  'set_lcode()'
+  'set_lcode()',
+  true
 );
 
 export const COUNTRY_NAME = new TwoLineDropdown('Country Name', dropdown);

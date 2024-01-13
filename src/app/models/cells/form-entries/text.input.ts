@@ -10,8 +10,9 @@ export class TextInput extends FormEntry {
               public width: string | null = '5.0em',
               public maxlength: number | null = null,
               private onkeyup: string | null = null,
-              public margin_top: string | null = '',) {
-    super(id);
+              public margin_top: string | null = null,
+              immutable: boolean = false) {
+    super(id, immutable);
   }
 
   override getHTMLCode(): string {

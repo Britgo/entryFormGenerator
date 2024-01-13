@@ -4,7 +4,8 @@
       id
     </span>
     <br>
-    <input class="mid-input"
+    <input *ngIf="!dropdown.immutable"
+           class="mid-input"
            autocomplete="off"
            type="text"
            [(ngModel)]="dropdown.id"
@@ -12,20 +13,37 @@
            [matTooltipShowDelay]="SHOW_DELAY"
            [matTooltipPosition]="POSITION"
            (change)="onIdChange()">
+    <span *ngIf="dropdown.immutable"
+          matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it.
+This value must remain unchanged."
+          [matTooltipShowDelay]="SHOW_DELAY"
+          [matTooltipPosition]="POSITION">
+      {{ dropdown.id }}
+    </span>
   </span>
   <span>
     <span>
       Email identifier
     </span>
     <br>
-    EXT-D-<input class="mid-input"
-                 autocomplete="off"
-                 type="text"
-                 [(ngModel)]="name"
-                 matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
-                 [matTooltipShowDelay]="SHOW_DELAY"
-                 [matTooltipPosition]="POSITION"
-                 (change)="updateName()">
+    <span *ngIf="!dropdown.immutable">
+      <span>EXT-D-</span>
+      <input class="mid-input"
+             autocomplete="off"
+             type="text"
+             [(ngModel)]="name"
+             matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
+             [matTooltipShowDelay]="SHOW_DELAY"
+             [matTooltipPosition]="POSITION"
+             (change)="updateName()">
+    </span>
+    <span *ngIf="dropdown.immutable"
+          matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier.
+This value must remain unchanged."
+          [matTooltipShowDelay]="SHOW_DELAY"
+          [matTooltipPosition]="POSITION">
+      {{ dropdown.name }}
+    </span>
   </span>
 </p>
 <div class="hor-line"></div>
