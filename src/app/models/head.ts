@@ -27,7 +27,7 @@ export const PAGE_HEAD: string =  `<!DOCTYPE html>
 <!-- ---------------------------------------------------------------------------------- -->
 <!-- MAIN FORM                                                                          -->
 <form class="frm-entry" id="id_entryform"
-action="../entrysys/entryform-handler.php" method="post"
+action="../entrysys/entryform-handler-new.php" method="post"
     autocomplete="on" onsubmit= "return submit_entry()"
 >
 
