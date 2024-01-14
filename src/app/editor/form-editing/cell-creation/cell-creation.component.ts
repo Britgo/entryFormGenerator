@@ -10,6 +10,7 @@ import {TextInput} from "../../../models/cells/form-entries/text.input";
 import {InfoImage} from "../../../models/cells/form-entries/info.image";
 import {Dropdown, Option} from "../../../models/cells/form-entries/dropdown";
 import {Checkbox} from "../../../models/cells/form-entries/checkbox";
+import {sanitizeString} from "../../../models/string.formatting";
 
 @Component({
   selector: 'app-cell-creation',
@@ -75,22 +76,27 @@ export class CellCreationComponent {
   }
 
   getOneLineCells() :OneLineCell[] {
-    const input_id = uuid();
-    const checkbox_id = uuid();
+    const input_id = sanitizeString(uuid());
+    const checkbox_id = sanitizeString(uuid());
     return [
       new OneLineInput(
         'Text input',
-        new TextInput(input_id),
+        new TextInput(input_id, 'TEXT-INPUT'),
         new InfoImage(input_id+'icon', 'DESCRIPTION')
       ),
       new OneLineDropdown(
         'Dropdown',
-        new Dropdown(uuid(), [new Option('OPTION 1', true)]),
+        new Dropdown(
+          sanitizeString(uuid()),
+          [new Option('OPTION 1', true, 'OPTION 1')],
+          '',
+          'DROPDOWN',
+        ),
         null
       ),
       new OneLineCheckbox(
         'Checkbox',
-        new Checkbox(checkbox_id, 'Checkbox', false,),
+        new Checkbox(checkbox_id, 'CHECKBOX', false),
         new InfoImage(checkbox_id+'icon', 'DESCRIPTION')
       ),
     ];
@@ -100,11 +106,17 @@ export class CellCreationComponent {
     return [
       new TwoLineInput(
         'Text input',
-        new TextInput(uuid()), new InfoImage(uuid(), 'DESCRIPTION')
+        new TextInput(sanitizeString(uuid()), 'TEXT-INPUT'),
+        new InfoImage(sanitizeString(uuid()), 'DESCRIPTION'),
       ),
       new TwoLineDropdown(
         'Dropdown',
-        new Dropdown(uuid(), [new Option('OPTION 1', true)]),
+        new Dropdown(
+          sanitizeString(uuid()),
+          [new Option('OPTION 1', true, 'OPTION 1')],
+          '',
+          'DROPDOWN',
+        ),
         null
       ),
     ];

@@ -12,6 +12,8 @@ const text_input = new TextInput(
   '5.0em',
   2,
   `handle_keyup_qdata('id_lsearch', event)`,
+  null,
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

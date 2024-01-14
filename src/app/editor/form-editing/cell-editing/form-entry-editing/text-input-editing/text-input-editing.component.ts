@@ -22,7 +22,6 @@ export class TextInputEditingComponent implements OnChanges{
   protected readonly SHOW_DELAY = MAT_TOOLTIP_SHOW_DELAY;
   protected readonly SIZE_UNITS = SIZE_UNITS;
 
-  name = this.getName();
   max_length :number = this.getMaxLength();
   width_size :string = this.getWidthSize();
   width_unit :string = this.getWidthUnit();
@@ -30,7 +29,6 @@ export class TextInputEditingComponent implements OnChanges{
   margin_top_unit :string = this.getMarginTopUnit();
 
   resetFromDropdown() {
-    this.name = this.getName();
     this.max_length = this.getMaxLength()
     this.width_size = this.getWidthSize();
     this.width_unit = this.getWidthUnit();
@@ -47,18 +45,13 @@ export class TextInputEditingComponent implements OnChanges{
   }
 
   onIdChange() {
+    this.text_input.id = sanitizeString(this.text_input.id);
     this.id_change.emit(this.text_input.id);
   }
 
-  private getName() {
-    return this.text_input.name.slice(6);
+  onNameChange() {
+    this.text_input.name = sanitizeString(this.text_input.name, '-').toUpperCase();
   }
-
-  updateName() {
-    this.name = sanitizeString(this.name, '-').toUpperCase();
-    this.text_input.name = 'EXT-T-'+this.name;
-  }
-
 
   private getMaxLength() {
     return this.text_input.maxlength === null? -1: this.text_input.maxlength;

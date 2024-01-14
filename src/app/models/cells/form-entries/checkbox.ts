@@ -10,10 +10,9 @@ export class Checkbox extends FormEntry {
 
   override getHTMLCode(): string {
     // Checkbox is formed solely by two inputs. First one is hidden and the second one is of type checkbox.
-    // TODO understand why the first one is hidden.
     let HTMLCode: string = `
-                <input  name="`+this.name+`" type="hidden" value="N">
-                <input id="`+this.id+`" name="`+this.name+`"  type="checkbox" value="Y"`;
+                <input  name="`+this.getHTMLName()+`" type="hidden" value="N">
+                <input id="`+this.id+`" name="`+this.getHTMLName()+`"  type="checkbox" value="Y"`;
 
     // If element is checked we need to mark it as so.
     if (this.checked) {
@@ -29,5 +28,12 @@ export class Checkbox extends FormEntry {
         document.getElementById('`+this.id+`').checked=true;`
     }
     return '';
+  }
+
+  private getHTMLName() {
+    if (this.immutable) {
+      return this.name;
+    }
+    return "EXT-C-" + this.name;
   }
 }

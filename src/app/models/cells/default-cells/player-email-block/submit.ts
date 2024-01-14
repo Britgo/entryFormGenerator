@@ -7,6 +7,9 @@ const button = new Button(
   'Submit',
   'The form data is sanitised and you will &#13; be asked to confirm changes made',
   'submit',
+  true,
+  '',
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

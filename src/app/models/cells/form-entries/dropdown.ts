@@ -74,7 +74,7 @@ export class Dropdown extends FormEntry {
     // Add name if needed.
     if (this.name !== '') {
       HTMLCode = HTMLCode + `
-                               name="`+this.name+`"`;
+                               name="`+this.getHTMLName()+`"`;
     }
 
     // Add style if any.
@@ -144,5 +144,12 @@ export class Dropdown extends FormEntry {
 
   getNOptions() :number {
     return this.options.length
+  }
+
+  private getHTMLName() {
+    if (this.immutable) {
+      return this.name;
+    }
+    return "EXT-D-" + this.name;
   }
 }

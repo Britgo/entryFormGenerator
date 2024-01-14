@@ -27,7 +27,7 @@ export class TextInput extends FormEntry {
     // Maybe there is a name.
     if (this.name !== '') {
       HTMLCode = HTMLCode + `
-                            name="`+this.name+`"`;
+                            name="`+this.getHTMLName()+`"`;
     }
 
     // Maybe there is a max length.
@@ -72,5 +72,12 @@ export class TextInput extends FormEntry {
 
   private isStyleSpecified() {
     return this.width !== null || this.margin_top !== null;
+  }
+
+  private getHTMLName() {
+    if (this.immutable) {
+      return this.name;
+    }
+    return "EXT-T-" + this.name;
   }
 }

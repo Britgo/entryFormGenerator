@@ -7,7 +7,8 @@ const button = new Button(
   'Restarts the page from scratch.',
   'button',
   true,
-  'restart()'
+  'restart()',
+  true,
 );
 
 export const RESET = new OneLineButton(

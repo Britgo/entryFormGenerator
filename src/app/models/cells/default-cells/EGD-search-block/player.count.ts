@@ -17,6 +17,7 @@ const dropdown = new Dropdown(
   '0.5em',
   '0.005em',
   `handle_playerlist_change()`,
+  true,
 );
 
 export const PLAYER_COUNT = new TwoLineDropdown(

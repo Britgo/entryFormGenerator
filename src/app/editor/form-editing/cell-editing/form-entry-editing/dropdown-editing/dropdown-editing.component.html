@@ -26,17 +26,15 @@ This value must remain unchanged."
       Email identifier
     </span>
     <br>
-    <span *ngIf="!dropdown.immutable">
-      <span>EXT-D-</span>
-      <input class="mid-input"
-             autocomplete="off"
-             type="text"
-             [(ngModel)]="name"
-             matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
-             [matTooltipShowDelay]="SHOW_DELAY"
-             [matTooltipPosition]="POSITION"
-             (change)="updateName()">
-    </span>
+    <input *ngIf="!dropdown.immutable"
+           class="mid-input"
+           autocomplete="off"
+           type="text"
+           [(ngModel)]="dropdown.name"
+           matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
+           [matTooltipShowDelay]="SHOW_DELAY"
+           [matTooltipPosition]="POSITION"
+           (change)="onNameChange()">
     <span *ngIf="dropdown.immutable"
           matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier.
 This value must remain unchanged."

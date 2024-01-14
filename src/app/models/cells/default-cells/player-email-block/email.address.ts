@@ -13,6 +13,7 @@ const text_input = new TextInput(
   null,
   null,
   '0.4em',
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

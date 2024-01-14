@@ -12,6 +12,8 @@ const text_input = new TextInput(
   '6.9em',
   8,
   `handle_keyup_qpin(event)`,
+  null,
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

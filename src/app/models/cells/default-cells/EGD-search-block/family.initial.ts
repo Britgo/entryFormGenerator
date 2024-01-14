@@ -12,6 +12,8 @@ const text_input = new TextInput(
   '5.0em',
   null,
   `handle_keyup_qdata('id_fsearch', event)`,
+  null,
+  true,
 );
 
 const info_image: InfoImage = new InfoImage(

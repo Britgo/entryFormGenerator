@@ -22,7 +22,6 @@ export class DropdownEditingComponent implements OnChanges{
   protected readonly SHOW_DELAY = MAT_TOOLTIP_SHOW_DELAY;
   protected readonly SIZE_UNITS = SIZE_UNITS;
 
-  name = this.getName();
   show_options: boolean = true;
   width_size :string = this.getWidthSize();
   width_unit :string = this.getWidthUnit();
@@ -33,7 +32,6 @@ export class DropdownEditingComponent implements OnChanges{
 
 
   resetFromDropdown() {
-    this.name = this.getName();
     this.width_size = this.getWidthSize();
     this.width_unit = this.getWidthUnit();
     this.margin_bottom_size = this.getMarginBottomSize();
@@ -51,16 +49,12 @@ export class DropdownEditingComponent implements OnChanges{
   }
 
   onIdChange() {
+    this.dropdown.id = sanitizeString(this.dropdown.id);
     this.id_change.emit(this.dropdown.id);
   }
 
-  private getName() {
-    return this.dropdown.name.slice(6);
-  }
-
-  updateName() {
-    this.name = sanitizeString(this.name, '-').toUpperCase();
-    this.dropdown.name = 'EXT-D-'+this.name;
+  onNameChange() {
+    this.dropdown.name = sanitizeString(this.dropdown.name, '-').toUpperCase();
   }
 
   addOption() {
