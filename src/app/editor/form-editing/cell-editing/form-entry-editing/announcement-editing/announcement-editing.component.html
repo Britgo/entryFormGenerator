@@ -1,0 +1,45 @@
+<p class="spaced-container">
+  <span>
+    <span>
+      Font size
+    </span>
+    <br>
+    <select #font_size_selection (change)="onFontSizeChange(font_size_selection.value)"
+            [value]="announcement.font_size"
+            matTooltip="This is the font size of the text showing in your message."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let font_size of FONT_SIZE_OPTIONS"
+              [value]="font_size"
+              [selected]="font_size === announcement.font_size? 'selected': ''">
+        {{font_size}}
+      </option>
+    </select>
+  </span>
+
+  <span>
+    <span>
+      Font weight
+    </span>
+    <br>
+    <select #font_weight_selection (change)="onFontWeightChange(font_weight_selection.value)"
+            [value]="announcement.font_weight"
+            matTooltip="This is the font weight of the text showing in your message."
+            [matTooltipShowDelay]="SHOW_DELAY"
+            [matTooltipPosition]="POSITION">
+      <option *ngFor="let font_weight of FONT_WEIGHT_OPTIONS"
+              [value]="font_weight"
+              [selected]="font_weight === announcement.font_weight? 'selected': ''">
+        {{font_weight}}
+      </option>
+    </select>
+  </span>
+
+  <textarea [(ngModel)]="announcement.text"
+            rows="3"
+            cols="30"
+            autocomplete="off"
+            placeholder="Write here any text important announcement that you want a registering player to see when filling the form."
+            class="description-input">
+  </textarea>
+</p>

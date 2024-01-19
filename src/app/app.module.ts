@@ -34,6 +34,8 @@ import { FormEntryEditingComponent } from './editor/form-editing/cell-editing/fo
 import { CheckboxEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/checkbox-editing/checkbox-editing.component';
 import { TextInputEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/text-input-editing/text-input-editing.component';
 import { DropdownEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/dropdown-editing/dropdown-editing.component';
+import { AnnouncementCellComponent } from './entry-form/table/cell/announcement-cell/announcement-cell.component';
+import { AnnouncementEditingComponent } from './editor/form-editing/cell-editing/form-entry-editing/announcement-editing/announcement-editing.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { DropdownEditingComponent } from './editor/form-editing/cell-editing/for
     CheckboxEditingComponent,
     TextInputEditingComponent,
     DropdownEditingComponent,
+    AnnouncementCellComponent,
+    AnnouncementEditingComponent,
   ],
   imports: [
     BrowserModule,

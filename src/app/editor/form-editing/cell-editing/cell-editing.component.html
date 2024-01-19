@@ -41,7 +41,7 @@ If left blank this number will default to 1."
     </select>
   </span>
 
-  <span *ngIf="!isEmptyCell()">
+  <span *ngIf="isFormCell() || isAnnouncementCell()">
     <span>
       Text align
     </span>
@@ -60,7 +60,7 @@ If left blank this number will default to 1."
   </span>
 </p>
 
-<div *ngIf="!isEmptyCell()">
+<div *ngIf="isFormCell()">
   <div class="hor-line"></div>
   <p class="spaced-container">
     <span>
@@ -112,6 +112,12 @@ If left blank this number will default to 1."
 
   <div class="hor-line"></div>
   <app-form-entry-editing [form_entry]="getFormCell().form_entry"
-                            (id_change)="onIdChange($event)">
+                          (id_change)="onIdChange($event)">
   </app-form-entry-editing>
+</div>
+
+
+<div *ngIf="isAnnouncementCell()">
+  <div class="hor-line"></div>
+  <app-form-entry-editing [form_entry]="getAnnouncementCell().announcement"></app-form-entry-editing>
 </div>

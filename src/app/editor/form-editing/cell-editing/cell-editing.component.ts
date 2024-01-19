@@ -9,6 +9,8 @@ import {
 import {TooltipPosition} from "@angular/material/tooltip";
 import {Dropdown, Option} from "../../../models/cells/form-entries/dropdown";
 import {InfoImage} from "../../../models/cells/form-entries/info.image";
+import {AnnouncementCell} from "../../../models/cells/announcement.cell";
+import {Announcement} from "../../../models/cells/form-entries/announcement";
 
 @Component({
   selector: 'app-cell-editing',
@@ -41,13 +43,22 @@ export class CellEditingComponent implements OnChanges{
     }
   }
 
-  isEmptyCell() {
-    return this.cell instanceof EmptyCell;
+  isAnnouncementCell() {
+    return this.cell instanceof AnnouncementCell;
+  }
+
+  isFormCell() {
+    return this.cell instanceof FormCell;
   }
 
   getFormCell() {
     if (this.cell instanceof FormCell) { return this.cell }
     return new FormCell('NAME', new Dropdown('id', [new Option('OPTION 1')]), null);
+  }
+
+  getAnnouncementCell() {
+    if (this.cell instanceof AnnouncementCell) { return this.cell }
+    return new AnnouncementCell(new Announcement(''));
   }
 
   private getWidthSize() {

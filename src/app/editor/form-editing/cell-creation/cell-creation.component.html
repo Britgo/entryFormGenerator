@@ -4,6 +4,10 @@ Select from the dropdown the type of cell you wish to create.
          value="Pre made cell"
          [type]="'button'"
          (click)="enterPreMadeCellMode()">
+  <input [ngClass]="getButtonClass(false)"
+         value="Message"
+         [type]="'button'"
+         (click)="createAnnouncementCell()">
   <input [ngClass]="getButtonClass(one_line_cell_mode)"
          value="One line cell"
          [type]="'button'"

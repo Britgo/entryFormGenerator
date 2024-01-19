@@ -3,6 +3,7 @@ import {FormEntry} from "../../../../models/cells/form-entries/form.entry";
 import {Checkbox} from "../../../../models/cells/form-entries/checkbox";
 import {Dropdown} from "../../../../models/cells/form-entries/dropdown";
 import {TextInput} from "../../../../models/cells/form-entries/text.input";
+import {Announcement} from "../../../../models/cells/form-entries/announcement";
 
 @Component({
   selector: 'app-form-entry-editing',
@@ -17,6 +18,7 @@ export class FormEntryEditingComponent {
   isCheckbox(): boolean { return this.form_entry instanceof Checkbox; }
   isDropdown(): boolean { return this.form_entry instanceof Dropdown; }
   isTextInput(): boolean { return this.form_entry instanceof TextInput; }
+  isAnnouncement(): boolean { return this.form_entry instanceof Announcement; }
 
   getCheckbox(): Checkbox {
     if (this.form_entry instanceof Checkbox) { return this.form_entry; }
@@ -29,6 +31,10 @@ export class FormEntryEditingComponent {
   getTextInput(): TextInput {
     if (this.form_entry instanceof TextInput) { return this.form_entry; }
     return new TextInput('id');
+  }
+  getAnnouncement(): Announcement {
+    if (this.form_entry instanceof Announcement) { return this.form_entry; }
+    return new Announcement('');
   }
 
   onIdChange(id: string) {

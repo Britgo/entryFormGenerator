@@ -11,6 +11,8 @@ import {InfoImage} from "../../../models/cells/form-entries/info.image";
 import {Dropdown, Option} from "../../../models/cells/form-entries/dropdown";
 import {Checkbox} from "../../../models/cells/form-entries/checkbox";
 import {sanitizeString} from "../../../models/string.formatting";
+import {AnnouncementCell} from "../../../models/cells/announcement.cell";
+import {Announcement} from "../../../models/cells/form-entries/announcement";
 
 @Component({
   selector: 'app-cell-creation',
@@ -29,6 +31,10 @@ export class CellCreationComponent {
 
   createEmptyCell() {
     this.create_cell.emit(new EmptyCell())
+  }
+
+  createAnnouncementCell() {
+    this.create_cell.emit(new AnnouncementCell(new Announcement('')));
   }
 
   deselectAll() {

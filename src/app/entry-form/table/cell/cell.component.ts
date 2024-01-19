@@ -3,6 +3,8 @@ import {Cell, EmptyCell} from "../../../models/cells/cell";
 import {TwoLinesCell} from "../../../models/cells/two.lines.cell";
 import {Checkbox} from "../../../models/cells/form-entries/checkbox";
 import {OneLineCell} from "../../../models/cells/one.line.cell";
+import {AnnouncementCell} from "../../../models/cells/announcement.cell";
+import {Announcement} from "../../../models/cells/form-entries/announcement";
 
 @Component({
   selector: 'app-cell',
@@ -19,6 +21,10 @@ export class CellComponent {
     return this.cell instanceof EmptyCell;
   }
 
+  isAnnouncementCell(): boolean {
+    return this.cell instanceof AnnouncementCell;
+  }
+
   isOneLineCell(): boolean {
     return this.cell instanceof OneLineCell;
   }
@@ -32,6 +38,13 @@ export class CellComponent {
       return this.cell;
     }
     return new EmptyCell();
+  }
+
+  getAnnouncementCell(): AnnouncementCell {
+    if (this.cell instanceof AnnouncementCell) {
+      return this.cell;
+    }
+    return new AnnouncementCell(new Announcement(''));
   }
 
   getOneLineCell(): OneLineCell {

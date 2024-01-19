@@ -10,3 +10,6 @@
                         [text_input]="getTextInput()"
                         (id_change)="onIdChange($event)">
 </app-text-input-editing>
+<app-announcement-editing *ngIf="isAnnouncement()"
+                          [announcement]="getAnnouncement()">
+</app-announcement-editing>

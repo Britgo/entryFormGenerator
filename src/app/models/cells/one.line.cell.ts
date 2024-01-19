@@ -8,7 +8,7 @@ import {TextArea} from "./form-entries/text.area";
 import {Button} from "./form-entries/button";
 
 
-// This class models the two line cells appearing in the form.
+// This class models the one line cells appearing in the form.
 export class OneLineCell extends FormCell {
   constructor(name: string,
               form_entry: FormEntry,
@@ -21,7 +21,7 @@ export class OneLineCell extends FormCell {
   override getHTMLCode(): string {
     let HTMLCode = this.getCellOpenHTMLCode();
 
-    // Get the name.
+    // Get the form.
     HTMLCode = HTMLCode + this.form_entry.getHTMLCode();
 
     // Add the name of the cell.

@@ -11,3 +11,7 @@
                     [edit_mode]="edit_mode"
                     (on_cell_describe)="processDescriptionChange()">
 </app-two-lines-cell>
+<app-announcement-cell *ngIf="isAnnouncementCell()"
+                       [announcement_cell]="getAnnouncementCell()"
+                       [edit_mode]="edit_mode">
+</app-announcement-cell>
