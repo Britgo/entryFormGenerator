@@ -2,7 +2,7 @@ import {Button} from "../../form-entries/button";
 import {OneLineButton} from "../../one.line.cell";
 
 const button = new Button(
-  'id_submit',
+  'id_restart',
   'Reset',
   'Restarts the page from scratch.',
   'button',
