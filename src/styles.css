@@ -52,7 +52,7 @@ select, input, textarea { font: 99% sans-serif; }
 
 /* BEHAVIOUR */
 button, input, select, textarea { margin: 0; }	/* Webkit browsers add a 2px margin  outside form elements */
-button, input[type=button] {width: auto; overflow: visible;} /* make buttons play nice in IE */
+button, input[type="button"], input[type="submit"] {width: auto; overflow: visible; -webkit-text-fill-color: black;} /* make buttons play nice in IE and Safari*/
 
 /* ---------------------------------------------------------------------------- */
 
