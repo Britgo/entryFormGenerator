@@ -19,9 +19,9 @@ export class Button extends FormEntry {
                         type="`+this.type+`"
                         value="`+this.value+`"
                         title="`+this.description+`"`;
-    if (this.enabled) {
+    if (!this.enabled) {
       HTMLCode = HTMLCode + `
-                        enabled="true"`;
+                        disabled="disabled"`;
     }
 
     if (this.onclick !== '') {
