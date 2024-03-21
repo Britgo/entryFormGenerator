@@ -18,7 +18,7 @@ export const PAGE_HEAD: string =  `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet" type="text/css" href="../entrysys/style-reset.css">
+<link rel="stylesheet" type="text/css" href="../entrysys/style-reset-new.css">
 <link rel="stylesheet" type="text/css" href="../entrysys/entryform-style.css">
 
 <title></title>
