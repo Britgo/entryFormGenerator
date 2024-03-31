@@ -119,7 +119,8 @@ export class TableGenerator {
     }
 
     // Close table and fieldset.
-    HTMLCode = HTMLCode + `    </table>
+    HTMLCode = HTMLCode + `
+    </table>
 </fieldset>
 `;
     return HTMLCode;
