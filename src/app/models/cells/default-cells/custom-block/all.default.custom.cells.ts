@@ -8,6 +8,7 @@ import {FIRST} from "./first";
 import {GIVEN_NAME} from "./given.name";
 import {GRADE} from "./grade";
 import {PLAY_ALL} from "./play.all";
+import {MEMBER} from "./member";
 import {PUBLIC} from "./public";
 import {STRENGTH} from "./strength";
 
@@ -20,6 +21,7 @@ export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
   FIRST,
   GIVEN_NAME,
   GRADE,
+  MEMBER,
   PLAY_ALL,
   PUBLIC,
   STRENGTH
