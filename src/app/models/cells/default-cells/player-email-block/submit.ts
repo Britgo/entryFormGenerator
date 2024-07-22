@@ -6,9 +6,9 @@ const button = new Button(
   'id_submit',
   'Submit',
   'The form data is sanitised and you will &#13; be asked to confirm changes made',
-  'submit',
+  'button',
   true,
-  '',
+  'submit_entry()',
   true,
 );
 

@@ -20,7 +20,7 @@ export function getSystemFields(custom_block: TableGenerator, tour_config: TourC
   }
   // add the last part of the initialization block.
   initializationString = initializationString + `  }
-  var custom_submit = function custom_submit() { return true; }
+  var custom_submit = function custom_submit() { return document.getElementById("id_entryform").submit(); }
     </script>`;
 
   // We place the above in the appropriate spaces of the system fields template and return the result.
