@@ -11,8 +11,8 @@ const checkbox: Checkbox = new Checkbox(
 
 const info_image: InfoImage = new InfoImage(
   'id_puicon',
-  `If you wish to remain anonymous, please uncheck this box.
-In that case we show only your grade on the entry list.`,
+  `Click here if you do not have an EGD rating.
+This can be either because you have never played in a Go tournament in europe or because it has been a long time since your last game.`,
 );
 
 export const FIRST = new OneLineCheckbox(
