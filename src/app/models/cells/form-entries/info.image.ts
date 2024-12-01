@@ -7,6 +7,10 @@ export class InfoImage extends FormEntry {
     super(id, immutable);
   }
 
+  sanitizeText(description: string): string {
+    return description.replaceAll("\"", "'");
+  }
+
   override getHTMLCode(): string {
     return `
                     <img id="` + this.id + `"
@@ -14,6 +18,6 @@ export class InfoImage extends FormEntry {
                          class="icon-help"
                          alt="info"
                          onclick="show_info('` + this.id + `')"
-                         title="` + this.description + `">`;
+                         title="` + this.sanitizeText(this.description) + `">`;
   }
 }

@@ -11,8 +11,8 @@ const checkbox: Checkbox = new Checkbox(
 
 const info_image: InfoImage = new InfoImage(
   'id_puicon',
-  `Click here if you do not have an EGD rating.
-This can be either because you have never played in a Go tournament in europe or because it has been a long time since your last game.`,
+  `Tick if you do not have an <a href='https://www.europeangodatabase.eu/EGD/'>EGD</a> rating.
+This will be because you have never played in a rated Go tournament in Europe since 1996.`,
 );
 
 export const FIRST = new OneLineCheckbox(
