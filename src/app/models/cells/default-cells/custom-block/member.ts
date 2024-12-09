@@ -11,7 +11,8 @@ const checkbox: Checkbox = new Checkbox(
 
 const info_image: InfoImage = new InfoImage(
   'id_mlicon',
-  `There is a £5 surcharge for players who are not a member of any <a href='https://www.eurogofed.org/members/'>EGF national association</a>.`,
+  `There is a £5 surcharge for players who are not a member of any national association</a>.
+You can <a href='https://www.britgo.org/join'>join the BGA</a> online`,
 );
 
 export const MEMBER = new OneLineCheckbox(
