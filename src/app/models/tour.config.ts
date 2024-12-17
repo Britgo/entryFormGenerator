@@ -17,7 +17,7 @@ CFG-EMAIL-DM\t`+this.postProcessEmail(this.getDMEmail());
   }
 
   getTourBase() :string {
-    return sanitizeString(this.tour_name, '-');
+    return sanitizeString(this.tour_name, '-').toLowerCase();
   }
 
   getTourName() :string {
