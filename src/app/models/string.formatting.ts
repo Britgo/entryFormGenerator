@@ -1,10 +1,10 @@
-const ALLOWED_CHARACTERS= "abcdefghijklmnopqrstuvwxyz0123456789"
+const ALLOWED_CHARACTERS= "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
 
 export function capitalizeString(input: string) {
   if (input.length === 0) {
     return input;
   }
-  let output = input.toLocaleLowerCase()
+  let output = input;
 
   return output.charAt(0).toUpperCase() + output.slice(1);
 }
@@ -17,7 +17,7 @@ export function capitalizeAll(input: string): string {
 
 export function sanitizeString(input: string, spaceReplacement: string = '_', allowedSpecialCharacters: string = '') {
   let output = '';
-  for (let char of input.toLowerCase()) {
+  for (let char of input) {
     if (ALLOWED_CHARACTERS.indexOf(char) !== -1  || allowedSpecialCharacters.indexOf(char) !== -1) {
       output = output + char;
     } else {
