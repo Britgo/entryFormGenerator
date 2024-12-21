@@ -1,5 +1,7 @@
 .editor-container {
   position: absolute; top:10pt; left:450pt;
+  padding-top: 0;
+  padding-bottom: 0;
   flex-direction: column;
 }
 
@@ -9,4 +11,12 @@ div.dv-tooltip-new {
   padding:0.5em; border-radius: 5px;
   font-size: x-large;
   background-color: #ffe2aa;
+}
+
+@media (max-width: 870pt) {
+  .editor-container {
+    position: inherit;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
 }

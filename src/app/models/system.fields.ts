@@ -8,7 +8,25 @@ import {TourConfig} from "./tour.config";
 export function getSystemFields(custom_block: TableGenerator, tour_config: TourConfig) {
   // Now we get the code used to initialize the custom cells needing initialization.
   // Start by writing the initial bit of the initialization block.
-  let initializationString: string = `    <!-- ---------------------------------------------------------------------------------- -->
+  let initializationString: string = `
+
+    <!-- ---------------------------------------------------------------------------------- -->
+    <!-- TOOLTIP BOX                                                                        -->
+    <!-- ---------------------------------------------------------------------------------- -->
+<div id="id_tiptxt" hidden>
+Either hover or click
+<br>
+on an info icon <span class="icon-i-new"> i </span>
+<br>
+for help.
+</div>
+
+<div id="id_tooltip" class="dv-tooltip-new"
+     onclick="show_default_tip()"
+     title="Either hover or click on an info icon (i) for help.">
+</div>
+
+    <!-- ---------------------------------------------------------------------------------- -->
     <!-- INITIALISATION FOR CUSTOM BLOCK                                                    -->
     <!-- ---------------------------------------------------------------------------------- -->
     <script type="text/javascript">
