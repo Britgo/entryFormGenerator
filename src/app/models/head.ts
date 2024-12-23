@@ -29,4 +29,25 @@ export const PAGE_HEAD: string =  `<!DOCTYPE html>
 <form class="frm-entry" id="id_entryform"
 action="../entrysys/entryform-handler-new.php" method="post"
     autocomplete="on">
+
+  <!-- ---------------------------------------------------------------------------------- -->
+  <!-- TOOLTIP BOX                                                                        -->
+  <!-- ---------------------------------------------------------------------------------- -->
+  <div id="id_tiptxt" hidden>
+Either hover or click
+<br>
+on an info icon <span class="icon-i-new"> i </span>
+<br>
+for help.
+  </div>
+
+<div id="id_tooltip" class="dv-tooltip-new"
+     onclick="show_default_tip()"
+     title="Either hover or click on an info icon (i) for help.">
+</div>
+
+  <!-- ---------------------------------------------------------------------------------- -->
+  <!-- FORM                                                                               -->
+  <!-- ---------------------------------------------------------------------------------- -->
+
 `;

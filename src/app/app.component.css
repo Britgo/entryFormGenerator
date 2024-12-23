@@ -18,6 +18,8 @@ div.dv-tooltip-new {
     position: inherit;
     margin-top: 10pt;
     margin-bottom: 10pt;
+  }
+  div.dv-tooltip-new {
     width: 420pt;
   }
 }
