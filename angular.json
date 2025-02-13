@@ -39,7 +39,7 @@
           },
           "configurations": {
             "gh-pages": {
-              "baseHref": "https://praderiom.github.io/entryFormGenerator/",
+              "baseHref": "https://britgo.github.io/entryFormGenerator/",
               "budgets": [
                 {
                   "type": "initial",
