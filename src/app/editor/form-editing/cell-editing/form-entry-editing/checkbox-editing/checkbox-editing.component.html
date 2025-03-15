@@ -1,5 +1,7 @@
 <p class="spaced-container">
-  <span>
+<!--  <span matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       id
     </span>
@@ -9,19 +11,14 @@
            autocomplete="off"
            type="text"
            [(ngModel)]="checkbox.id"
-           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onIdChange()">
-    <span *ngIf="checkbox.immutable"
-          matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="checkbox.immutable">
       {{ checkbox.id }}
     </span>
-  </span>
-  <span>
+  </span>-->
+  <span matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       Email identifier
     </span>
@@ -31,15 +28,8 @@ This value must remain unchanged."
            autocomplete="off"
            type="text"
            [(ngModel)]="checkbox.name"
-           matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onNameChange()">
-    <span *ngIf="checkbox.immutable"
-          matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="checkbox.immutable">
       {{ checkbox.name }}
     </span>
   </span>
@@ -51,5 +41,14 @@ This value must remain unchanged."
     </span>
     <br>
     <input type="checkbox" [(ngModel)]="checkbox.checked">
+  </span>
+  <span matTooltip="If a checkbox is required then a player will not be allowed to register unless the checkbox is first marked as checked."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
+    <span>
+      Required
+    </span>
+    <br>
+    <input type="checkbox" [(ngModel)]="checkbox.required">
   </span>
 </p>

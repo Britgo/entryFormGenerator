@@ -16,7 +16,7 @@ export class TextArea extends FormEntry {
               public width: string | null = '100%',
               public resize: string | null = 'none',
               immutable: boolean = false) {
-    super(id, immutable);
+    super(id, immutable, false);
   }
 
   override getHTMLCode(): string {

@@ -37,6 +37,12 @@ export class Cell {
     // Start by opening the cell.
     let HTMLCode = `
             <td`;
+
+    // If the form entry is required then the cell has "required-cell" class.
+    if (this.getComponentWithDefault()?.required) {
+      HTMLCode = HTMLCode + ` class="required-cell"`
+    }
+
     // Might need to specify the colspan
     if (this.colspan !== null) {
       HTMLCode = HTMLCode + ' colspan="' + this.colspan.toString() + '"';
@@ -49,7 +55,22 @@ export class Cell {
     if (this.width !== null) {
       HTMLCode = HTMLCode + ' width: ' + this.width + ';';
     }
-    return HTMLCode + '">';
+    HTMLCode = HTMLCode + '">';
+
+    // If the form entry is required then the cell will start with a * symbol.
+    if (this.isRequired()) {
+      HTMLCode = HTMLCode + `*`
+    }
+    return HTMLCode;
+  }
+
+  isRequired(): boolean {
+    let component = this.getComponentWithDefault();
+    if (component === null) {
+      return false;
+    } else {
+      return component.required;
+    }
   }
 
   getCellCloseHTMLCode(): string {

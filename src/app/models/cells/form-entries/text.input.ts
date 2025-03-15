@@ -11,8 +11,9 @@ export class TextInput extends FormEntry {
               public maxlength: number | null = null,
               private onkeyup: string | null = null,
               public margin_top: string | null = null,
-              immutable: boolean = false) {
-    super(id, immutable);
+              immutable: boolean = false,
+              required: boolean = false) {
+    super(id, immutable, required);
   }
 
   override getHTMLCode(): string {
@@ -23,6 +24,11 @@ export class TextInput extends FormEntry {
                             title="`+this.description+`"
                             type="text"
                             value="`+this.value+`"`;
+
+    // If the input is required then we add the required class to it.
+    if (this.required) {
+      HTMLCode = HTMLCode + ` class="required-form-entry"`
+    }
 
     // Maybe there is a name.
     if (this.name !== '') {

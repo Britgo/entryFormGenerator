@@ -66,7 +66,7 @@ As Javascript appears to be missing or turned off, the form cannot be processed.
 
 <script src = "../errlogsys/debug-tool.js"> </script>
   <script src = "../egdsys/egd-ajax-interface.js"> </script>
-  <script src = "../entrysys/entryform-interface-new.js"> </script>
+  <script src = "../entrysys/entryform-interface.js"> </script>
 
 `+initializationString+`
 

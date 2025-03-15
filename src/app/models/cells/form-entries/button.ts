@@ -8,7 +8,7 @@ export class Button extends FormEntry {
               private enabled: boolean = true,
               private onclick: string = '',
               immutable: boolean = false) {
-    super(id, immutable);
+    super(id, immutable, false);
   }
 
   override getHTMLCode(): string {

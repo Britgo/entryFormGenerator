@@ -36,8 +36,9 @@ export class Dropdown extends FormEntry {
               public margin_bottom: string | null = null,
               public margin_top: string | null = null,
               private onchange: string | null = null,
-              immutable: boolean = false) {
-    super(id, immutable);
+              immutable: boolean = false,
+              required:boolean = false) {
+    super(id, immutable, required);
   }
 
   selectOption(selected_option: Option) {
@@ -58,6 +59,11 @@ export class Dropdown extends FormEntry {
     // Initiate the select object.
     let HTMLCode: string = `
                 <select id="`+this.id+`"`;
+
+    // If the dropdown is required then we add the required class to it.
+    if (this.required) {
+      HTMLCode = HTMLCode + ` class="required-form-entry"`
+    }
 
     // Add onchange if any.
     if (this.onchange !== '') {

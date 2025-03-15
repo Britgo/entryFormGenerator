@@ -4,7 +4,7 @@ export class InfoImage extends FormEntry {
   constructor(id: string,
               public description: string,
               immutable: boolean = false) {
-    super(id, immutable);
+    super(id, immutable, false);
   }
 
   sanitizeText(description: string): string {

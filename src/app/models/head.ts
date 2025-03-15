@@ -39,11 +39,13 @@ Either hover or click
 on an info icon <span class="icon-i-new"> i </span>
 <br>
 for help.
+<br>
+The fields with a "*" symbol are required.
   </div>
 
 <div id="id_tooltip" class="dv-tooltip-new"
      onclick="show_default_tip()"
-     title="Either hover or click on an info icon (i) for help.">
+     title="Either hover or click on an info icon (i) for help. The fields with a '*' symbol are required.">
 </div>
 
   <!-- ---------------------------------------------------------------------------------- -->

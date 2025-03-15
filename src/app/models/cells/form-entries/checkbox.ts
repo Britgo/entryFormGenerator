@@ -4,8 +4,9 @@ export class Checkbox extends FormEntry {
   constructor(id: string,
               public name: string,
               public checked: boolean,
-              immutable: boolean = false) {
-    super(id, immutable);
+              immutable: boolean = false,
+              required: boolean = false) {
+    super(id, immutable, required);
   }
 
   override getHTMLCode(): string {
@@ -13,6 +14,11 @@ export class Checkbox extends FormEntry {
     let HTMLCode: string = `
                 <input  name="`+this.getHTMLName()+`" type="hidden" value="N">
                 <input id="`+this.id+`" name="`+this.getHTMLName()+`"  type="checkbox" value="Y"`;
+
+    // If the checkbox is required then we add the required class to it.
+    if (this.required) {
+      HTMLCode = HTMLCode + ` class="required-form-entry"`
+    }
 
     // If element is checked we need to mark it as so.
     if (this.checked) {

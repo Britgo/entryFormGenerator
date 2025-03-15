@@ -1,5 +1,7 @@
 <p class="spaced-container">
-  <span>
+<!--  <span matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       id
     </span>
@@ -9,19 +11,14 @@
            autocomplete="off"
            type="text"
            [(ngModel)]="dropdown.id"
-           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onIdChange()">
-    <span *ngIf="dropdown.immutable"
-          matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="dropdown.immutable">
       {{ dropdown.id }}
     </span>
-  </span>
-  <span>
+  </span>-->
+  <span matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       Email identifier
     </span>
@@ -31,17 +28,19 @@ This value must remain unchanged."
            autocomplete="off"
            type="text"
            [(ngModel)]="dropdown.name"
-           matTooltip="When a new player registers you will receive their answer to this dropdown under this identifier."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onNameChange()">
-    <span *ngIf="dropdown.immutable"
-          matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="dropdown.immutable">
       {{ dropdown.name }}
     </span>
+  </span>
+  <span matTooltip="If a dropdown is required then a player will not be allowed to register for the tournament unless he has selected an option other than the first one."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
+    <span>
+      Required
+    </span>
+    <br>
+    <input type="checkbox" [(ngModel)]="dropdown.required">
   </span>
 </p>
 <div class="hor-line"></div>

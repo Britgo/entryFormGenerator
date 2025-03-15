@@ -1,5 +1,7 @@
 <p class="spaced-container">
-  <span>
+<!--  <span matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       id
     </span>
@@ -9,19 +11,14 @@
            autocomplete="off"
            type="text"
            [(ngModel)]="text_input.id"
-           matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onIdChange()">
-    <span *ngIf="text_input.immutable"
-          matTooltip="This is the unique identifier of this cell. Make sure it's different from all others but use only letters and underscores ('_') to define it.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="text_input.immutable">
       {{ text_input.id }}
     </span>
-  </span>
-  <span>
+  </span>-->
+  <span matTooltip="When a new player registers you will receive their answer to this text under this identifier."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
     <span>
       Email identifier
     </span>
@@ -31,18 +28,20 @@ This value must remain unchanged."
            autocomplete="off"
            type="text"
            [(ngModel)]="text_input.name"
-           matTooltip="When a new player registers you will receive their answer to this text under this identifier."
-           [matTooltipShowDelay]="SHOW_DELAY"
-           [matTooltipPosition]="POSITION"
            (change)="onNameChange()">
-    <span *ngIf="text_input.immutable"
-          matTooltip="When a new player registers you will receive their answer to this checkbox under this identifier.
-This value must remain unchanged."
-          [matTooltipShowDelay]="SHOW_DELAY"
-          [matTooltipPosition]="POSITION">
+    <span *ngIf="text_input.immutable">
       {{ text_input.name }}
     </span>
   </span>
+  <span matTooltip="If a text input is required then a player will not be allowed to register unless if they leave the input empty."
+        [matTooltipShowDelay]="SHOW_DELAY"
+        [matTooltipPosition]="POSITION">
+      <span>
+        Required
+      </span>
+      <br>
+      <input type="checkbox" [(ngModel)]="text_input.required">
+    </span>
 </p>
 
 <div class="hor-line"></div>

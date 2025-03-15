@@ -33,4 +33,13 @@ export class TableComponent {
   processDescriptionChange(cell: Cell) {
     this.on_cell_describe.emit(cell.getDescription());
   }
+
+  // Required cells start with a "*" symbol.
+  getIsRequiredChar(cell: Cell) {
+    if (cell.isRequired()) {
+      return "*";
+    } else {
+      return "";
+    }
+  }
 }

@@ -2,7 +2,7 @@ import {TwoLineDropdown} from "../../two.lines.cell";
 import {Dropdown, Option} from "../../form-entries/dropdown";
 
 const option: Option = new Option(
-  'PLEASE WRITE YOUR INITIALS',
+  'PLEASE WRITE YOUR INITIALS AND/OR EGD PIN',
   false,
   '0'
 );
