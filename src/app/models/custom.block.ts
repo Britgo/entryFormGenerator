@@ -8,9 +8,14 @@ import {CLUB_NAME} from "./cells/default-cells/custom-block/club.name";
 import {GRADE} from "./cells/default-cells/custom-block/grade";
 import {STRENGTH} from "./cells/default-cells/custom-block/strength";
 import {PLAY_ALL} from "./cells/default-cells/custom-block/play.all";
+/*
 import {MEMBER} from "./cells/default-cells/custom-block/member";
 import {YOUTH} from "./cells/default-cells/custom-block/youth";
 import {FIRST} from "./cells/default-cells/custom-block/first";
+*/
+import {FEE} from "./cells/default-cells/custom-block/fee";
+import {FEEHEADER,FEEWARN} from "./cells/default-cells/custom-block/fee.header";
+import {DIVIDER} from "./cells/default-cells/custom-block/divider";
 import {PUBLIC} from "./cells/default-cells/custom-block/public";
 import {EmptyRow, Row} from "./row";
 
@@ -24,9 +29,15 @@ export const CUSTOM_BLOCK = new TableGenerator(
     new Row([GRADE, STRENGTH]),
     new EmptyRow(),
     new Row([PLAY_ALL]),
+    /*
     new Row([MEMBER]),
     new Row([YOUTH]),
     new Row([FIRST]),
+    */
     new Row([PUBLIC]),
+    new Row([DIVIDER]),
+    new Row([FEEHEADER]),
+    new Row([FEEWARN]),
+    new Row([FEE]),
   ]
 );

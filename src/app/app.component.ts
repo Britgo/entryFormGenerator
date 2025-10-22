@@ -19,7 +19,7 @@ export class AppComponent {
   custom_block: TableGenerator = CUSTOM_BLOCK;
   player_email_block: TableGenerator = PLAYER_EMAIL_BLOCK;
   tour_config: TourConfig = DEFAULT_TOUR_CONFIG;
-  DEFAULT_INFO_MESSAGE: string = `Either hover or click<br>on an info icon <span class="icon-i-new"> i </span><br>for help.<br>The fields with a "*" symbol are required.`;
+  DEFAULT_INFO_MESSAGE: string = `Either hover or click on an info icon <span class="icon-i-new"> i </span> for help.<br>The fields with a "*" symbol are required.`;
 
   info_message: string = this.DEFAULT_INFO_MESSAGE;
   edit_mode: boolean = true;

@@ -13,6 +13,10 @@ import {YOUTH} from "./youth";
 import {PUBLIC} from "./public";
 import {STRENGTH} from "./strength";
 
+import {FEE} from "./fee";
+import {FEEHEADER,FEEWARN} from "./fee.header";
+import {DIVIDER} from "./divider";
+
 export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
   CLUB_CODE,
   CLUB_NAME,
@@ -26,5 +30,9 @@ export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
   YOUTH,
   PLAY_ALL,
   PUBLIC,
-  STRENGTH
+  STRENGTH,
+  FEE,
+  FEEHEADER,
+  FEEWARN,
+  DIVIDER
 ];
