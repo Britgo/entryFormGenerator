@@ -14,7 +14,7 @@ import {PUBLIC} from "./public";
 import {STRENGTH} from "./strength";
 
 import {FEE} from "./fee";
-import {FEEHEADER,FEEWARN} from "./fee.header";
+import {FEEHEADER} from "./fee.header";
 import {DIVIDER} from "./divider";
 
 export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
@@ -33,6 +33,5 @@ export const ALL_DEFAULT_CUSTOM_CELLS: Cell[] = [
   STRENGTH,
   FEE,
   FEEHEADER,
-  FEEWARN,
   DIVIDER
 ];
