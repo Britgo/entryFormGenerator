@@ -14,7 +14,7 @@ import {YOUTH} from "./cells/default-cells/custom-block/youth";
 import {FIRST} from "./cells/default-cells/custom-block/first";
 */
 import {FEE} from "./cells/default-cells/custom-block/fee";
-import {FEEHEADER,FEEWARN} from "./cells/default-cells/custom-block/fee.header";
+import {FEEHEADER} from "./cells/default-cells/custom-block/fee.header";
 import {DIVIDER} from "./cells/default-cells/custom-block/divider";
 import {PUBLIC} from "./cells/default-cells/custom-block/public";
 import {EmptyRow, Row} from "./row";
@@ -37,7 +37,6 @@ export const CUSTOM_BLOCK = new TableGenerator(
     new Row([PUBLIC]),
     new Row([DIVIDER]),
     new Row([FEEHEADER]),
-    new Row([FEEWARN]),
     new Row([FEE]),
   ]
 );
